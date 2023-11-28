@@ -89,11 +89,35 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <!-- keywords: sqlite3_open sqlite3_open16 sqlite3_open_v2 -->
 <div class=nosearch>
-<a href="intro.html"><h2>SQLite C Interface</h2></a>
+<a href="../c3ref/intro.html"><h2>SQLite C Interface</h2></a>
 <h2>Opening A New Database Connection</h2>
 </div>
 <blockquote><pre>
@@ -142,13 +166,18 @@ three flag combinations:</p>
 
 <p><dl>
 <dt><a href="../c3ref/c_open_autoproxy.html">SQLITE_OPEN_READONLY</a></dt>
-<dd>The database is opened in read-only mode.  If the database does not
-already exist, an error is returned.</dd></p>
+<dd>The database is opened in read-only mode.  If the database does
+not already exist, an error is returned.</dd></p>
 
 <p><dt><a href="../c3ref/c_open_autoproxy.html">SQLITE_OPEN_READWRITE</a></dt>
-<dd>The database is opened for reading and writing if possible, or reading
-only if the file is write protected by the operating system.  In either
-case the database must already exist, otherwise an error is returned.</dd></p>
+<dd>The database is opened for reading and writing if possible, or
+reading only if the file is write protected by the operating
+system.  In either case the database must already exist, otherwise
+an error is returned.  For historical reasons, if opening in
+read-write mode fails due to OS-level permissions, an attempt is
+made to open it in read-only mode. <a href="../c3ref/db_readonly.html">sqlite3_db_readonly()</a> can be
+used to determine whether the database is actually
+read-write.</dd></p>
 
 <p><dt><a href="../c3ref/c_open_autoproxy.html">SQLITE_OPEN_READWRITE</a> | <a href="../c3ref/c_open_autoproxy.html">SQLITE_OPEN_CREATE</a></dt>
 <dd>The database is opened for reading and writing, and is created if
@@ -185,22 +214,42 @@ there is no harm in trying.)</p>
 <p><dt><a href="../c3ref/c_open_autoproxy.html">SQLITE_OPEN_SHAREDCACHE</a></dt>
 <dd>The database is opened <a href="../sharedcache.html">shared cache</a> enabled, overriding
 the default shared cache setting provided by
-<a href="../c3ref/enable_shared_cache.html">sqlite3_enable_shared_cache()</a>.</p>
+<a href="../c3ref/enable_shared_cache.html">sqlite3_enable_shared_cache()</a>.
+The <a href="../sharedcache.html#dontuse">use of shared cache mode is discouraged</a> and hence shared cache
+capabilities may be omitted from many builds of SQLite.  In such cases,
+this option is a no-op.</p>
 
 <p><dt><a href="../c3ref/c_open_autoproxy.html">SQLITE_OPEN_PRIVATECACHE</a></dt>
 <dd>The database is opened <a href="../sharedcache.html">shared cache</a> disabled, overriding
 the default shared cache setting provided by
 <a href="../c3ref/enable_shared_cache.html">sqlite3_enable_shared_cache()</a>.</p>
 
+<p><a name="openexrescode"></a>
+ <dt><a href="../c3ref/c_open_autoproxy.html">SQLITE_OPEN_EXRESCODE</a></dt>
+<dd>The database connection comes up in "extended result code mode".
+In other words, the database behaves has if
+<a href="../c3ref/extended_result_codes.html">sqlite3_extended_result_codes(db,1)</a> where called on the database
+connection as soon as the connection is created. In addition to setting
+the extended result code mode, this flag also causes <a href="../c3ref/open.html">sqlite3_open_v2()</a>
+to return an extended result code.</dd></p>
+
 <p><a name="opennofollow"></a>
  <dt><a href="../c3ref/c_open_autoproxy.html">SQLITE_OPEN_NOFOLLOW</a></dt>
-<dd>The database filename is not allowed to be a symbolic link</dd>
+<dd>The database filename is not allowed to contain a symbolic link</dd>
 </dl></p>
 
 <p>If the 3rd parameter to sqlite3_open_v2() is not one of the
 required combinations shown above optionally combined with other
 <a href="../c3ref/c_open_autoproxy.html">SQLITE_OPEN_* bits</a>
-then the behavior is undefined.</p>
+then the behavior is undefined.  Historic versions of SQLite
+have silently ignored surplus bits in the flags parameter to
+sqlite3_open_v2(), however that behavior might not be carried through
+into future versions of SQLite and so applications should not rely
+upon it.  Note in particular that the SQLITE_OPEN_EXCLUSIVE flag is a no-op
+for sqlite3_open_v2().  The SQLITE_OPEN_EXCLUSIVE does *not* cause
+the open to fail if the database already exists.  The SQLITE_OPEN_EXCLUSIVE
+flag is intended for use by the <a href="../c3ref/vfs.html">VFS interface</a> only, and not
+by sqlite3_open_v2().</p>
 
 <p>The fourth parameter to sqlite3_open_v2() is the name of the
 <a href="../c3ref/vfs.html">sqlite3_vfs</a> object that defines the operating system interface that
@@ -367,6 +416,7 @@ features that require the use of temporary files may fail.</p>
 
 <p>See also: <a href="../c3ref/temp_directory.html">sqlite3_temp_directory</a>
 </p><p>See also lists of
-  <a href="objlist.html">Objects</a>,
-  <a href="constlist.html">Constants</a>, and
-  <a href="funclist.html">Functions</a>.</p>
+  <a href="../c3ref/objlist.html">Objects</a>,
+  <a href="../c3ref/constlist.html">Constants</a>, and
+  <a href="../c3ref/funclist.html">Functions</a>.</p>
+

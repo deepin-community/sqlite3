@@ -89,9 +89,33 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
-<a href="intro.html"><h2>SQLite C Interface</h2></a>
+<a href="../c3ref/intro.html"><h2>SQLite C Interface</h2></a>
 
 <h2>Experimental And Deprecated Interfaces</h2>
 
@@ -108,7 +132,7 @@ compatible way.  An application that uses only stable interfaces
 should always be able to relink against a newer version of SQLite
 without any changes.</p>
 
-<p>Experimental interfaces are subject to change.  
+<p>Experimental interfaces are subject to change.
 Applications that use experimental interfaces
 may need to be modified when upgrading to a newer SQLite release, though
 this is rare.
@@ -127,11 +151,12 @@ that deprecated interfaces may be removed.</p>
 <p>Key points:</p>
 
 <ul>
-<li>Experimental interfaces are subject to change and/or removal 
+<li>Experimental interfaces are subject to change and/or removal
 at any time.</li>
 
 <li>Deprecated interfaces should not be used in new code and might
 be removed in some future release.</li>
 </ul>
+
 
 

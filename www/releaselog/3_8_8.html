@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.8.8 On 2015-01-16</h2><p><ol class='lessindent'>
 <p><b>New Features:</b>
 <li>Added the <a href="../pragma.html#pragma_data_version">PRAGMA data_version</a> command that can be used to determine if
@@ -141,7 +165,7 @@ return false;
 <li>Fix obscure crash bugs found by
     <a href="http://lcamtuf.coredump.cx/afl/">american fuzzy lop</a>.  Ticket
     <a href="https://www.sqlite.org/src/info/a59ae93ee990a55">a59ae93ee990a55</a>.
-<li>Work around a GCC optimizer bug (for gcc 4.2.1 on MacOS 10.7) that caused the 
+<li>Work around a GCC optimizer bug (for gcc 4.2.1 on MacOS 10.7) that caused the
     <a href="../rtree.html">R-Tree extension</a> to compute incorrect results when compiled with -O3.
 <p><b>Other changes:</b>
 <li>Disable the use of the strchrnul() C-library routine unless it is
@@ -155,9 +179,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

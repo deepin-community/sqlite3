@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.8.9 On 2015-04-08</h2><p><ol class='lessindent'>
 <li>Add VxWorks-7 as an officially supported and tested platform.
 <li>Added the <a href="../c3ref/status.html">sqlite3_status64()</a> interface.
@@ -105,7 +129,7 @@ return false;
 <li>Correct miscounts in the sqlite3_analyzer.exe utility related
     to WITHOUT ROWID tables.
 <li>Added the ".dbinfo" command to the <a href="../cli.html">command-line shell</a>.
-<li>Improve the performance of fts3/4 queries that use the OR operator 
+<li>Improve the performance of fts3/4 queries that use the OR operator
     and at least one auxiliary fts function.
 <li>Fix a bug in the fts3 snippet() function causing it to omit
     leading separator characters from snippets that begin with the
@@ -116,9 +140,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

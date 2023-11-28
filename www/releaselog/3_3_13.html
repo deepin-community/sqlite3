@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.3.13 On 2007-02-13</h2><p><ol class='lessindent'>
 <li>Add a "fragmentation" measurement in the output of sqlite3_analyzer.</li>
 <li>Add the COLLATE operator used to explicitly set the collating sequence
@@ -98,9 +122,9 @@ used by an expression.  This feature is considered experimental pending
 additional testing.</li>
 <li>Allow up to 64 tables in a join - the old limit was 32.</li>
 <li>Added two new experimental functions:
-<a href="../lang_expr.html#randomblobFunc">randomBlob()</a> and
-<a href="../lang_expr.html#hexFunc">hex()</a>.
-Their intended use is to facilitate generating 
+<a href="../lang_corefunc.html#randomblob">randomblob()</a> and
+<a href="../lang_corefunc.html#hex">hex()</a>.
+Their intended use is to facilitate generating
 <a href="http://en.wikipedia.org/wiki/UUID">UUIDs</a>.
 </li>
 <li>Fix a problem where
@@ -114,9 +138,10 @@ left-most table in the join is constrained by a UNIQUE index.</li>
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

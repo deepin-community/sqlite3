@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <div class=fancy>
 <div class=nosearch>
 <div class="fancy_title">
@@ -239,7 +263,7 @@ invoking <a href="c3ref/db_config.html">sqlite3_db_config</a>(db,<a href="c3ref/
 </p><p>The QPSG means that if all of your queries run efficiently
 during testing, and if your application does not change the schema,
 then SQLite will not suddenly decide to start using a different
-query plan, possibly causing a performance problem, after your application 
+query plan, possibly causing a performance problem after your application 
 is released to users.  If your application works in the lab, it
 will continue working the same way after deployment.</p>
 
@@ -417,7 +441,7 @@ L of about 6.87, but this translates into the query running about
 being outside of it.</p>
 
 <p>The arrows from the small circles labeled with "*" indicate the cost
-of running each loop with no dependencies.  The outer loop must use this
+of running each loop with no dependencies.  The outermost loop must use this
 *-cost.  Inner loops have the option of using the *-cost or a cost assuming
 one of the other terms is in an outer loop, whichever gives the best
 result.  One can think of the *-costs as a short-hand notation indicating
@@ -639,7 +663,7 @@ performance regression in Fossil.</p>
 
 <p>One of the many reports that Fossil makes available is a timeline of
 changes to a single branch showing all merges in and out of that branch.  See
-<a href="http://www.sqlite.org/src/timeline?nd&n=200&r=trunk">http://www.sqlite.org/src/timeline?nd&n=200&r=trunk</a>
+<a href="https://www.sqlite.org/src/timeline?nd&n=200&r=trunk">https://www.sqlite.org/src/timeline?nd&n=200&r=trunk</a>
 for a typical
 example of such a report.  Generating such a report normally takes just
 a few milliseconds.  But after upgrading to the NGQP we noticed that
@@ -1024,4 +1048,5 @@ in those rare cases do application developers need to get involved and
 help the query planner to do the right thing.  In the common case, the
 NGQP is just a new enhancement to SQLite that makes the application run
 a little faster and which requires no new developer thought or action.</p>
+
 

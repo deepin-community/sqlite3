@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <div class=fancy>
 <div class=nosearch>
 <div class="fancy_title">
@@ -123,9 +147,10 @@ Table Of Contents
 <div class="fancy-toc2"><a href="#using_co_routines_to_defer_work_until_after_the_sorting">12.1. Using Co-routines to Defer Work until after the Sorting</a></div>
 <div class="fancy-toc1"><a href="#the_min_max_optimization">13. The MIN/MAX Optimization</a></div>
 <div class="fancy-toc1"><a href="#automatic_indexes">14. Automatic Indexes</a></div>
+<div class="fancy-toc2"><a href="#hash_joins">14.1. Hash Joins</a></div>
 <div class="fancy-toc1"><a href="#the_push_down_optimization">15. The Push-Down Optimization</a></div>
-<div class="fancy-toc1"><a href="#the_left_join_strength_reduction_optimization">16. The LEFT JOIN Strength Reduction Optimization</a></div>
-<div class="fancy-toc1"><a href="#the_omit_left_join_optimization">17. The Omit LEFT JOIN Optimization</a></div>
+<div class="fancy-toc1"><a href="#the_outer_join_strength_reduction_optimization">16. The OUTER JOIN Strength Reduction Optimization</a></div>
+<div class="fancy-toc1"><a href="#the_omit_outer_join_optimization">17. The Omit OUTER JOIN Optimization</a></div>
 <div class="fancy-toc1"><a href="#the_constant_propagation_optimization">18. The Constant Propagation Optimization</a></div>
 </div>
 </div>
@@ -158,9 +183,8 @@ mk.innerHTML = "&#x25ba;";
   Given a single SQL statement, there might be dozens, hundreds, or even
   thousands of ways to implement that statement, depending on the complexity
   of the statement itself and of the underlying database schema.  The 
-  task of the query planner is to select an algorithm from among the many
-  choices that provides the answer with a minimum of disk I/O and CPU
-  overhead.
+  task of the query planner is to select the algorithm that minimizes
+  disk I/O and CPU overhead.
 
 
 </p><p>
@@ -194,7 +218,7 @@ mk.innerHTML = "&#x25ba;";
 </p><p>
   All terms of the WHERE clause are analyzed to see if they can be
   satisfied using indexes.
-  To be usable by an index a term must be of one of the following
+  To be usable by an index a term must usually be of one of the following
   forms:
 
 <blockquote><pre><b>
@@ -212,6 +236,8 @@ mk.innerHTML = "&#x25ba;";
   </b><i>column</i><b> IN (</b><i>expression-list</i><b>)
   </b><i>column</i><b> IN (</b><i>subquery</i><b>)
   </b><i>column</i><b> IS NULL
+  </b><i>column</i><b> LIKE </b><i>pattern</i><b>
+  </b><i>column</i><b> GLOB </b><i>pattern</i><b>
 </b></pre></blockquote>
 
 </p><p>
@@ -247,6 +273,7 @@ mk.innerHTML = "&#x25ba;";
   used in the foregoing text, one can substitute "indexed expression"
   (meaning a copy of the expression that appears in the <a href="lang_createindex.html">CREATE INDEX</a>
   statement) and everything will work the same.
+  
 
 <a name="idxexamp"></a>
 
@@ -682,7 +709,7 @@ SELECT name FROM people WHERE role='student' AND height>=180;
   exactly the same thing on inner joins.
 
 </p><p>
-  For a LEFT OUTER JOIN the situation is more complex.  The following
+  For an OUTER JOIN the situation is more complex.  The following
   two queries are not equivalent:
 
 </p><div class="codeblock"><pre>SELECT * FROM tab1 LEFT JOIN tab2 ON tab1.x=tab2.y;
@@ -1199,7 +1226,7 @@ SELECT z FROM ex3 WHERE w=5 AND x BETWEEN 1 AND 100 AND y BETWEEN 1 AND 100;
 
   </li><li value="17">
   If the sub-query is a compound SELECT, then
-  <ol type="'a'">
+  <ol type="a">
   <li> all compound operators must be UNION ALL, and
   </li><li> no terms with the subquery compound may be aggregate
        or DISTINCT, and
@@ -1278,7 +1305,8 @@ SELECT z FROM ex3 WHERE w=5 AND x BETWEEN 1 AND 100 AND y BETWEEN 1 AND 100;
   the result must be stored for a transient table.  Also, because the
   co-routine does not need to run to completion before the outer query
   begins its work, the first rows of output can appear much sooner, and if
-  the overall query is aborted, less work is done overall.
+  the overall query is abandoned before it has finished, less work is done
+  overall.
 
 </p><p>
   On the other hand, if the result of the subquery must be scanned multiple
@@ -1414,6 +1442,29 @@ SELECT a, (SELECT d FROM t2 WHERE c=b) FROM t1;
   appears in the names of <a href="fileformat2.html#intschema">internal indexes</a> for legacy reasons and does
   not indicate that internal indexes and automatic indexes are related.
 
+<a name="hashjoin"></a>
+
+</p><h2 id="hash_joins"><span>14.1. </span>Hash Joins</h2>
+
+<p>
+ An automatic index is about the same thing as a
+ <a href="https://en.wikipedia.org/wiki/Hash_join">hash join</a>.  The only difference
+ is that a B-Tree is used instead of a hash table.  If you are willing to
+ say that the transient B-Tree constructed for an automatic index is
+ really just a fancy hash table, then a query that uses an automatic
+ index is just a hash join.
+
+</p><p>
+ SQLite constructs a transient index instead of a hash table in this
+ instance because it already has a robust and high performance B-Tree
+ implementation at hand, whereas a hash-table would need to be added.
+ Adding a separate hash table implementation to handle this one case
+ would increase the size of the library (which is designed for use on
+ low-memory embedded devices) for minimal performance gain.  SQLite might
+ be enhanced with a hash-table implementation someday, but for now it seems
+ better to continue using automatic indexes in cases where client/server
+ database engines might use a hash join.
+
 <a name="pushdown"></a>
 
 </p><h1 id="the_push_down_optimization"><span>15. </span>The Push-Down Optimization</h1>
@@ -1457,23 +1508,26 @@ SELECT x, y, b
 
 <a name="leftjoinreduction"></a>
 
-</p><h1 id="the_left_join_strength_reduction_optimization"><span>16. </span>The LEFT JOIN Strength Reduction Optimization</h1>
+</p><h1 id="the_outer_join_strength_reduction_optimization"><span>16. </span>The OUTER JOIN Strength Reduction Optimization</h1>
 
 <p>
-  A LEFT JOIN can sometimes be converted into an ordinary JOIN
-  if there are terms in the WHERE clause that guarantee that the
-  two joins will give identical results.  In particular, if any
+  An OUTER JOIN (either a LEFT JOIN, a RIGHT JOIN, or a FULL JOIN)
+  can sometimes be simplified.  A LEFT or RIGHT JOIN can be converted
+  into an ordinary (INNER) JOIN, or a FULL JOIN might be converted into
+  either a LEFT or a RIGHT JOIN.  This can happen if there are terms
+  in the WHERE clause that guarantee the same result after simplification.
+  For example, if any
   column in the right-hand table of the LEFT JOIN must be non-NULL
   in order for the WHERE clause to be true, then the LEFT JOIN is
   demoted to an ordinary JOIN.
 
 </p><p>
-  The prover that determines whether any column of the right-hand
-  table of a LEFT JOIN must be non-NULL in the WHERE clause is
+  The theorem prover that determines whether a join can be simplified is
   imperfect.  It sometimes returns a false negative.  In other words,
-  it sometimes fails to reduce the strength of a LEFT JOIN when doing
-  so was in fact possible.  For example, the prover does not know
-  the <a href="lang_datefunc.html">datetime() SQL function</a> will always return NULL if its first
+  it sometimes fails to prove that reducing the strength of an OUTER JOIN
+  is safe when in fact it is safe.
+  For example, the prover does not know
+  the <a href="lang_datefunc.html#dttm">datetime() SQL function</a> will always return NULL if its first
   argument is NULL, and so it will not recognize that the LEFT JOIN
   in the following query could be strength-reduced:
 
@@ -1498,13 +1552,12 @@ SELECT x, y, b
   course, the prover will never be able to reason about
   <a href="appfunc.html">application-defined SQL functions</a>.
 
-
 <a name="omitnoopjoin"></a>
 
-</p><h1 id="the_omit_left_join_optimization"><span>17. </span>The Omit LEFT JOIN Optimization</h1>
+</p><h1 id="the_omit_outer_join_optimization"><span>17. </span>The Omit OUTER JOIN Optimization</h1>
 
 <p>
-  Sometimes a LEFT JOIN can be completely omitted from a query without
+  Sometimes a LEFT or RIGHT JOIN can be completely omitted from a query without
   changing the result.  This can happen if all of the following are
   true:
 
@@ -1512,17 +1565,18 @@ SELECT x, y, b
   </p><ol>
   <li> The query is not an aggregate
   </li><li> Either the query is DISTINCT or else the ON or USING clause
-       on the LEFT JOIN constrains the join such that it matches
+       on the OUTER JOIN constrains the join such that it matches
        only a single row
-  </li><li> The right-hand table of the LEFT JOIN is not be used anywhere
+  </li><li> The right-hand table of the LEFT JOIN or the left-hand table of
+       a RIGHT JOIN is not be used anywhere
        in the query outside of its own USING or ON clause.
   </li></ol>
 
 <p>
-  LEFT JOIN elimination often comes up when LEFT JOINs are used
+  OUTER JOIN elimination often comes up when OUTER JOINs are used
   inside of views, and then the view is used in such as way that
-  none of the columns of the right-hand table of the LEFT JOIN are
-  referenced.
+  none of the columns on the right-hand table of the LEFT JOIN or
+  on the left-hand table of a RIGHT JOIN are referenced.
 
 </p><p>
   Here is a simple example of omitting a LEFT JOIN:
@@ -1544,10 +1598,16 @@ SELECT v1, v3 FROM t1
   LEFT JOIN t3 ON (t1.ipk=t3.ipk)
 </pre></div>
 
+<p>
+  As of this writing, only LEFT JOINs are eliminated.  This optimize
+  has not yet been generalized to work with RIGHT JOINs as RIGHT JOIN
+  is a relatively new addition to SQLite.  That asymmetry will probably
+  be corrected in a future release.
+
 
 <a name="constprop"></a>
 
-<h1 id="the_constant_propagation_optimization"><span>18. </span>The Constant Propagation Optimization</h1>
+</p><h1 id="the_constant_propagation_optimization"><span>18. </span>The Constant Propagation Optimization</h1>
 
 <p>
   When a WHERE clause contains two or more equality constraints connected
@@ -1569,4 +1629,5 @@ SELECT * FROM t1 WHERE a=b AND b=5;
   if those two constraints are true, then it must also be the case
   that "a=5" is true.  This means that the desired row can be looked up
   quickly using a value of 5 for the INTEGER PRIMARY KEY.
-</p>
+</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/optoverview.in?m=ac75d82d3e">2023-06-01 20:46:56</a> UTC </small></i></p>
+

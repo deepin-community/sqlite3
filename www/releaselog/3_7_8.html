@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.7.8 On 2011-09-19</h2><p><ol class='lessindent'>
 <li> Orders of magnitude performance improvement for <a href="../lang_createindex.html">CREATE INDEX</a> on
      very large tables.
@@ -100,7 +124,7 @@ return false;
 <li> Allow more system calls to be overridden in the unix VFS - to provide
      better support for chromium sandboxes.
 <li> Increase the default size of a lookahead cache line from 100 to 128 bytes.
-<li> Enhancements to the test_quota.c module so that it can track 
+<li> Enhancements to the test_quota.c module so that it can track
      preexisting files.
 <li> Bug fix: Virtual tables now handle IS NOT NULL constraints correctly.
 <li> Bug fixes: Correctly handle nested correlated subqueries used with
@@ -112,9 +136,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <div class=fancy>
 <div class=nosearch>
 <div class="fancy_title">
@@ -104,8 +128,8 @@ Transaction
 <h1 id="transaction_control_syntax"><span>1. </span>Transaction Control Syntax</h1>
 
 <p><b><a href="syntax/begin-stmt.html">begin-stmt:</a></b>
-<button id='x2123' onclick='hideorshow("x2123","x2124")'>hide</button></p>
- <div id='x2124' class='imgcontainer'>
+<button id='xb1701bb4' onclick='hideorshow("xb1701bb4","x4999ba07")'>hide</button></p>
+ <div id='x4999ba07' class='imgcontainer'>
  <div style="max-width:560px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 560.669 140.4">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -151,8 +175,8 @@ Transaction
 </div>
 </div>
 <p><b><a href="syntax/commit-stmt.html">commit-stmt:</a></b>
-<button id='x2125' onclick='hideorshow("x2125","x2126")'>hide</button></p>
- <div id='x2126' class='imgcontainer'>
+<button id='x4ef3720b' onclick='hideorshow("x4ef3720b","x9d6c8324")'>hide</button></p>
+ <div id='x9d6c8324' class='imgcontainer'>
  <div style="max-width:434px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 434.506 72.36">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -183,8 +207,8 @@ Transaction
 </div>
 </div>
 <p><b><a href="syntax/rollback-stmt.html">rollback-stmt:</a></b>
-<button id='x2127' onclick='hideorshow("x2127","x2128")'>hide</button></p>
- <div id='x2128' class='imgcontainer'>
+<button id='x82e26188' onclick='hideorshow("x82e26188","xbfddd6c6")'>hide</button></p>
+ <div id='xbfddd6c6' class='imgcontainer'>
  <div style="max-width:801px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 801.734 67.392">
 <circle cx="5" cy="33" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,33 20,38 20,29" style="fill:rgb(0,0,0)"/>
@@ -238,7 +262,7 @@ are committed when the last SQL statement finishes.
 <p>
 Transactions can be started manually using the BEGIN
 command.  Such transactions usually persist until the next
-COMMIT or ROLLBACK command.  But a transaction will also 
+COMMIT or ROLLBACK command.  But a transaction will also
 ROLLBACK if the database is closed or if an error occurs
 and the ROLLBACK conflict resolution algorithm is specified.
 See the documentation on the <a href="lang_conflict.html">ON CONFLICT</a>
@@ -270,7 +294,7 @@ threads or processes, but only one simultaneous write transaction.
 
 </p><p>A read transaction is used for reading only.  A write transaction
 allows both reading and writing.  A read transaction is started
-by a SELECT statement, and a write transaction is started by 
+by a SELECT statement, and a write transaction is started by
 statements like CREATE, DELETE, DROP, INSERT, or UPDATE (collectively
 "write statements").  If a write statement occurs while
 a read transaction is active, then the read transaction is upgraded
@@ -286,7 +310,7 @@ are implemented by separate database connections will not be seen
 by the database connection that started the read transaction.  If database
 connection X is holding a read transaction, it is possible that some
 other database connection Y might change the content of the database
-while X's transaction is still open, however X will not be able to see 
+while X's transaction is still open, however X will not be able to see
 those changes until after the transaction ends.  While its read
 transaction is active, X will continue to see an historic snapshot of
 the database prior to the changes implemented by Y.
@@ -305,7 +329,7 @@ The default transaction behavior is DEFERRED.
 <p>
 DEFERRED means that the transaction does not actually
 start until the database is first accessed.  Internally,
-the BEGIN DEFERRED statement merely sets a flag on the database 
+the BEGIN DEFERRED statement merely sets a flag on the database
 connection that turns off the automatic commit that would normally
 occur when the last statement finishes.  This causes the transaction
 that is automatically started to persist until an explicit
@@ -319,8 +343,8 @@ a write transaction is started.
 </p>
 
 <p>
-IMMEDIATE cause the database connection to start a new write
-immediately, without waiting for a write statement.  The 
+IMMEDIATE causes the database connection to start a new write
+immediately, without waiting for a write statement.  The
 BEGIN IMMEDIATE might fail with <a href="rescode.html#busy">SQLITE_BUSY</a> if another write
 transaction is already active on another database connection.
 </p>
@@ -367,7 +391,7 @@ after the reader has had a chance to clear.
 
 <p>
 In very old versions of SQLite (before version 3.7.11 - 2012-03-20)
-the ROLLBACK will fail with an error code 
+the ROLLBACK will fail with an error code
 <a href="rescode.html#busy">SQLITE_BUSY</a> if there are any pending queries.  In more recent
 versions of SQLite, the ROLLBACK will proceed and pending statements
 will often be aborted, causing them to return an <a href="rescode.html#abort">SQLITE_ABORT</a> or
@@ -399,7 +423,7 @@ errors that can cause an automatic rollback include:</p>
 <p>
 For all of these errors, SQLite attempts to undo just the one statement
 it was working on and leave changes from prior statements within the
-same transaction intact and continue with the transaction.  However, 
+same transaction intact and continue with the transaction.  However,
 depending on the statement being evaluated and the point at which the
 error occurs, it might be necessary for SQLite to rollback and
 cancel the entire transaction.  An application can tell which
@@ -407,7 +431,7 @@ course of action SQLite took by using the
 <a href="c3ref/get_autocommit.html">sqlite3_get_autocommit()</a> C-language interface.</p>
 
 <p>It is recommended that applications respond to the errors
-listed above by explicitly issuing a ROLLBACK command.  If the 
+listed above by explicitly issuing a ROLLBACK command.  If the
 transaction has already been rolled back automatically
 by the error response, then the ROLLBACK command will fail with an
 error, but no harm is caused by this.</p>
@@ -417,4 +441,5 @@ might cause automatic transaction rollback.  Future versions of
 SQLite might change the error response.  In particular, we may
 choose to simplify the interface in future versions of SQLite by
 causing the errors above to force an unconditional rollback.</p>
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/lang_transaction.in?m=9c5adbec23">2023-03-14 14:31:07</a> UTC </small></i></p>
 

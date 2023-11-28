@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.8.11 On 2015-07-27</h2><p><ol class='lessindent'>
 <li>Added the experimental <a href="../rbu.html">RBU</a> extension.  Note that this extension is experimental
     and subject to change in incompatible ways.
@@ -116,12 +140,12 @@ return false;
     use for the initial set page cache lines.  Set the default preallocation
     to 100 pages.  Yields about a 5% performance increase on common workloads.
 <li>Miscellaneous micro-optimizations result in 22.3% more work for the same
-    number of CPU cycles relative to the previous release. 
+    number of CPU cycles relative to the previous release.
     SQLite now runs twice as fast as <a href="../releaselog/3_8_0.html">version 3.8.0</a> and three times as
     fast as <a href="../releaselog/3_3_9.html">version 3.3.9</a>.
-    (Measured using 
+    (Measured using
     <a href="http://valgrind.org/docs/manual/cg-manual.html">cachegrind</a> on the
-    <a href="http://www.sqlite.org/src/artifact/83f6b3318f7ee">speedtest1.c</a> workload on
+    <a href="https://www.sqlite.org/src/artifact/83f6b3318f7ee">speedtest1.c</a> workload on
     Ubuntu 14.04 x64 with gcc 4.8.2 and -Os. Your performance may vary.)
 <li>Added the <a href="../c3ref/result_blob.html">sqlite3_result_zeroblob64()</a> and <a href="../c3ref/bind_blob.html">sqlite3_bind_zeroblob64()</a>
     interfaces.
@@ -146,9 +170,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

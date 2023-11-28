@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <div class=fancy>
 <div class=nosearch>
 <div class="fancy_title">
@@ -191,6 +215,11 @@ filesystem I/O.
 </p><h2 id="related_studies"><span>1.2. </span>Related Studies</h2>
 
 <p>
+A <a href="https://golangexample.com/an-unscientific-benchmark-of-sqlite-vs-the-file-system-btrfs/">2022 study</a>
+(<a href="https://github.com/chrisdavies/dbench">alternative link on GitHub</a>) found that
+SQLite is <i>roughly</i> twice as fast at real-world workloads compared to Btrfs and Ext4 on Linux.
+
+</p><p>
 <a href="https://www.microsoft.com/en-us/research/people/gray/">Jim Gray</a>
 and others studied the read performance of BLOBs
 versus file I/O for Microsoft SQL Server and found that reading BLOBs 
@@ -405,7 +434,7 @@ database about 5 times faster than it can be read directly from disk.
 On Android, SQLite is only about 35% faster than reading from disk.
 
 </p><center>
-<div class="'imgcontainer'">
+<div class="imgcontainer">
 <img src="images/faster-read-sql.jpg">
 </div>
 <br>
@@ -419,7 +448,7 @@ and reading the blob content directly using the
 <a href="c3ref/blob_read.html">sqlite3_blob_read()</a> interface, as shown in the next chart:
 
 </p><center>
-<div class="'imgcontainer'">
+<div class="imgcontainer">
 <img src="images/faster-read-blobapi.jpg">
 </div>
 <br>
@@ -437,7 +466,7 @@ With these optimizations, SQLite is twice as fast as Android
 or MacOS-X and over 10 times faster than Windows.
 
 </p><center>
-<div class="'imgcontainer'">
+<div class="imgcontainer">
 <img src="images/faster-read-mmap.jpg">
 </div>
 <br>
@@ -488,7 +517,7 @@ are <a href="transactional.html">transactional</a> and <a href="transactional.ht
 setting is NORMAL instead of FULL, the transactions are not durable.
 
 </p><center>
-<div class="'imgcontainer'">
+<div class="imgcontainer">
 <img src="images/faster-write-safe.jpg">
 </div>
 <br>
@@ -513,7 +542,7 @@ equal footing with direct-to-disk writes, which is to say they make the
 data prone to corruption due to system crashes and power failures.
 
 </p><center>
-<div class="'imgcontainer'">
+<div class="imgcontainer">
 <img src="images/faster-write-unsafe.jpg">
 </div>
 <br>
@@ -616,4 +645,5 @@ device:
 <p>Finally use "adb shell" to get a shell prompt on the Android device,
 cd into the /data/local/tmp directory, and begin running the tests
 as with any other unix host.
-</p>
+</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/fasterthanfs.in?m=0f7552234f">2023-10-28 11:35:47</a> UTC </small></i></p>
+

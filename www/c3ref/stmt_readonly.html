@@ -89,11 +89,35 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <!-- keywords: sqlite3_stmt_readonly -->
 <div class=nosearch>
-<a href="intro.html"><h2>SQLite C Interface</h2></a>
+<a href="../c3ref/intro.html"><h2>SQLite C Interface</h2></a>
 <h2>Determine If An SQL Statement Writes The Database</h2>
 </div>
 <blockquote><pre>
@@ -137,8 +161,13 @@ For example, an UPDATE statement might have a WHERE clause that
 makes it a no-op, but the sqlite3_stmt_readonly() result would still
 be false.  Similarly, a CREATE TABLE IF NOT EXISTS statement is a
 read-only no-op if the table already exists, but
-sqlite3_stmt_readonly() still returns false for such a statement.
+sqlite3_stmt_readonly() still returns false for such a statement.</p>
+
+<p>If prepared statement X is an <a href="../lang_explain.html">EXPLAIN</a> or <a href="../eqp.html">EXPLAIN QUERY PLAN</a>
+statement, then sqlite3_stmt_readonly(X) returns the same value as
+if the EXPLAIN or EXPLAIN QUERY PLAN prefix were omitted.
 </p><p>See also lists of
-  <a href="objlist.html">Objects</a>,
-  <a href="constlist.html">Constants</a>, and
-  <a href="funclist.html">Functions</a>.</p>
+  <a href="../c3ref/objlist.html">Objects</a>,
+  <a href="../c3ref/constlist.html">Constants</a>, and
+  <a href="../c3ref/funclist.html">Functions</a>.</p>
+

@@ -915,4 +915,43 @@ do_catchsql_test alter-18.1 {
   ALTER TABLE log RENAME COLUMN a TO x;
 } {1 {error in trigger tr1: no such table: main.logx}}
 
+# 2021-10-13 dbsqlfuzz e89174cbfad2d904f06b5e24df0a22510b6a1c1e
+reset_db
+do_execsql_test alter-19.1 {
+  CREATE TABLE t1(x);
+  CREATE TABLE t2(c);
+  CREATE TRIGGER r1 AFTER INSERT ON t2 BEGIN
+    UPDATE t2 SET (c)=(
+       EXISTS(SELECT 1 WHERE (WITH cte1(a) AS (SELECT 1 FROM t1 WHERE (SELECT 1 WHERE (WITH cte2(b) AS (VALUES(1))SELECT b FROM cte2)))SELECT a FROM cte1))
+    );
+  END;
+  ALTER TABLE t2 RENAME TO t3;
+} {}
+do_execsql_test alter-19.2 {
+  SELECT name FROM sqlite_schema WHERE sql LIKE '%t2%';
+} {}
+do_execsql_test alter-19.3 {
+  SELECT name FROM sqlite_schema WHERE sql LIKE '%t3%' ORDER BY name;
+} {r1 t3}
+
+# 2023-10-14
+# On an ALTER TABLE ADD COLUMN with a DEFAULT clause on a STRICT table
+# make sure that the DEFAULT has a compatible type.
+#
+reset_db
+do_execsql_test alter-20.1 {
+  CREATE TABLE t1(a INT) STRICT;
+  INSERT INTO t1(a) VALUES(45);
+} {}
+do_catchsql_test alter-20.2 {
+  ALTER TABLE t1 ADD COLUMN b TEXT DEFAULT x'313233';
+} {1 {type mismatch on DEFAULT}}
+do_execsql_test alter-20.2 {
+  DELETE FROM t1;
+  ALTER TABLE t1 ADD COLUMN b TEXT DEFAULT x'313233';
+} {}
+do_catchsql_test alter-20.3 {
+  INSERT INTO t1(a) VALUES(45);
+} {1 {cannot store BLOB value in TEXT column t1.b}}
+
 finish_test

@@ -89,12 +89,36 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.8.10 On 2015-05-07</h2><p><ol class='lessindent'>
 <li>Added the <a href="../sqldiff.html">sqldiff.exe</a> utility program for computing the differences between two
     SQLite database files.
-<li>Added the <a href="../fts3.html#matchinfo-y">matchinfo y flag</a> to the 
+<li>Added the <a href="../fts3.html#matchinfo-y">matchinfo y flag</a> to the
     <a href="../fts3.html#matchinfo">matchinfo()</a> function of <a href="../fts3.html">FTS3</a>.
 <li>Performance improvements for <a href="../lang_select.html#orderby">ORDER BY</a>, <a href="../lang_vacuum.html">VACUUM</a>, <a href="../lang_createindex.html">CREATE INDEX</a>,
     <a href="../pragma.html#pragma_integrity_check">PRAGMA integrity_check</a>, and <a href="../pragma.html#pragma_quick_check">PRAGMA quick_check</a>.
@@ -113,9 +137,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

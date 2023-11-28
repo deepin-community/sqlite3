@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.24.0 On 2018-06-04</h2><p><ol class='lessindent'>
 <li> Add support for PostgreSQL-style <a href="../lang_upsert.html">UPSERT</a>.
 <li> Add support for <a href="../rtree.html#auxcol">auxiliary columns in r-tree tables</a>.
@@ -109,7 +133,7 @@ return false;
 <li> Added the <a href="../c3ref/c_dbconfig_defensive.html#sqlitedbconfigresetdatabase">SQLITE_DBCONFIG_RESET_DATABASE</a> option to the
      <a href="../c3ref/db_config.html">sqlite3_db_config()</a> API.
 <p><b><a href="../cli.html">CLI</a> Enhancements:</b>
-<li> Automatically intercepts the raw <a href="../eqp.html">EXPLAIN QUERY PLAN</a> 
+<li> Automatically intercepts the raw <a href="../eqp.html">EXPLAIN QUERY PLAN</a>
      output and reformats it into an ASCII-art graph.
 <li> Lines that begin with "#" and that are not in the middle of an
      SQL statement are interpreted as comments.
@@ -118,8 +142,8 @@ return false;
 <p><b>Performance:</b>
 <li> <a href="../lang_update.html">UPDATE</a> avoids unnecessary low-level disk writes when the contents
      of the database file do not actually change.
-     For example, "UPDATE t1 SET x=25 WHERE y=?" generates no extra 
-     disk I/O if the value in column x is already 25.  Similarly, 
+     For example, "UPDATE t1 SET x=25 WHERE y=?" generates no extra
+     disk I/O if the value in column x is already 25.  Similarly,
      when doing <a href="../lang_update.html">UPDATE</a> on records that span multiple pages, only
      the subset of pages that actually change are written to disk.
      This is a low-level performance optimization only and does not
@@ -131,7 +155,7 @@ return false;
      LIMIT is small relative to the number of unrestricted output rows.
 <li> The <a href="../optoverview.html#or_opt">OR optimization</a> is allowed to proceed
      even if the OR expression has also been converted into an IN
-     expression.  Uses of the OR optimization are now also 
+     expression.  Uses of the OR optimization are now also
      <a href="../eqp.html#or-opt">more clearly shown</a> in the <a href="../eqp.html">EXPLAIN QUERY PLAN</a> output.
 <li> The query planner is more aggressive about using
      <a href="../optoverview.html#autoindex">automatic indexes</a> for views and subqueries for which it is
@@ -164,9 +188,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

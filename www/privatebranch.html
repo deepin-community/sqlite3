@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <div class=fancy>
 <div class=nosearch>
 <div class="fancy_title">
@@ -480,13 +504,13 @@ made on the private branch in between releases if desired.</p>
 
 <p>Since this document was first written, the canonical SQLite source code
 has been moved from the venerable CVS system into a Fossil repository at
-<a href="http://www.sqlite.org/src">http://www.sqlite.org/src</a>.  This means that if you are working with
+<a href="https://www.sqlite.org/src">https://www.sqlite.org/src</a>.  This means that if you are working with
 canonical SQLite source code (as opposed to the <a href="amalgamation.html">amalgamation</a> source code
 files, sqlite3.c and sqlite3.h) then you can create a private repository
 simply by cloning the official repository:</p>
 
 <blockquote><pre>
-fossil clone http://www.sqlite.org/src private-project.fossil
+fossil clone https://www.sqlite.org/src private-project.fossil
 </pre></blockquote>
 
 <p>This command both creates the new repository and populates it with
@@ -504,4 +528,5 @@ fossil update
 
 <p>Then continue to merge the changes in "trunk" with your "private"
 changes as described in section 3.7.</p>
+
 

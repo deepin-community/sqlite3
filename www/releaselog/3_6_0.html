@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.6.0 On 2008-07-16</h2><p><ol class='lessindent'>
 <li>Modifications to the <a href="../c3ref/vfs.html">virtual file system</a> interface
     to support a wider range of embedded systems.
@@ -111,7 +135,7 @@ return false;
     but as it has the potential to break legacy applications that depend
     on the older buggy behavior, we mark that as a
     <font color="red">*** Potentially incompatible change ***</font></li>
-<li>The result column names generated for compound subqueries have been 
+<li>The result column names generated for compound subqueries have been
     simplified to show only the name of the column of the original table and
     omit the table name.  This makes SQLite operate more like other SQL
     database engines.</li>
@@ -128,9 +152,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

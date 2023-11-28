@@ -89,10 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
-
-
 
 
 <div class="rightsidebar desktoponly border2px">
@@ -101,6 +123,7 @@ return false;
 <li> <a href="features.html">Features</a> </li>
 <li> <a href="whentouse.html">When to use SQLite</a> </li>
 <li> <a href="quickstart.html">Getting Started</a> </li>
+<li> <a href="https://sqlite.org/fiddle">Try it live!</li>
 <li> <a href="chronology.html">Prior Releases</a>
 <li> <a href="lang.html">SQL Syntax</a>
 <ul>
@@ -134,7 +157,7 @@ return false;
 <p>SQLite is a C-language library that implements a
 <a href="footprint.html">small</a>,
 <a href="fasterthanfs.html">fast</a>,
-<a href="selfcontained.html">self-contained</a>, 
+<a href="selfcontained.html">self-contained</a>,
 <a href="hirely.html">high-reliability</a>,
 <a href="fullsql.html">full-featured</a>,
 SQL database engine.
@@ -148,12 +171,12 @@ use every day.
 The SQLite <a href="fileformat2.html">file format</a> is stable, cross-platform, and
 backwards compatible and the developers pledge to keep it
 that way <a href="lts.html">through the year 2050</a>.  SQLite database
-files are commonly used as containers to transfer rich 
+files are commonly used as containers to transfer rich
 content between systems
 <a href="aff_short.html">&#91;1&#93;</a>
 <a href="sqlar.html">&#91;2&#93;</a>
 <a href="appfileformat.html">&#91;3&#93;</a>
-and as a long-term archival format 
+and as a long-term archival format
 for data
 <a href="locrsf.html">&#91;4&#93;</a>.
 There are over 1 trillion (1e12)
@@ -162,11 +185,11 @@ SQLite databases in active use
 
 <p>
 SQLite <a href="https://sqlite.org/src">source code</a>
-is in the <a href="copyright.html">public-domain</a> and is free to 
+is in the <a href="copyright.html">public-domain</a> and is free to
 everyone to use for any purpose.
 
 <h3>Latest Release</h3>
-<a href="releaselog/3_36_0.html">Version 3.36.0</a> (2021-06-18).
+<a href="releaselog/3_44_0.html">Version 3.44.0</a> (2023-11-01).
 <a class="button" href="download.html">Download</a>
 <a class="button" href="chronology.html">Prior Releases</a>
 
@@ -176,6 +199,7 @@ everyone to use for any purpose.
 <li> <a href="features.html">Features</a> </li>
 <li> <a href="whentouse.html">When to use SQLite</a> </li>
 <li> <a href="quickstart.html">Getting Started</a> </li>
+<li> <a href="https://sqlite.org/fiddle">Try it live!</li>
 <li> <a href="chronology.html">Prior Releases</a>
 <li> <a href="lang.html">SQL Syntax</a>
 <ul>
@@ -224,7 +248,7 @@ by <a href="consortium.html">SQLite Consortium</a> members, including:</p>
 <script>
   var sponsors = [{
     "name":"Bloomberg",
-    "href":"https://www.bloomberg.com/",
+    "href":"https://www.techatbloomberg.com/",
     "src":"bloomberg.png",
     "wx":0
   },{
@@ -260,4 +284,5 @@ by <a href="consortium.html">SQLite Consortium</a> members, including:</p>
 </script>
 <br clear="both">
 <hr class="xhr">
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/index.in?m=3a86bb3b2f">2023-10-10 12:10:30</a> UTC </small></i></p>
 

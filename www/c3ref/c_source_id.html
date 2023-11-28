@@ -89,17 +89,41 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <!-- keywords: SQLITE_SOURCE_ID SQLITE_VERSION SQLITE_VERSION_NUMBER -->
 <div class=nosearch>
-<a href="intro.html"><h2>SQLite C Interface</h2></a>
+<a href="../c3ref/intro.html"><h2>SQLite C Interface</h2></a>
 <h2>Compile-Time Library Version Numbers</h2>
 </div>
 <blockquote><pre>
-#define SQLITE_VERSION        "3.36.0"
-#define SQLITE_VERSION_NUMBER 3036000
-#define SQLITE_SOURCE_ID      "2021-06-18 18:36:39 5c9a6c06871cb9fe42814af9c039eb6da5427a6ec28f187af7ebfb62eafa66e5"
+#define SQLITE_VERSION        "3.44.0"
+#define SQLITE_VERSION_NUMBER 3044000
+#define SQLITE_SOURCE_ID      "2023-11-01 11:23:50 17129ba1ff7f0daf37100ee82d507aef7827cf38de1866e2633096ae6ad81301"
 </pre></blockquote>
 <p>
 The <a href="../c3ref/c_source_id.html">SQLITE_VERSION</a> C preprocessor macro in the sqlite3.h header
@@ -129,6 +153,7 @@ four hexadecimal digits of the hash may be modified.</p>
 <a href="../c3ref/libversion.html">sqlite3_libversion_number()</a>, <a href="../c3ref/libversion.html">sqlite3_sourceid()</a>,
 <a href="../lang_corefunc.html#sqlite_version">sqlite_version()</a> and <a href="../lang_corefunc.html#sqlite_source_id">sqlite_source_id()</a>.
 </p><p>See also lists of
-  <a href="objlist.html">Objects</a>,
-  <a href="constlist.html">Constants</a>, and
-  <a href="funclist.html">Functions</a>.</p>
+  <a href="../c3ref/objlist.html">Objects</a>,
+  <a href="../c3ref/constlist.html">Constants</a>, and
+  <a href="../c3ref/funclist.html">Functions</a>.</p>
+

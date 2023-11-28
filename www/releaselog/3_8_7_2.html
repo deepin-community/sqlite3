@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.8.7.2 On 2014-11-18</h2><p><ol class='lessindent'>
 <li>Enhance the <a href="../lang_transaction.html">ROLLBACK</a> command so that pending queries are allowed to continue as long
     as the schema is unchanged.  Formerly, a ROLLBACK would cause all pending queries to
@@ -98,12 +122,12 @@ return false;
     if the ROLLBACK modifies the schema.
 <li>Bug fix: Make sure that NULL results from OP_Column are fully and completely NULL and
     do not have the MEM_Ephem bit set.
-    Ticket <a href="http://www.sqlite.org/src/info/094d39a4c95ee4">094d39a4c95ee4</a>.
+    Ticket <a href="https://www.sqlite.org/src/info/094d39a4c95ee4">094d39a4c95ee4</a>.
 <li>Bug fix:  The %c format in sqlite3_mprintf() is able to handle precisions greater than 70.
 <li>Bug fix:  Do not automatically remove the DISTINCT keyword from a SELECT that forms
-    the right-hand side of an IN operator since it is necessary if the SELECT also 
+    the right-hand side of an IN operator since it is necessary if the SELECT also
     contains a LIMIT.
-    Ticket <a href="http://www.sqlite.org/src/info/db87229497">db87229497</a>.
+    Ticket <a href="https://www.sqlite.org/src/info/db87229497">db87229497</a>.
 
 <li>SQLITE_SOURCE_ID: "2014-11-18 20:57:56 2ab564bf9655b7c7b97ab85cafc8a48329b27f93"
 <li>SHA1 for sqlite3.c: b2a68d5783f48dba6a8cb50d8bf69b238c5ec53a
@@ -111,9 +135,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

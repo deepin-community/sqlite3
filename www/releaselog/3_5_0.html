@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.5.0 On 2007-09-04</h2><p><ol class='lessindent'>
 <li>Redesign the OS interface layer.  See
     <a href="../34to35.html">34to35.html</a> for details.
@@ -100,8 +124,8 @@ return false;
     threads in the process, not just the single thread in which they
     are invoked.
     <font color="red">*** Potentially incompatible change ***</font>
-<li>Added the <a href="../c3ref/open.html">sqlite3_open_v2()</a> interface.  
-<li>Reimplemented the memory allocation subsystem and made it 
+<li>Added the <a href="../c3ref/open.html">sqlite3_open_v2()</a> interface.
+<li>Reimplemented the memory allocation subsystem and made it
     replaceable at compile-time.
 <li>Created a new mutex subsystem and made it replicable at
     compile-time.
@@ -111,9 +135,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

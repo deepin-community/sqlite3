@@ -89,9 +89,33 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
-<a href="intro.html"><h2>SQLite C Interface</h2></a>
+<a href="../c3ref/intro.html"><h2>SQLite C Interface</h2></a>
 
 <h2>List Of Constants:</h2>
 <p>Also available: <a href="../rescode.html">list of error codes</a></p>
@@ -107,7 +131,7 @@ return false;
 <li><a href='../c3ref/c_any.html'>SQLITE_ANY</a></li>
 <li><a href='../c3ref/c_alter_table.html'>SQLITE_ATTACH</a></li>
 <li><a href='../rescode.html#auth'>SQLITE_AUTH</a></li>
-<li><a href='../c3ref/c_abort_rollback.html'>SQLITE_AUTH_USER</a></li>
+<li><a href='../rescode.html#auth_user'>SQLITE_AUTH_USER</a></li>
 <li><a href='../c3ref/c_blob.html'>SQLITE_BLOB</a></li>
 <li><a href='../rescode.html#busy'>SQLITE_BUSY</a></li>
 <li><a href='../rescode.html#busy_recovery'>SQLITE_BUSY_RECOVERY</a></li>
@@ -155,6 +179,7 @@ return false;
 <li><a href='../rescode.html#constraint'>SQLITE_CONSTRAINT</a></li>
 <li><a href='../rescode.html#constraint_check'>SQLITE_CONSTRAINT_CHECK</a></li>
 <li><a href='../rescode.html#constraint_commithook'>SQLITE_CONSTRAINT_COMMITHOOK</a></li>
+<li><a href='../rescode.html#constraint_datatype'>SQLITE_CONSTRAINT_DATATYPE</a></li>
 <li><a href='../rescode.html#constraint_foreignkey'>SQLITE_CONSTRAINT_FOREIGNKEY</a></li>
 <li><a href='../rescode.html#constraint_function'>SQLITE_CONSTRAINT_FUNCTION</a></li>
 <li><a href='../rescode.html#constraint_notnull'>SQLITE_CONSTRAINT_NOTNULL</a></li>
@@ -194,6 +219,8 @@ return false;
 <li><a href='../c3ref/c_dbconfig_defensive.html'>SQLITE_DBCONFIG_MAX</a></li>
 <li><a href='../c3ref/c_dbconfig_defensive.html#sqlitedbconfignockptonclose'>SQLITE_DBCONFIG_NO_CKPT_ON_CLOSE</a></li>
 <li><a href='../c3ref/c_dbconfig_defensive.html#sqlitedbconfigresetdatabase'>SQLITE_DBCONFIG_RESET_DATABASE</a></li>
+<li><a href='../c3ref/c_dbconfig_defensive.html#sqlitedbconfigreversescanorder'>SQLITE_DBCONFIG_REVERSE_SCANORDER</a></li>
+<li><a href='../c3ref/c_dbconfig_defensive.html#sqlitedbconfigstmtscanstatus'>SQLITE_DBCONFIG_STMT_SCANSTATUS</a></li>
 <li><a href='../c3ref/c_dbconfig_defensive.html#sqlitedbconfigtriggereqp'>SQLITE_DBCONFIG_TRIGGER_EQP</a></li>
 <li><a href='../c3ref/c_dbconfig_defensive.html#sqlitedbconfigtrustedschema'>SQLITE_DBCONFIG_TRUSTED_SCHEMA</a></li>
 <li><a href='../c3ref/c_dbconfig_defensive.html#sqlitedbconfigwritableschema'>SQLITE_DBCONFIG_WRITABLE_SCHEMA</a></li>
@@ -260,6 +287,7 @@ return false;
 <li><a href='../c3ref/c_fcntl_begin_atomic_write.html#sqlitefcntlpragma'>SQLITE_FCNTL_PRAGMA</a></li>
 <li><a href='../c3ref/c_fcntl_begin_atomic_write.html#sqlitefcntlrbu'>SQLITE_FCNTL_RBU</a></li>
 <li><a href='../c3ref/c_fcntl_begin_atomic_write.html'>SQLITE_FCNTL_RESERVE_BYTES</a></li>
+<li><a href='../c3ref/c_fcntl_begin_atomic_write.html#sqlitefcntlresetcache'>SQLITE_FCNTL_RESET_CACHE</a></li>
 <li><a href='../c3ref/c_fcntl_begin_atomic_write.html#sqlitefcntlrollbackatomicwrite'>SQLITE_FCNTL_ROLLBACK_ATOMIC_WRITE</a></li>
 <li><a href='../c3ref/c_fcntl_begin_atomic_write.html'>SQLITE_FCNTL_SET_LOCKPROXYFILE</a></li>
 <li><a href='../c3ref/c_fcntl_begin_atomic_write.html#sqlitefcntlsizehint'>SQLITE_FCNTL_SIZE_HINT</a></li>
@@ -291,9 +319,11 @@ return false;
 <li><a href='../c3ref/c_index_constraint_eq.html'>SQLITE_INDEX_CONSTRAINT_ISNULL</a></li>
 <li><a href='../c3ref/c_index_constraint_eq.html'>SQLITE_INDEX_CONSTRAINT_LE</a></li>
 <li><a href='../c3ref/c_index_constraint_eq.html'>SQLITE_INDEX_CONSTRAINT_LIKE</a></li>
+<li><a href='../c3ref/c_index_constraint_eq.html'>SQLITE_INDEX_CONSTRAINT_LIMIT</a></li>
 <li><a href='../c3ref/c_index_constraint_eq.html'>SQLITE_INDEX_CONSTRAINT_LT</a></li>
 <li><a href='../c3ref/c_index_constraint_eq.html'>SQLITE_INDEX_CONSTRAINT_MATCH</a></li>
 <li><a href='../c3ref/c_index_constraint_eq.html'>SQLITE_INDEX_CONSTRAINT_NE</a></li>
+<li><a href='../c3ref/c_index_constraint_eq.html'>SQLITE_INDEX_CONSTRAINT_OFFSET</a></li>
 <li><a href='../c3ref/c_index_constraint_eq.html'>SQLITE_INDEX_CONSTRAINT_REGEXP</a></li>
 <li><a href='../c3ref/c_index_scan_unique.html'>SQLITE_INDEX_SCAN_UNIQUE</a></li>
 <li><a href='../c3ref/c_deterministic.html#sqliteinnocuous'>SQLITE_INNOCUOUS</a></li>
@@ -325,7 +355,7 @@ return false;
 <li><a href='../rescode.html#ioerr_close'>SQLITE_IOERR_CLOSE</a></li>
 <li><a href='../rescode.html#ioerr_commit_atomic'>SQLITE_IOERR_COMMIT_ATOMIC</a></li>
 <li><a href='../rescode.html#ioerr_convpath'>SQLITE_IOERR_CONVPATH</a></li>
-<li><a href='../c3ref/c_abort_rollback.html'>SQLITE_IOERR_CORRUPTFS</a></li>
+<li><a href='../rescode.html#ioerr_corruptfs'>SQLITE_IOERR_CORRUPTFS</a></li>
 <li><a href='../rescode.html#ioerr_data'>SQLITE_IOERR_DATA</a></li>
 <li><a href='../rescode.html#ioerr_delete'>SQLITE_IOERR_DELETE</a></li>
 <li><a href='../rescode.html#ioerr_delete_noent'>SQLITE_IOERR_DELETE_NOENT</a></li>
@@ -334,6 +364,7 @@ return false;
 <li><a href='../rescode.html#ioerr_fstat'>SQLITE_IOERR_FSTAT</a></li>
 <li><a href='../rescode.html#ioerr_fsync'>SQLITE_IOERR_FSYNC</a></li>
 <li><a href='../rescode.html#ioerr_gettemppath'>SQLITE_IOERR_GETTEMPPATH</a></li>
+<li><a href='../c3ref/c_abort_rollback.html'>SQLITE_IOERR_IN_PAGE</a></li>
 <li><a href='../rescode.html#ioerr_lock'>SQLITE_IOERR_LOCK</a></li>
 <li><a href='../rescode.html#ioerr_mmap'>SQLITE_IOERR_MMAP</a></li>
 <li><a href='../rescode.html#ioerr_nomem'>SQLITE_IOERR_NOMEM</a></li>
@@ -393,6 +424,7 @@ return false;
 <li><a href='../rescode.html#notadb'>SQLITE_NOTADB</a></li>
 <li><a href='../rescode.html#notfound'>SQLITE_NOTFOUND</a></li>
 <li><a href='../rescode.html#notice'>SQLITE_NOTICE</a></li>
+<li><a href='../c3ref/c_abort_rollback.html'>SQLITE_NOTICE_RBU</a></li>
 <li><a href='../rescode.html#notice_recover_rollback'>SQLITE_NOTICE_RECOVER_ROLLBACK</a></li>
 <li><a href='../rescode.html#notice_recover_wal'>SQLITE_NOTICE_RECOVER_WAL</a></li>
 <li><a href='../c3ref/c_blob.html'>SQLITE_NULL</a></li>
@@ -403,6 +435,7 @@ return false;
 <li><a href='../c3ref/c_open_autoproxy.html'>SQLITE_OPEN_CREATE</a></li>
 <li><a href='../c3ref/c_open_autoproxy.html'>SQLITE_OPEN_DELETEONCLOSE</a></li>
 <li><a href='../c3ref/c_open_autoproxy.html'>SQLITE_OPEN_EXCLUSIVE</a></li>
+<li><a href='../c3ref/c_open_autoproxy.html'>SQLITE_OPEN_EXRESCODE</a></li>
 <li><a href='../c3ref/c_open_autoproxy.html'>SQLITE_OPEN_FULLMUTEX</a></li>
 <li><a href='../c3ref/c_open_autoproxy.html'>SQLITE_OPEN_MAIN_DB</a></li>
 <li><a href='../c3ref/c_open_autoproxy.html'>SQLITE_OPEN_MAIN_JOURNAL</a></li>
@@ -441,11 +474,14 @@ return false;
 <li><a href='../c3ref/c_fail.html'>SQLITE_ROLLBACK</a></li>
 <li><a href='../rescode.html#row'>SQLITE_ROW</a></li>
 <li><a href='../c3ref/c_alter_table.html'>SQLITE_SAVEPOINT</a></li>
+<li><a href='../c3ref/c_scanstat_complex.html'>SQLITE_SCANSTAT_COMPLEX</a></li>
 <li><a href='../c3ref/c_scanstat_est.html#sqlitescanstatest'>SQLITE_SCANSTAT_EST</a></li>
 <li><a href='../c3ref/c_scanstat_est.html#sqlitescanstatexplain'>SQLITE_SCANSTAT_EXPLAIN</a></li>
 <li><a href='../c3ref/c_scanstat_est.html#sqlitescanstatname'>SQLITE_SCANSTAT_NAME</a></li>
+<li><a href='../c3ref/c_scanstat_est.html#sqlitescanstatncycle'>SQLITE_SCANSTAT_NCYCLE</a></li>
 <li><a href='../c3ref/c_scanstat_est.html#sqlitescanstatnloop'>SQLITE_SCANSTAT_NLOOP</a></li>
 <li><a href='../c3ref/c_scanstat_est.html#sqlitescanstatnvisit'>SQLITE_SCANSTAT_NVISIT</a></li>
+<li><a href='../c3ref/c_scanstat_est.html#sqlitescanstatparentid'>SQLITE_SCANSTAT_PARENTID</a></li>
 <li><a href='../c3ref/c_scanstat_est.html#sqlitescanstatselectid'>SQLITE_SCANSTAT_SELECTID</a></li>
 <li><a href='../rescode.html#schema'>SQLITE_SCHEMA</a></li>
 <li><a href='../c3ref/c_alter_table.html'>SQLITE_SELECT</a></li>
@@ -468,6 +504,8 @@ return false;
 <li><a href='../c3ref/c_status_malloc_count.html#sqlitestatusscratchsize'>SQLITE_STATUS_SCRATCH_SIZE</a></li>
 <li><a href='../c3ref/c_status_malloc_count.html#sqlitestatusscratchused'>SQLITE_STATUS_SCRATCH_USED</a></li>
 <li><a href='../c3ref/c_stmtstatus_counter.html#sqlitestmtstatusautoindex'>SQLITE_STMTSTATUS_AUTOINDEX</a></li>
+<li><a href='../c3ref/c_stmtstatus_counter.html'>SQLITE_STMTSTATUS_FILTER_HIT</a></li>
+<li><a href='../c3ref/c_stmtstatus_counter.html#sqlitestmtstatusfiltermiss'>SQLITE_STMTSTATUS_FILTER_MISS</a></li>
 <li><a href='../c3ref/c_stmtstatus_counter.html#sqlitestmtstatusfullscanstep'>SQLITE_STMTSTATUS_FULLSCAN_STEP</a></li>
 <li><a href='../c3ref/c_stmtstatus_counter.html#sqlitestmtstatusmemused'>SQLITE_STMTSTATUS_MEMUSED</a></li>
 <li><a href='../c3ref/c_stmtstatus_counter.html#sqlitestmtstatusreprepare'>SQLITE_STMTSTATUS_REPREPARE</a></li>
@@ -487,12 +525,14 @@ return false;
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_EXTRA_SCHEMA_CHECKS</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_FAULT_INSTALL</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_FIRST</a></li>
+<li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_FK_NO_ACTION</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_IMPOSTER</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_INTERNAL_FUNCTIONS</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_ISINIT</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_ISKEYWORD</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_LAST</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_LOCALTIME_FAULT</a></li>
+<li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_LOGEST</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_NEVER_CORRUPT</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_ONCE_RESET_THRESHOLD</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_OPTIMIZATIONS</a></li>
@@ -509,6 +549,7 @@ return false;
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_SORTER_MMAP</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_TRACEFLAGS</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_TUNE</a></li>
+<li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_USELONGDOUBLE</a></li>
 <li><a href='../c3ref/c_testctrl_always.html'>SQLITE_TESTCTRL_VDBE_COVERAGE</a></li>
 <li><a href='../c3ref/c_blob.html'>SQLITE_TEXT</a></li>
 <li><a href='../rescode.html#toobig'>SQLITE_TOOBIG</a></li>
@@ -533,6 +574,7 @@ return false;
 <li><a href='../c3ref/c_vtab_constraint_support.html#sqlitevtabconstraintsupport'>SQLITE_VTAB_CONSTRAINT_SUPPORT</a></li>
 <li><a href='../c3ref/c_vtab_constraint_support.html#sqlitevtabdirectonly'>SQLITE_VTAB_DIRECTONLY</a></li>
 <li><a href='../c3ref/c_vtab_constraint_support.html#sqlitevtabinnocuous'>SQLITE_VTAB_INNOCUOUS</a></li>
+<li><a href='../c3ref/c_vtab_constraint_support.html#sqlitevtabusesallschemas'>SQLITE_VTAB_USES_ALL_SCHEMAS</a></li>
 <li><a href='../rescode.html#warning'>SQLITE_WARNING</a></li>
 <li><a href='../rescode.html#warning_autoindex'>SQLITE_WARNING_AUTOINDEX</a></li>
 <li><a href='../c3ref/c_win32_data_directory_type.html'>SQLITE_WIN32_DATA_DIRECTORY_TYPE</a></li>
@@ -540,7 +582,8 @@ return false;
 </ul>
 </div>
 <p>Other lists:
-<a href="objlist.html">Objects</a> and
-<a href="funclist.html">Functions</a> and
+<a href="../c3ref/objlist.html">Objects</a> and
+<a href="../c3ref/funclist.html">Functions</a> and
 <a href="../rescode.html">Result Codes</a>.</p>
+
 

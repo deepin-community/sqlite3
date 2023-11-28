@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 
 
 <font color="#7f001f"><p>
@@ -126,7 +150,7 @@ of SQLite version 3.
 
 <p>
 Locking and concurrency control are handled by the 
-<a href="http://www.sqlite.org/src/finfo?name=src/pager.c">
+<a href="https://www.sqlite.org/src/finfo?name=src/pager.c">
 pager module</a>.
 The pager module is responsible for making SQLite "ACID" (Atomic,
 Consistent, Isolated, and Durable).  The pager module makes sure changes
@@ -147,9 +171,9 @@ other encoding details are handled by higher layers of the library.
 The pager communicates with the operating system using one of several
 modules 
 (Examples:
-<a href="http://www.sqlite.org/src/finfo?name=src/os_unix.c">
+<a href="https://www.sqlite.org/src/finfo?name=src/os_unix.c">
 os_unix.c</a>,
-<a href="http://www.sqlite.org/src/finfo?name=src/os_win.c">
+<a href="https://www.sqlite.org/src/finfo?name=src/os_win.c">
 os_win.c</a>)
 that provides a uniform abstraction for operating system services.
 </p>
@@ -643,7 +667,7 @@ SELECT statement is executed.  A RESERVED lock will be acquired when
 the first INSERT, UPDATE, or DELETE statement is executed.  No EXCLUSIVE
 lock is acquired until either the memory cache fills up and must
 be spilled to disk or until the transaction commits.  In this way,
-the system delays blocking read access to the file file until the
+the system delays blocking read access to the file until the
 last possible moment.
 </p>
 
@@ -669,4 +693,5 @@ result is returned.  During this pause other INSERT, UPDATE, or DELETE
 commands can be executed against other tables in the database.  But none
 of these changes will commit until the original SELECT statement finishes.
 </p>
+
 

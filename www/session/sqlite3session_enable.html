@@ -89,9 +89,33 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
-<a href="intro.html"><h2>Session Module C Interface</h2></a><h2>Enable Or Disable A Session Object</h2><blockquote><pre>int sqlite3session_enable(sqlite3_session *pSession, int bEnable);
+<a href="../session/intro.html"><h2>Session Module C Interface</h2></a><h2>Enable Or Disable A Session Object</h2><blockquote><pre>int sqlite3session_enable(sqlite3_session *pSession, int bEnable);
 </pre></blockquote><p>
 Enable or disable the recording of changes by a session object. When
 enabled, a session object records changes made to the database. When
@@ -107,6 +131,7 @@ no-op, and may be used to query the current state of the session.</p>
 <p>The return value indicates the final state of the session object: 0 if 
 the session is disabled, or 1 if it is enabled.
 </p><p>See also lists of
-  <a href="objlist.html">Objects</a>,
-  <a href="constlist.html">Constants</a>, and
-  <a href="funclist.html">Functions</a>.</p>
+  <a href="../session/objlist.html">Objects</a>,
+  <a href="../session/constlist.html">Constants</a>, and
+  <a href="../session/funclist.html">Functions</a>.</p>
+

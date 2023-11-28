@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 
 
 
@@ -235,8 +259,15 @@ for reference in the discussion following:
   is hard, and safeguards are sometimes relaxed in favor of performance.
 </p>
 <p>
-  The bottom line is that network filesystem sync reliability
-  varies among implementations and installations. The design
+  A similar hazard arises with file locking in network filesystems.
+  SQLite relies on exclusive locks for write operations, and those have
+  been known to operate incorrectly for some network filesystems. This
+  has led to database corruption. That may happen again as the designers
+  of such change their implementation to suit more common use cases.
+</p>
+<p>
+  The bottom line is that network filesystem sync and locking reliability
+  vary among implementations and installations. The design
   assumptions upon which it relies may hold more true where
   an application is tested than where it is relied upon.
   <b>Rely upon it at your (and your customers') peril.</b>
@@ -330,4 +361,5 @@ for reference in the discussion following:
   situations, but a client/server solution will usually work
   better in that scenario.
 </p>
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/useovernet.in?m=9c50e45c37">2022-06-22 21:14:29</a> UTC </small></i></p>
 

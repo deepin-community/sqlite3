@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <div class=fancy>
 <div class=nosearch>
 <div class="fancy_title">
@@ -155,9 +179,11 @@ for rendering polygons as
 similar operations.
 
 </p><p>
-The source code for Geopoly is included in the <a href="amalgamation.html">amalgamation</a> but is not
-included in the library unless the <a href="compile.html#enable_geopoly">-DSQLITE_ENABLE_GEOPOLY</a> compile-time option
-is used.
+The source code for Geopoly is included in the <a href="amalgamation.html">amalgamation</a>.  However,
+depending on configuration options and the a particular version of SQLite
+you are using, the Geopoly extension may or may not be enabled by default.
+To ensure that Geopoly is enabled for your build, 
+add the <a href="compile.html#enable_geopoly">-DSQLITE_ENABLE_GEOPOLY=1</a> compile-time option.
 
 </p><p>
 Geopoly operates on "simple" polygons - that is, polygons for which
@@ -551,4 +577,5 @@ polygon is represented in the shadow tables as a rectangular bounding box.
 The underlying R-Tree implementation uses bounding boxes to limit the search
 space.  Then the geoploy_overlap() and/or geopoly_within() routines further
 refine the search to the exact answer.
-</p>
+</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/geopoly.in?m=7b64a47e71">2023-10-24 13:15:13</a> UTC </small></i></p>
+

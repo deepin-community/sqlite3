@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <div class=fancy>
 <div class=nosearch>
 <div class="fancy_title">
@@ -142,7 +166,7 @@ misspelled words.
 </p><p>The implementation for the spellfix1 virtual table is held in the
 SQLite source tree in the miscellaneous extensions folder and in
 particular in the file 
-<a href="http://www.sqlite.org/src/finfo?name=ext/misc/spellfix.c">ext/misc/spellfix1.c</a>.
+<a href="https://www.sqlite.org/src/finfo?name=ext/misc/spellfix.c">ext/misc/spellfix1.c</a>.
 The spellfix1 virtual table is not included in the SQLite <a href="amalgamation.html">amalgamation</a>
 and is not a part of any standard SQLite build.  It is a <a href="loadext.html">loadable extension</a>.
 
@@ -727,3 +751,4 @@ weights used by the spellfix1 virtual table.
 'string1' and "string2'.  In the second form, a language id of 0 is used.
 The language id is specified in the third form.
 </p>
+

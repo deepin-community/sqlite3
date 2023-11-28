@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.7.12 On 2012-05-14</h2><p><ol class='lessindent'>
 <li>Add the <a href="../c3ref/c_dbstatus_options.html#sqlitedbstatuscachewrite">SQLITE_DBSTATUS_CACHE_WRITE</a> option for <a href="../c3ref/db_status.html">sqlite3_db_status()</a>.
 <li>Optimize the <a href="../lang_corefunc.html#typeof">typeof()</a> and <a href="../lang_corefunc.html#length">length()</a> SQL functions so that they avoid
@@ -122,11 +146,11 @@ return false;
 <li>Bug fix: Do not discard the DISTINCT as superfluous unless a subset of
     the result set is subject to a UNIQUE constraint <em>and</em> it none
     of the columns in that subset can be NULL.
-    Ticket <a href="http://www.sqlite.org/src/info/385a5b56b9">385a5b56b9</a>.
+    Ticket <a href="https://www.sqlite.org/src/info/385a5b56b9">385a5b56b9</a>.
 <li>Bug fix: Do not optimize away an ORDER BY clause that has the same terms
     as a UNIQUE index unless those terms are also NOT NULL.
-    Ticket <a href="http://www.sqlite.org/src/info/2a5629202f">2a5629202f</a>.
-<li>SQLITE_SOURCE_ID: 
+    Ticket <a href="https://www.sqlite.org/src/info/2a5629202f">2a5629202f</a>.
+<li>SQLITE_SOURCE_ID:
     "2012-05-14 01:41:23 8654aa9540fe9fd210899d83d17f3f407096c004"
 <li>SHA1 for sqlite3.c: 57e2104a0f7b3f528e7f6b7a8e553e2357ccd2e1
 
@@ -134,9 +158,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

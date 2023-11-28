@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.35.0 On 2021-03-12</h2><p><ol class='lessindent'>
 <li> Added <a href="../lang_mathfunc.html">built-in SQL math functions()</a>. (Requires the
      <a href="../compile.html#enable_math_functions">-DSQLITE_ENABLE_MATH_FUNCTIONS</a> compile-time option.)
@@ -117,7 +141,7 @@ return false;
 <li> Query planner/optimizer improvements:
      <ol type="a">
      <li> Enhancements to the <a href="../optoverview.html#minmax">min/max optimization</a> so that it works better
-          with the IN operator and the OP_SeekScan optimization of the 
+          with the IN operator and the OP_SeekScan optimization of the
           previous release.
      <li> Attempt to process EXISTS operators in the WHERE clause as if
           they were IN operators, in cases where this is a valid transformation
@@ -162,9 +186,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

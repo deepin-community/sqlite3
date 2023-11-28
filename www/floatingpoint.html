@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <div class=fancy>
 <div class=nosearch>
 <div class="fancy_title">
@@ -112,7 +136,6 @@ Table Of Contents
 <div class="fancy-toc3"><a href="#the_ieee754_mantissa_and_ieee754_exponent_functions">2.1.2. The ieee754_mantissa() and ieee754_exponent() functions</a></div>
 <div class="fancy-toc3"><a href="#the_ieee754_from_blob_and_ieee754_to_blob_functions">2.1.3. The ieee754_from_blob() and ieee754_to_blob() functions</a></div>
 <div class="fancy-toc2"><a href="#the_decimal_c_extension">2.2. The decimal.c Extension</a></div>
-<div class="fancy-toc1"><a href="#techniques">3. Techniques</a></div>
 </div>
 </div>
 <script>
@@ -138,15 +161,17 @@ mk.innerHTML = "&#x25ba;";
 <p>
 SQLite stores integer values in the 64-bit 
 <a href="https://en.wikipedia.org/wiki/Two%27s_complement">twos-complement</a>
-format.
+format&sup1.
 This gives a storage range of -9223372036854775808 to +9223372036854775807,
 inclusive.  Integers within this range are exact.
+
+<a name="fpapprox"></a>
 
 </p><p>
 So-called "REAL" or floating point values are stored in the
 <a href="https://en.wikipedia.org/wiki/IEEE_754">IEEE 754</a>
 <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">Binary-64</a>
-format.
+format&sup1.
 This gives a range of positive values between approximately
 1.7976931348623157e+308 and 4.9406564584124654e-324 with an equivalent
 range of negative values.  A binary64 can also be 0.0 (and -0.0), positive
@@ -163,6 +188,10 @@ Floating point values are approximate.
 If you need an exact answer, you should not use binary64 floating-point
 values, in SQLite or in any other product.  This is not an SQLite limitation.
 It is a mathematical limitation inherent in the design of floating-point numbers.
+
+</p><p>&mdash;<br>&sup1;
+Exception:  The <a href="rtree.html">R-Tree extension</a> stores information as 32-bit floating
+point or integer values.
 
 </p><h2 id="floating_point_accuracy"><span>1.1. </span>Floating-Point Accuracy</h2>
 
@@ -365,7 +394,7 @@ The ieee754_from_blob(B) function goes the other way, converting an 8-byte
 blob into the floating-point value that the binary64 encoding represents.
 
 </p><p>So, for example, if you read
-<a href="'https://en.wikipedia.org/wiki/Double-precision_floating-point_format'">on
+<a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">on
 Wikipedia</a> that the encoding for the minimum positive binary64 value is
 0x0000000000000001, then you can find the corresponding floating point value
 like this:
@@ -409,12 +438,18 @@ However, it is included in the <a href="cli.html">CLI</a>.
 <li> decimal_add(A,B)
 </li><li> decimal_sub(A,B)
 </li><li> decimal_mul(A,B)
+</li><li> decimal_pow2(N)
 </li></ul>
 
 
-<p>These functions respectively add, subtract, and multiply their arguments
-and return a new text string that is the decimal representation of the result.
-There is no division operator at this time.
+<p>The first three functions respectively add, subtract, and multiply their arguments
+and return a new text string that is the decimal representation of the result. The
+argument is interpreted as text.
+There is no division operator because decimal division often does not generate
+a finite decimal result.
+
+</p><p>The decimal_pow2(N) function returns 2.0 raised to the N-th power where N is an
+integer between -20000 and +20000.
 
 </p><p>Use the decimal_cmp(A,B) to compare two decimal values.  The result will
 be negative, zero, or positive if A is less than, equal to, or greater than B,
@@ -424,33 +459,22 @@ respectively.
 <a href="lang_aggfunc.html#sumunc">sum() aggregate function</a>, except that decimal_sum() computes its result
 to arbitrary precision and is therefore precise.
 
-</p><p>Finally, the decimal extension provides the "decimal" collating sequences
+</p><p>The decimal extension provides the "decimal" collating sequences
 that compares decimal text strings in numeric order.
 
-</p><h1 id="techniques"><span>3. </span>Techniques</h1>
+</p><p>The decimal(X) and decimal_exp(X) generate a decimal representation for input X.
+The decimal_exp(X) function returns the result in exponential notation (with a "e+NN"
+at the end) and decimal(X) returns a pure decimal (without the "e+NN").  If the input
+X is a floating point value, it is expanded to its exact decimal equivalent.  For
+example:
 
-<p>
-The following SQL illustrates how to use the ieee754 and decimal
-extensions to compute the exact decimal equivalent
-for a binary64 floating-point number.
-
-</p><div class="codeblock"><pre>-- The pow2 table will hold all the necessary powers of two.
-CREATE TABLE pow2(x INTEGER PRIMARY KEY, v TEXT);
-WITH RECURSIVE c(x,v) AS (
-  VALUES(0,'1')
-  UNION ALL
-  SELECT x+1, decimal_mul(v,'2') FROM c WHERE x+1&lt;=971
-) INSERT INTO pow2(x,v) SELECT x, v FROM c;
-WITH RECURSIVE c(x,v) AS (
-  VALUES(-1,'0.5')
-  UNION ALL
-  SELECT x-1, decimal_mul(v,'0.5') FROM c WHERE x-1&gt;=-1075
-) INSERT INTO pow2(x,v) SELECT x, v FROM c;
-
--- This query finds the decimal representation of each value in the "c" table.
-WITH c(n) AS (VALUES(47.49))
-                 ----XXXXX----------- Replace with whatever you want
-SELECT decimal_mul(ieee754_mantissa(c.n),pow2.v)
-  FROM pow2, c WHERE pow2.x=ieee754_exponent(c.n);
+</p><div class="codeblock"><pre>sqlite> .mode qbox
+sqlite> select decimal(47.49);
+┌──────────────────────────────────────────────────────┐
+│                    decimal(47.49)                    │
+├──────────────────────────────────────────────────────┤
+│ '47.49000000000000198951966012828052043914794921875' │
+└──────────────────────────────────────────────────────┘
 </pre></div>
+
 

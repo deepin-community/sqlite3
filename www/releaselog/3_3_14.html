@@ -89,12 +89,36 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 <h2>SQLite Release 3.3.14 On 2007-04-02</h2><p><ol class='lessindent'>
 <li>Fix a bug (ticket #2273)
     that could cause a segfault when the IN operator
-    is used one one term of a two-column index and the right-hand side of
+    is used one term of a two-column index and the right-hand side of
     the IN operator contains a NULL.</li>
 <li>Added a new OS interface method for determining the sector size
     of underlying media:  sqlite3OsSectorSize().</li>
@@ -106,7 +130,7 @@ return false;
 <ol type='a'>
   <li>Do not read the last page of an overflow chain when
       deleting the row - just add that page to the freelist.</li>
-  <li>Do not store pages being deleted in the 
+  <li>Do not store pages being deleted in the
       rollback journal.</li>
   <li>Do not read in the (meaningless) content of
       pages extracted from the freelist.</li>
@@ -125,7 +149,7 @@ return false;
     limitations.</li>
 <li>Add a makefile target "sqlite3.c" that builds an amalgamation containing
     the core SQLite library C code in a single file.</li>
-<li>Get the library working correctly when compiled 
+<li>Get the library working correctly when compiled
     with GCC option "-fstrict-aliasing".</li>
 <li>Removed the vestigal SQLITE_PROTOCOL error.</li>
 <li>Improvements to test coverage, other minor bugs fixed,
@@ -135,9 +159,10 @@ return false;
 </ol></p>
 
       <p>A <a href="../changes.html">complete list of SQLite releases</a>
-      in a single page and a <a href="../chronology.html">chronology</a> are both also available.  
+      in a single page and a <a href="../chronology.html">chronology</a> are both also available.
       A detailed history of every
       check-in is available at
-      <a href="http://www.sqlite.org/src/timeline">
+      <a href="https://www.sqlite.org/src/timeline">
       SQLite version control site</a>.</p>
     
+

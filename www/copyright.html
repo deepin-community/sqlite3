@@ -89,8 +89,32 @@ b.innerHTML='hide';
 }
 return false;
 }
+var antiRobot = 0;
+function antiRobotGo(){
+if( antiRobot!=3 ) return;
+antiRobot = 7;
+var j = document.getElementById("mtimelink");
+if(j && j.hasAttribute("data-href")) j.href=j.getAttribute("data-href");
+}
+function antiRobotDefense(){
+document.body.onmousedown=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousedown=null;
+}
+document.body.onmousemove=function(){
+antiRobot |= 2;
+antiRobotGo();
+document.body.onmousemove=null;
+}
+setTimeout(function(){
+antiRobot |= 1;
+antiRobotGo();
+}, 100)
+antiRobotGo();
+}
+antiRobotDefense();
 </script>
-</div>
 
 
 
@@ -112,7 +136,7 @@ All code authors, and representatives of the companies they work for,
 have signed affidavits dedicating their contributions to
 the public domain and originals of
 those signed affidavits are stored in a firesafe at the main offices
-of <a href="https://www.hwaci.com">Hwaci</a>.  All contibutors are citizens
+of <a href="https://www.hwaci.com">Hwaci</a>.  All contributors are citizens
 of countries that allow creative works to be dedicated into the public
 domain.
 Anyone is free to copy, modify, publish, use, compile, sell, or distribute
@@ -211,4 +235,5 @@ the project does not accept patches.  If you would like to suggest a
 change and you include a patch as a proof-of-concept, that would
 be great.  However, please do not be offended if we rewrite your patch
 from scratch.
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/copyright.in?m=19090139cc">2022-04-18 02:55:50</a> UTC </small></i></p>
 

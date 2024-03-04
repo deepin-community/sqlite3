@@ -1126,7 +1126,7 @@ SELECT z FROM ex3 WHERE w=5 AND x BETWEEN 1 AND 100 AND y BETWEEN 1 AND 100;
   outputs in the current row corresponding to the first two terms of 
   the ORDER BY are compared against the previous row.  If they have
   changed, the current sort is finished and output and a new sort is
-  started.  This results in a slightly faster sort.  Event bigger
+  started.  This results in a slightly faster sort.  Even bigger
   advantages are that many fewer rows need to be held in memory,
   reducing memory requirements, and outputs can begin to appear before
   the core query has run to completion.
@@ -1629,5 +1629,5 @@ SELECT * FROM t1 WHERE a=b AND b=5;
   if those two constraints are true, then it must also be the case
   that "a=5" is true.  This means that the desired row can be looked up
   quickly using a value of 5 for the INTEGER PRIMARY KEY.
-</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/optoverview.in?m=ac75d82d3e">2023-06-01 20:46:56</a> UTC </small></i></p>
+</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/optoverview.in?m=be9cc8690c">2024-01-13 19:04:50</a> UTC </small></i></p>
 

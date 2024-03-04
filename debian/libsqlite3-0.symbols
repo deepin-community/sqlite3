@@ -206,6 +206,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3DeleteFrom@Base 3.37.0
  sqlite3DeleteIndexSamples@Base 3.37.0
  sqlite3DeleteTable@Base 3.37.0
+ sqlite3DeleteTableGeneric@Base 3.45.0
  sqlite3DeleteTrigger@Base 3.37.0
  sqlite3DeleteTriggerStep@Base 3.37.0
  sqlite3Dequote@Base 3.37.0
@@ -263,6 +264,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3ExprDataType@Base 3.42.0
  sqlite3ExprDeferredDelete@Base 3.37.0
  sqlite3ExprDelete@Base 3.37.0
+ sqlite3ExprDeleteGeneric@Base 3.45.0
  sqlite3ExprDup@Base 3.37.0
  sqlite3ExprForVectorField@Base 3.37.0
  sqlite3ExprFunction@Base 3.37.0
@@ -288,6 +290,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3ExprListCheckLength@Base 3.37.0
  sqlite3ExprListCompare@Base 3.37.0
  sqlite3ExprListDelete@Base 3.37.0
+ sqlite3ExprListDeleteGeneric@Base 3.45.0
  sqlite3ExprListDup@Base 3.37.0
  sqlite3ExprListFlags@Base 3.37.0
  sqlite3ExprListSetName@Base 3.37.0
@@ -367,6 +370,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3Fts3InitHashTable@Base 3.37.0
  sqlite3Fts3InitTok@Base 3.37.0
  sqlite3Fts3InitTokenizer@Base 3.37.0
+ sqlite3Fts3IntegrityCheck@Base 3.45.1
  sqlite3Fts3IsIdChar@Base 3.37.0
  sqlite3Fts3MIBufferFree@Base 3.37.0
  sqlite3Fts3MallocZero@Base 3.37.0
@@ -552,6 +556,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3OsUnlock@Base 3.37.0
  sqlite3OsWrite@Base 3.37.0
  sqlite3PCacheBufferSetup@Base 3.37.0
+ sqlite3PCacheIsDirty@Base 3.45.0
  sqlite3PCachePercentDirty@Base 3.37.0
  sqlite3PCacheSetDefault@Base 3.37.0
  sqlite3PExpr@Base 3.37.0
@@ -568,6 +573,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3PagerCommitPhaseOne@Base 3.37.0
  sqlite3PagerCommitPhaseTwo@Base 3.37.0
  sqlite3PagerDataVersion@Base 3.37.0
+ sqlite3PagerDirectReadOk@Base 3.45.0
  sqlite3PagerDontWrite@Base 3.37.0
  sqlite3PagerExclusiveLock@Base 3.37.0
  sqlite3PagerFile@Base 3.37.0
@@ -725,6 +731,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3SectorSize@Base 3.37.0
  sqlite3Select@Base 3.37.0
  sqlite3SelectDelete@Base 3.37.0
+ sqlite3SelectDeleteGeneric@Base 3.45.0
  sqlite3SelectDestInit@Base 3.37.0
  sqlite3SelectDup@Base 3.37.0
  sqlite3SelectExprHeight@Base 3.37.0
@@ -814,6 +821,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3Utf16to8@Base 3.37.0
  sqlite3Utf8CharLen@Base 3.37.0
  sqlite3Utf8Read@Base 3.37.0
+ sqlite3Utf8ReadLimited@Base 3.45.0
  sqlite3VListAdd@Base 3.37.0
  sqlite3VListNameToNum@Base 3.37.0
  sqlite3VListNumToName@Base 3.37.0
@@ -1071,6 +1079,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3WindowUpdate@Base 3.37.0
  sqlite3WithAdd@Base 3.37.0
  sqlite3WithDelete@Base 3.37.0
+ sqlite3WithDeleteGeneric@Base 3.45.0
  sqlite3WithDup@Base 3.37.0
  sqlite3WithPush@Base 3.37.0
  sqlite3WritableSchema@Base 3.37.0
@@ -1190,6 +1199,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3_free_table@Base 3.5.9
  sqlite3_get_autocommit@Base 3.5.9
  sqlite3_get_auxdata@Base 3.5.9
+ sqlite3_get_clientdata@Base 3.44.0
  sqlite3_get_table@Base 3.5.9
  sqlite3_global_recover@Base 3.5.9
  sqlite3_hard_heap_limit64@Base 3.30.1+fossil191229
@@ -1271,7 +1281,6 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3_serialize@Base 3.36.0
  sqlite3_set_authorizer@Base 3.5.9
  sqlite3_set_auxdata@Base 3.5.9
- sqlite3_get_clientdata@Base 3.44.0
  sqlite3_set_clientdata@Base 3.44.0
  sqlite3_set_last_insert_rowid@Base 3.19.0
  sqlite3_shutdown@Base 3.6.0

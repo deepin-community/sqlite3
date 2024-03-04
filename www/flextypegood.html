@@ -184,7 +184,7 @@ summary:
         SQLite attempts to deduce the preferred datatype for the column based
         on the datatype name in the column definition, but that preferred
         datatype is advisory, not mandatory.  The preferred datatype is
-        call the "column affinity".
+        known as the "column affinity".
 </p></li><li><p> An attempt is made to transform incoming data into the preferred
         datatype of the column.  (All SQL database engines do this, not
         just SQLite.)  If this transformation is successful, all is well.
@@ -368,7 +368,7 @@ passed around in a "Value" superclass of some kind which is subclassed
 for the various lower-level data types.  When everything is a Value
 object, specific datatypes cease to be important.
 
-</p><p> This technical note is being writing by the original author of SQLite.
+</p><p> This technical note is authored by the original author of SQLite.
 I having been writing TCL programs for 27 years.  TCL has no type enforcement
 whatsoever.  The "Value" class in TCL (called Tcl_Obj) can hold many
 different datatypes, but it presents the content to the program and to
@@ -491,5 +491,5 @@ datatype if not complete SQLite-style type flexibility.
 stores a single well-defined type.  But occasionally you will run
 across situations where having a flexible type system makes the
 solution to your problem cleaner and easier.
-</p>
+</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/flextypegood.in?m=f43597ad0b">2023-12-05 14:43:20</a> UTC </small></i></p>
 

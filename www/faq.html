@@ -254,12 +254,12 @@ INSERT INTO t1 VALUES((SELECT max(a) FROM t1)+1,123);
 
   <p>When SQLite tries to access a file that is locked by another
   process, the default behavior is to return SQLITE_BUSY.  You can
-  adjust this behavior from C code using the 
+  adjust this behavior from C code using the
   <a href="c3ref/busy_handler.html">sqlite3_busy_handler()</a> or <a href="c3ref/busy_timeout.html">sqlite3_busy_timeout()</a>
   API functions.</p></blockquote></li>
 <a name="q6"></a>
 <p><b>(6) Is SQLite threadsafe?</b></p>
-<blockquote><p><a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2006/EECS-2006-1.pdf">Threads are evil</a>.
+<blockquote><p><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2006/EECS-2006-1.html">Threads are evil</a>.
   Avoid them.
 
   <p>SQLite is threadsafe.  We make this concession since many users choose
@@ -652,5 +652,5 @@ ORDER BY name
   or use of a relative pathname that is used with
   differing current directories for the opening processes.</blockquote></li>
 </ol>
-<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/faq.in?m=e07b1b8922">2023-04-06 20:35:50</a> UTC </small></i></p>
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/faq.in?m=4f3e5e4107">2023-12-22 14:38:37</a> UTC </small></i></p>
 

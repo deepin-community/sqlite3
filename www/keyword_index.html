@@ -148,6 +148,7 @@ Other Documentation Indexes:
 <li> <a href="datatype3.html#expraff">Affinity Of Expressions</a> </li>
 <li> <a href="testing.html#aflfuzz">AFL</a> </li>
 <li> <a href="lang_aggfunc.html">Aggregate Functions</a> </li>
+<li> <a href="json1.html#jgroupobjectb">aggregate JSON SQL functions</a> </li>
 <li> <a href="lang_aggfunc.html">aggregate SQL functions</a> </li>
 <li> <a href="windowfunctions.html#aggwinfunc">aggregate window functions</a> </li>
 <li> <a href="syntax/aggregate-function-invocation.html">aggregate-function-invocation</a> </li>
@@ -546,6 +547,7 @@ Other Documentation Indexes:
 <li> <a href="compile.html#disable_fts4_deferred">-DSQLITE_DISABLE_FTS4_DEFERRED</a> </li>
 <li> <a href="compile.html#disable_intrinsic">-DSQLITE_DISABLE_INTRINSIC</a> </li>
 <li> <a href="compile.html#disable_lfs">-DSQLITE_DISABLE_LFS</a> </li>
+<li> <a href="compile.html#disable_pagecache_overflow_stats">-DSQLITE_DISABLE_PAGECACHE_OVERFLOW_STATS</a> </li>
 <li> <a href="compile.html#dqs">-DSQLITE_DQS</a> </li>
 <li> <a href="compile.html#enable_8_3_names">-DSQLITE_ENABLE_8_3_NAMES</a> </li>
 <li> <a href="compile.html#enable_api_armor">-DSQLITE_ENABLE_API_ARMOR</a> </li>
@@ -563,6 +565,7 @@ Other Documentation Indexes:
 <li> <a href="compile.html#enable_fts4">-DSQLITE_ENABLE_FTS4</a> </li>
 <li> <a href="compile.html#enable_fts5">-DSQLITE_ENABLE_FTS5</a> </li>
 <li> <a href="compile.html#enable_geopoly">-DSQLITE_ENABLE_GEOPOLY</a> </li>
+<li> <a href="compile.html#enable_hidden_columns">-DSQLITE_ENABLE_HIDDEN_COLUMNS</a> </li>
 <li> <a href="compile.html#enable_icu">-DSQLITE_ENABLE_ICU</a> </li>
 <li> <a href="compile.html#enable_iotrace">-DSQLITE_ENABLE_IOTRACE</a> </li>
 <li> <a href="compile.html#enable_json1">-DSQLITE_ENABLE_JSON1</a> </li>
@@ -597,6 +600,7 @@ Other Documentation Indexes:
 <li> <a href="compile.html#have_isnan">-DSQLITE_HAVE_ISNAN</a> </li>
 <li> <a href="compile.html#have_zlib">-DSQLITE_HAVE_ZLIB</a> </li>
 <li> <a href="compile.html#introspection_pragmas">-DSQLITE_INTROSPECTION_PRAGMAS</a> </li>
+<li> <a href="compile.html#json_max_depth">-DSQLITE_JSON_MAX_DEPTH</a> </li>
 <li> <a href="compile.html#like_doesnt_match_blobs">-DSQLITE_LIKE_DOESNT_MATCH_BLOBS</a> </li>
 <li> <a href="compile.html#max_allocation_size">-DSQLITE_MAX_ALLOCATION_SIZE</a> </li>
 <li> <a href="compile.html#max_memory">-DSQLITE_MAX_MEMORY</a> </li>
@@ -682,6 +686,7 @@ Other Documentation Indexes:
 <li> <a href="compile.html#soundex">-DSQLITE_SOUNDEX</a> </li>
 <li> <a href="compile.html#stdcall">-DSQLITE_STDCALL</a> </li>
 <li> <a href="compile.html#stmtjrnl_spill">-DSQLITE_STMTJRNL_SPILL</a> </li>
+<li> <a href="compile.html#strict_subtype">-DSQLITE_STRICT_SUBTYPE</a> </li>
 <li> <a href="compile.html#sysapi">-DSQLITE_SYSAPI</a> </li>
 <li> <a href="compile.html#tclapi">-DSQLITE_TCLAPI</a> </li>
 <li> <a href="compile.html#temp_store">-DSQLITE_TEMP_STORE</a> </li>
@@ -840,6 +845,7 @@ Other Documentation Indexes:
 <li> <a href="fts5.html#the_snippet_function">FTS5 snippet</a> </li>
 <li> <a href="fts5.html#fts5_strings">FTS5 Strings</a> </li>
 <li> <a href="fts5.html#_summary_of_technical_differences_">fts5 technical differences</a> </li>
+<li> <a href="fts5.html#the_tokendata_option">FTS5 tokendata option</a> </li>
 <li> <a href="fts5.html#tokenizers">FTS5 tokenizers</a> </li>
 <li> <a href="fts5.html#the_usermerge_configuration_option">FTS5 usermerge option</a> </li>
 <li> <a href="fts5.html#the_fts5vocab_virtual_table_module">fts5vocab</a> </li>
@@ -971,6 +977,7 @@ Other Documentation Indexes:
 <li> <a href="lang_expr.html#isisnot">IS NOT operator</a> </li>
 <li> <a href="lang_expr.html#isisnot">IS operator</a> </li>
 <li> <a href="isolation.html">isolation</a> </li>
+<li> <a href="testing.html#dbsqlfuzz">jfuzz</a> </li>
 <li> <a href="optoverview.html#table_order">join order</a> </li>
 <li> <a href="syntax/join-clause.html">join-clause</a> </li>
 <li> <a href="syntax/join-clause.html">join-clause syntax diagram</a> </li>
@@ -981,6 +988,7 @@ Other Documentation Indexes:
 <li> <a href="pragma.html#pragma_journal_mode">journal_mode pragma</a> </li>
 <li> <a href="pragma.html#pragma_journal_size_limit">journal_size_limit pragma</a> </li>
 <li> <a href="json1.html#jmini">json</a> </li>
+<li> <a href="json1.html#jblobbug">JSON BLOB input bug</a> </li>
 <li> <a href="json1.html#jsonpath">JSON function path arguments</a> </li>
 <li> <a href="json1.html#jsonpath">JSON paths</a> </li>
 <li> <a href="json1.html#jmini">json SQL function</a> </li>
@@ -1021,6 +1029,28 @@ Other Documentation Indexes:
 <li> <a href="json1.html#jtype">json_type SQL function</a> </li>
 <li> <a href="json1.html#jvalid">json_valid</a> </li>
 <li> <a href="json1.html#jvalid">json_valid SQL function</a> </li>
+<li> <a href="json1.html#jsonbx">JSONB</a> </li>
+<li> <a href="json1.html#jminib">jsonb SQL function</a> </li>
+<li> <a href="json1.html#jarrayb">jsonb_array</a> </li>
+<li> <a href="json1.html#jarrayb">jsonb_array SQL function</a> </li>
+<li> <a href="json1.html#jexb">jsonb_extract</a> </li>
+<li> <a href="json1.html#jexb">jsonb_extract SQL function</a> </li>
+<li> <a href="json1.html#jgrouparrayb">jsonb_group_array</a> </li>
+<li> <a href="json1.html#jgrouparrayb">jsonb_group_array SQL function</a> </li>
+<li> <a href="json1.html#jgroupobjectb">jsonb_group_object</a> </li>
+<li> <a href="json1.html#jgroupobjectb">jsonb_group_object SQL function</a> </li>
+<li> <a href="json1.html#jinsb">jsonb_insert</a> </li>
+<li> <a href="json1.html#jinsb">jsonb_insert SQL function</a> </li>
+<li> <a href="json1.html#jobjb">jsonb_object</a> </li>
+<li> <a href="json1.html#jobjb">jsonb_object SQL function</a> </li>
+<li> <a href="json1.html#jpatchb">jsonb_patch</a> </li>
+<li> <a href="json1.html#jpatchb">jsonb_patch SQL function</a> </li>
+<li> <a href="json1.html#jrmb">jsonb_remove</a> </li>
+<li> <a href="json1.html#jrmb">jsonb_remove SQL function</a> </li>
+<li> <a href="json1.html#jreplb">jsonb_replace</a> </li>
+<li> <a href="json1.html#jreplb">jsonb_replace SQL function</a> </li>
+<li> <a href="json1.html#jsetb">jsonb_set</a> </li>
+<li> <a href="json1.html#jsetb">jsonb_set SQL function</a> </li>
 <li> <a href="lang_datefunc.html#jdmod">julianday modifier</a> </li>
 <li> <a href="lang_datefunc.html#jlndy">julianday()</a> </li>
 <li> <a href="lang_datefunc.html#jlndy">julianday() SQL function</a> </li>
@@ -2088,6 +2118,7 @@ Other Documentation Indexes:
 <li> <a href="compile.html#disable_fts4_deferred">SQLITE_DISABLE_FTS4_DEFERRED</a> </li>
 <li> <a href="compile.html#disable_intrinsic">SQLITE_DISABLE_INTRINSIC</a> </li>
 <li> <a href="compile.html#disable_lfs">SQLITE_DISABLE_LFS</a> </li>
+<li> <a href="compile.html#disable_pagecache_overflow_stats">SQLITE_DISABLE_PAGECACHE_OVERFLOW_STATS</a> </li>
 <li> <a href="c3ref/c_abort.html">SQLITE_DONE</a> </li>
 <li> <a href="compile.html#dqs">SQLITE_DQS</a> </li>
 <li> <a href="c3ref/c_alter_table.html">SQLITE_DROP_INDEX</a> </li>
@@ -2116,6 +2147,7 @@ Other Documentation Indexes:
 <li> <a href="compile.html#enable_fts4">SQLITE_ENABLE_FTS4</a> </li>
 <li> <a href="compile.html#enable_fts5">SQLITE_ENABLE_FTS5</a> </li>
 <li> <a href="compile.html#enable_geopoly">SQLITE_ENABLE_GEOPOLY</a> </li>
+<li> <a href="compile.html#enable_hidden_columns">SQLITE_ENABLE_HIDDEN_COLUMNS</a> </li>
 <li> <a href="compile.html#enable_icu">SQLITE_ENABLE_ICU</a> </li>
 <li> <a href="compile.html#enable_iotrace">SQLITE_ENABLE_IOTRACE</a> </li>
 <li> <a href="compile.html#enable_json1">SQLITE_ENABLE_JSON1</a> </li>
@@ -2275,6 +2307,7 @@ Other Documentation Indexes:
 <li> <a href="c3ref/c_abort_rollback.html">SQLITE_IOERR_UNLOCK</a> </li>
 <li> <a href="c3ref/c_abort_rollback.html">SQLITE_IOERR_VNODE</a> </li>
 <li> <a href="c3ref/c_abort_rollback.html">SQLITE_IOERR_WRITE</a> </li>
+<li> <a href="compile.html#json_max_depth">SQLITE_JSON_MAX_DEPTH</a> </li>
 <li> <a href="compile.html#like_doesnt_match_blobs">SQLITE_LIKE_DOESNT_MATCH_BLOBS</a> </li>
 <li> <a href="c3ref/c_limit_attached.html#sqlitelimitattached">SQLITE_LIMIT_ATTACHED</a> </li>
 <li> <a href="c3ref/c_limit_attached.html#sqlitelimitcolumn">SQLITE_LIMIT_COLUMN</a> </li>
@@ -2458,6 +2491,7 @@ Other Documentation Indexes:
 <li> <a href="c3ref/c_alter_table.html">SQLITE_RECURSIVE</a> </li>
 <li> <a href="c3ref/c_alter_table.html">SQLITE_REINDEX</a> </li>
 <li> <a href="c3ref/c_fail.html">SQLITE_REPLACE</a> </li>
+<li> <a href="c3ref/c_deterministic.html#sqliteresultsubtype">SQLITE_RESULT_SUBTYPE</a> </li>
 <li> <a href="compile.html#reverse_unordered_selects">SQLITE_REVERSE_UNORDERED_SELECTS</a> </li>
 <li> <a href="c3ref/c_fail.html">SQLITE_ROLLBACK</a> </li>
 <li> <a href="c3ref/c_abort.html">SQLITE_ROW</a> </li>
@@ -2520,6 +2554,7 @@ Other Documentation Indexes:
 <li> <a href="c3ref/c_stmtstatus_counter.html#sqlitestmtstatusrun">SQLITE_STMTSTATUS_RUN</a> </li>
 <li> <a href="c3ref/c_stmtstatus_counter.html#sqlitestmtstatussort">SQLITE_STMTSTATUS_SORT</a> </li>
 <li> <a href="c3ref/c_stmtstatus_counter.html#sqlitestmtstatusvmstep">SQLITE_STMTSTATUS_VM_STEP</a> </li>
+<li> <a href="compile.html#strict_subtype">SQLITE_STRICT_SUBTYPE</a> </li>
 <li> <a href="c3ref/c_deterministic.html#sqlitesubtype">SQLITE_SUBTYPE</a> </li>
 <li> <a href="c3ref/c_sync_dataonly.html">SQLITE_SYNC_DATAONLY</a> </li>
 <li> <a href="c3ref/c_sync_dataonly.html">SQLITE_SYNC_FULL</a> </li>
@@ -2542,6 +2577,7 @@ Other Documentation Indexes:
 <li> <a href="c3ref/c_testctrl_always.html">SQLITE_TESTCTRL_INTERNAL_FUNCTIONS</a> </li>
 <li> <a href="c3ref/c_testctrl_always.html">SQLITE_TESTCTRL_ISINIT</a> </li>
 <li> <a href="c3ref/c_testctrl_always.html">SQLITE_TESTCTRL_ISKEYWORD</a> </li>
+<li> <a href="c3ref/c_testctrl_always.html">SQLITE_TESTCTRL_JSON_SELFCHECK</a> </li>
 <li> <a href="c3ref/c_testctrl_always.html">SQLITE_TESTCTRL_LAST</a> </li>
 <li> <a href="c3ref/c_testctrl_always.html">SQLITE_TESTCTRL_LOCALTIME_FAULT</a> </li>
 <li> <a href="c3ref/c_testctrl_always.html">SQLITE_TESTCTRL_LOGEST</a> </li>
@@ -2990,6 +3026,10 @@ Other Documentation Indexes:
 <li> <a href="releaselog/3_43_2.html">Version 3.43.2</a> </li>
 <li> <a href="releaselog/3_43_2.html">Version 3.43.2.0</a> </li>
 <li> <a href="releaselog/3_44_0.html">Version 3.44.0</a> </li>
+<li> <a href="releaselog/3_44_1.html">Version 3.44.1</a> </li>
+<li> <a href="releaselog/3_44_2.html">Version 3.44.2</a> </li>
+<li> <a href="releaselog/3_45_0.html">Version 3.45.0</a> </li>
+<li> <a href="releaselog/3_45_1.html">Version 3.45.1</a> </li>
 <li> <a href="releaselog/3_5_0.html">Version 3.5.0</a> </li>
 <li> <a href="releaselog/3_5_1.html">Version 3.5.1</a> </li>
 <li> <a href="releaselog/3_5_2.html">Version 3.5.2</a> </li>

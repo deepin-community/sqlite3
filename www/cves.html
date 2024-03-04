@@ -396,6 +396,17 @@ be added.
 <tbody>
 
 <tr><td valign='top'>
+<a href='https://nvd.nist.gov/vuln/detail/CVE-2024-0232'>CVE-2024-0232</a>
+</td>
+<td valign='top'><a href="releaselog/3_43_2.html">3.43.2</a><br>(2023-10-10)</td>
+<td valign='top'>An attacker that can inject arbitrary SQL statements into an application
+  might be able to provoke a use-after-free bug in SQLite's JSON parser that
+  can (in theory) lead to an application crash and denial of service. See
+  <a href="https://sqlite.org/forum/forumpost/b25edc1d4662ebca">forum thread b25edc1d4662</a>
+  for the bug report.</td>
+</tr>
+
+<tr><td valign='top'>
 <a href='https://nvd.nist.gov/vuln/detail/CVE-2023-32697'>CVE-2023-32697</a>
 </td>
 <td valign='top'>Not a bug in SQLite</td>
@@ -413,7 +424,7 @@ be added.
 <td valign='top'>Not a bug in SQLite</td>
 <td valign='top'>This is not a bug in SQLite.  This is an 
   <a href="https://en.wikipedia.org/wiki/SQL_injection">SQL injection bug</a> in an application
-  (LuxCal Web Calendar) that can uses SQLite.
+  (LuxCal Web Calendar) that links against SQLite.
   Even though this CVE is not about SQLite, "SQLite" is
   mentioned in the description and so we list it here.</td>
 </tr>
@@ -422,11 +433,24 @@ be added.
 <a href='https://nvd.nist.gov/vuln/detail/CVE-2023-39543'>CVE-2023-39543</a>
 </td>
 <td valign='top'>Not a bug in SQLite</td>
-<td valign='top'>This is not a bug in SQLite.  This is a
+<td valign='top'>This is not a bug in SQLite.  This is an
   <a href="https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting">XSS vulnerability</a>
-  in a separate application (LuxCal Web Calendar) that optionally uses
+  in a separate application (LuxCal Web Calendar) that links against
   SQLite.  The bug is in the application, not in SQLite.  However "SQLite" is
   mentioned in the description and so we list it here.</td>
+</tr>
+
+<tr><td valign='top'>
+<a href='https://nvd.nist.gov/vuln/detail/CVE-2023-7104'>CVE-2023-7104</a>
+</td>
+<td valign='top'><a href="releaselog/3_43_2.html">3.43.2</a><br>(2023-10-10)</td>
+<td valign='top'>This is a bug in the <a href="sessionintro.html">session extension</a> of SQLite, not in the SQLite core.
+  This bug is only reachable by applications that recompile SQLite using the
+  <a href="compile.html#enable_session">-DSQLITE_ENABLE_SESSION</a> compile-time option and then use the Session
+  C-language APIs to process a <a href="sessionintro.html#changeset">changeset</a> that has been subtly corrupted by an
+  adversary.  So this bug probably does not apply to you.  See
+  <a href="https://sqlite.org/forum/forumpost/f935c4708dd528d9">forum post f935c4708dd528d9</a>
+  for additional information.</td>
 </tr>
 
 <tr><td valign='top'>
@@ -755,5 +779,5 @@ be added.
 
 </tbody>
 </table>
-
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/cves.in?m=c03e1c6ed6">2024-01-16 16:06:37</a> UTC </small></i></p>
 

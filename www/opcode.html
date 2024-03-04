@@ -217,8 +217,8 @@ output from SQLite, you should reference the version of this document
 that corresponds to the version of SQLite that ran the <a href="lang_explain.html">EXPLAIN</a>.
 Otherwise, the description of the opcodes may not be accurate.
 This document is derived from SQLite
- version 3.44.0 check-in
-<a href='https://www.sqlite.org/src/timeline?c=17129ba1ff7f0'>17129ba1ff7f0</a> dated 2023-11-01.
+ version 3.45.1 check-in
+<a href='https://www.sqlite.org/src/timeline?c=e876e51a0ed5c'>e876e51a0ed5c</a> dated 2024-01-30.
 
 
 
@@ -441,20 +441,20 @@ pragmas include:
 
 <h1 id="the_opcodes"><span>4. </span>The Opcodes</h1>
 
-<p>There are currently 187
+<p>There are currently 189
 opcodes defined by the virtual machine.
 All currently defined opcodes are described in the table below.
 This table was generated automatically by scanning the source code
 from the file
-<a href="https://www.sqlite.org/src/artifact/14479441337135eed8e290fb1d4abb7db657d93217a3b1ea8a2f031d3895536a">vdbe.c</a>.
+<a href="https://www.sqlite.org/src/artifact/96ac876e57f480bd35ec8d74ed992bca6ae9deebe8b527a3a718e7b4714d6c2e">vdbe.c</a>.
 
 
 </p><p>Remember: The VDBE opcodes are <u>not</u> part of the interface 
 definition for SQLite.  The number of opcodes and their names and meanings
 change from one release of SQLite to the next.
 The opcodes shown in the table below are valid for SQLite
- version 3.44.0 check-in
-<a href='https://www.sqlite.org/src/timeline?c=17129ba1ff7f0'>17129ba1ff7f0</a> dated 2023-11-01.
+ version 3.45.1 check-in
+<a href='https://www.sqlite.org/src/timeline?c=e876e51a0ed5c'>e876e51a0ed5c</a> dated 2024-01-30.
 
 <a name="codes"></a>
 
@@ -1021,6 +1021,10 @@ invocation of this opcode.</p>
 <td>This works just like the Lt opcode except that the jump is taken if
 the content of register P3 is greater than or equal to the content of
 register P1.  See the Lt opcode for additional information.</td></tr>
+<tr><td valign="top" align="center">
+<a name="GetSubtype"></a>GetSubtype
+<td>Extract the subtype value from register P1 and write that subtype
+into register P2.  If P1 has no subtype, then P1 gets a NULL.</td></tr>
 <tr><td valign="top" align="center">
 <a name="Gosub"></a>Gosub
 <td>Write the current address onto register P1
@@ -2324,6 +2328,10 @@ database file used to store temporary tables.</p>
 schema version is set to P3-P5.  The "PRAGMA schema_version=N" statement
 has P5 set to 1, so that the internal schema version will be different
 from the database schema version, resulting in a schema reset.</td></tr>
+<tr><td valign="top" align="center">
+<a name="SetSubtype"></a>SetSubtype
+<td>Set the subtype value of register P2 to the integer from register P1.
+If P1 is NULL, clear the subtype from p2.</td></tr>
 <tr><td valign="top" align="center">
 <a name="ShiftLeft"></a>ShiftLeft
 <td>Shift the integer value in register P2 to the left by the

@@ -115,7 +115,7 @@ antiRobotGo();
 }
 antiRobotDefense();
 </script>
-<!-- keywords: SQLITE_DETERMINISTIC SQLITE_DIRECTONLY SQLITE_INNOCUOUS SQLITE_SUBTYPE -->
+<!-- keywords: SQLITE_DETERMINISTIC SQLITE_DIRECTONLY SQLITE_INNOCUOUS SQLITE_RESULT_SUBTYPE SQLITE_SUBTYPE -->
 <div class=nosearch>
 <a href="../c3ref/intro.html"><h2>SQLite C Interface</h2></a>
 <h2>Function Flags</h2>
@@ -125,6 +125,7 @@ antiRobotDefense();
 #define SQLITE_DIRECTONLY       0x000080000
 #define SQLITE_SUBTYPE          0x000100000
 #define SQLITE_INNOCUOUS        0x000200000
+#define SQLITE_RESULT_SUBTYPE   0x001000000
 </pre></blockquote>
 <p>
 These constants may be ORed together with the
@@ -194,13 +195,28 @@ security-adverse side-effects and information-leaks.
 
 <p><a name="sqlitesubtype"></a>
  <dt>SQLITE_SUBTYPE</dt><dd>
-The SQLITE_SUBTYPE flag indicates to SQLite that a function may call
+The SQLITE_SUBTYPE flag indicates to SQLite that a function might call
 <a href="../c3ref/value_subtype.html">sqlite3_value_subtype()</a> to inspect the sub-types of its arguments.
-Specifying this flag makes no difference for scalar or aggregate user
-functions. However, if it is not specified for a user-defined window
-function, then any sub-types belonging to arguments passed to the window
-function may be discarded before the window function is called (i.e.
-sqlite3_value_subtype() will always return 0).
+This flag instructs SQLite to omit some corner-case optimizations that
+might disrupt the operation of the <a href="../c3ref/value_subtype.html">sqlite3_value_subtype()</a> function,
+causing it to return zero rather than the correct subtype().
+SQL functions that invokes <a href="../c3ref/value_subtype.html">sqlite3_value_subtype()</a> should have this
+property.  If the SQLITE_SUBTYPE property is omitted, then the return
+value from <a href="../c3ref/value_subtype.html">sqlite3_value_subtype()</a> might sometimes be zero even though
+a non-zero subtype was specified by the function argument expression.</p>
+
+<p><a name="sqliteresultsubtype"></a>
+ <dt>SQLITE_RESULT_SUBTYPE</dt><dd>
+The SQLITE_RESULT_SUBTYPE flag indicates to SQLite that a function might call
+<a href="../c3ref/result_subtype.html">sqlite3_result_subtype()</a> to cause a sub-type to be associated with its
+result.
+Every function that invokes <a href="../c3ref/result_subtype.html">sqlite3_result_subtype()</a> should have this
+property.  If it does not, then the call to <a href="../c3ref/result_subtype.html">sqlite3_result_subtype()</a>
+might become a no-op if the function is used as term in an
+<a href="../expridx.html">expression index</a>.  On the other hand, SQL functions that never invoke
+<a href="../c3ref/result_subtype.html">sqlite3_result_subtype()</a> should avoid setting this property, as the
+purpose of this property is to disable certain optimizations that are
+incompatible with subtypes.
 </dd>
 </dl>
 </p><p>See also lists of

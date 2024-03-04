@@ -277,7 +277,16 @@ If SQLite is compiled with -DSQLITE_OMIT_AUTOINIT and a routine like
 <a href="c3ref/free.html">sqlite3_malloc()</a> or <a href="c3ref/vfs_find.html">sqlite3_vfs_find()</a> or <a href="c3ref/open.html">sqlite3_open()</a> is invoked
 without first calling <a href="c3ref/initialize.html">sqlite3_initialize()</a>, the likely result will be
 a segfault.
-</p></li></ol>
+
+</p><li<p><b><a href="compile.html#strict_subtype">SQLITE_STRICT_SUBTYPE=1</a></b>.
+This option causes an error to be raised if an application defined
+function that does not have the <a href="c3ref/c_deterministic.html#sqliteresultsubtype">SQLITE_RESULT_SUBTYPE</a> property
+invokes the <a href="c3ref/result_subtype.html">sqlite3_result_subtype()</a> interface.  The sqlite3_result_subtype()
+interface does not work reliably unless the function is registered
+with the SQLITE_RESULT_SUBTYPE property.  This compile-time option
+is designed to bring this problem to the attention of developers
+early.
+</li<p></li></ol>
 
 <p>When all of the recommended compile-time options above are used,
 the SQLite library will be approximately 3% smaller and use about 5% fewer
@@ -561,6 +570,18 @@ some design situations, every little bit helps.
   So the default depth limit of 12 is sufficient for up to 4095 ordinary
   terms on a MATCH, it is only sufficient for 11 or 12 phrase or NEAR
   terms.  Even so, the default is more than enough for most application.
+</p></blockquote><a name="json_max_depth"></a>
+<p><b>SQLITE_JSON_MAX_DEPTH=<i>N</i></b></p><blockquote><p>
+  This macro sets the maximum nesting depth for JSON objects and arrays.
+  The default value is 1000.
+  <p>
+  The <a href="json1.html">JSON SQL functions</a> use a
+  <a href="https://en.wikipedia.org/wiki/Recursive_descent_parser">recursive decent parser</a>.
+  This means that deeply nested JSON might require a lot of stack space to
+  parse.  On systems with limited stack space, SQLite can be compiled with
+  a greatly reduced maximum JSON nesting depth to avoid the possibility of
+  a stack overflow, even from hostile inputs.  A value of 10 or 20 is normally
+  sufficient even for the most complex real-world JSON.
 </p></blockquote><a name="like_doesnt_match_blobs"></a>
 <p><b>SQLITE_LIKE_DOESNT_MATCH_BLOBS</b></p><blockquote><p>
   This compile-time option causes the <a href="lang_expr.html#like">LIKE</a> operator to always return
@@ -587,6 +608,10 @@ some design situations, every little bit helps.
   <i>N</i> bytes will result in an out-of-memory error.
   This is a hard upper limit.  See also the <a href="c3ref/soft_heap_limit.html">sqlite3_soft_heap_limit()</a>
   interface.
+  <p>
+  This option is a limit on the <i>total</i> amount of memory allocated.
+  See the <a href="compile.html#max_allocation_size">SQLITE_MAX_ALLOCATION_SIZE</a> option for a limitation on the amount
+  of memory allowed in any single memory allocation.
   <p>
   This limit is only functional if memory usage statistics are available via
   the <a href="c3ref/memory_highwater.html">sqlite3_memory_used()</a> and <a href="c3ref/status.html">sqlite3_status64</a>(<a href="c3ref/c_status_malloc_count.html#sqlitestatusmemoryused">SQLITE_STATUS_MEMORY_USED</a>)
@@ -786,6 +811,20 @@ the available settings:</p>
 <li> <a href="limits.html#max_variable_number">SQLITE_MAX_VARIABLE_NUMBER</a>  </li>
 </ul>
 
+<p>There are also some size limits that cannot be modified using
+<a href="c3ref/limit.html">sqlite3_limit()</a>.  See, for example:
+
+</p><ul>
+<li> <a href="compile.html#fts3_max_expr_depth">SQLITE_FTS3_MAX_EXPR_DEPTH</a> </li>
+<li> <a href="compile.html#json_max_depth">SQLITE_JSON_MAX_DEPTH</a> </li>
+<li> <a href="compile.html#max_allocation_size">SQLITE_MAX_ALLOCATION_SIZE</a> </li>
+<li> <a href="compile.html#max_memory">SQLITE_MAX_MEMORY</a> </li>
+<li> <a href="compile.html#max_mmap_size">SQLITE_MAX_MMAP_SIZE</a> </li>
+<li> <a href="compile.html#printf_precision_limit">SQLITE_PRINTF_PRECISION_LIMIT</a> </li>
+<li> <a href="compile.html#trace_size_limit">SQLITE_TRACE_SIZE_LIMIT</a> </li>
+<li> <a href="compile.html#yystackdepth">YYSTACKDEPTH</a> </li>
+</ul>
+
 <a name="controlfeatures"></a>
 <h1 id="_options_to_control_operating_characteristics"><span>6. </span> Options To Control Operating Characteristics</h1>
 
@@ -805,8 +844,11 @@ the available settings:</p>
   When this option is present, content contained in
   <a href="fileformat2.html#ovflpgs">overflow pages</a> of the database file is read directly from disk,
   bypassing the <a href="c3ref/pcache_methods2.html">page cache</a>, during read transactions.  In applications
-  that do a lot of reads of large BLOBs, this option might improve read
-  performance.
+  that do a lot of reads of large BLOBs or strings, this option improves
+  read performance.
+  <p>
+  As of version 3.45.0 (2024-01-15), this option is enabled by
+  default.  To disable it, using -DSQLITE_DIRECT_OVERFLOW_READ=0.
 </p></blockquote><a name="have_isnan"></a>
 <p><b>SQLITE_HAVE_ISNAN</b></p><blockquote><p>
   If this option is present, then SQLite will use the isnan() function from
@@ -823,6 +865,8 @@ the available settings:</p>
   <p>
   This is a limit on the maximum size of any single memory allocation.
   It is <i>not</i> a limit on the total amount of memory allocated.
+  See <a href="compile.html#max_memory">SQLITE_MAX_MEMORY</a> for a limitation on the total amount of memory
+  allocated.
   <p>
   Reducing the maximum size of individual memory allocations provides
   extra defense against denial-of-service attacks that attempt to exhaust
@@ -1108,6 +1152,10 @@ the available settings:</p>
 <p><b>SQLITE_ENABLE_GEOPOLY</b></p><blockquote><p>
   When this option is defined in the <a href="amalgamation.html">amalgamation</a>, the <a href="geopoly.html">Geopoly extension</a>
   is included in the build.
+</p></blockquote><a name="enable_hidden_columns"></a>
+<p><b>SQLITE_ENABLE_HIDDEN_COLUMNS</b></p><blockquote><p>
+  When this option is defined in the <a href="amalgamation.html">amalgamation</a>,
+  The <a href="vtab.html#hiddencol">hidden columns</a> feature is enabled for virtual tables.
 </p></blockquote><a name="enable_icu"></a>
 <p><b>SQLITE_ENABLE_ICU</b></p><blockquote><p>
   This option causes the
@@ -1330,7 +1378,7 @@ the available settings:</p>
 <p><b>SQLITE_ENABLE_STAT2</b></p><blockquote><p>
   This option used to cause the <a href="lang_analyze.html">ANALYZE</a> command to collect
   index histogram data in the <b>sqlite_stat2</b> table.  But that
-  functionality was superceded by <a href="compile.html#enable_stat3">SQLITE_ENABLE_STAT3</a> as of
+  functionality was superseded by <a href="compile.html#enable_stat3">SQLITE_ENABLE_STAT3</a> as of
   SQLite <a href="releaselog/3_7_9.html">version 3.7.9</a> (2011-11-01).
   The SQLITE_ENABLE_STAT2 compile-time option
   is now a no-op.
@@ -1338,7 +1386,7 @@ the available settings:</p>
 <p><b>SQLITE_ENABLE_STAT3</b></p><blockquote><p>
   This option used to cause the <a href="lang_analyze.html">ANALYZE</a> command to collect
   index histogram data in the <b>sqlite_stat3</b> table.  But that
-  functionality was superceded by <a href="compile.html#enable_stat4">SQLITE_ENABLE_STAT4</a> as of
+  functionality was superseded by <a href="compile.html#enable_stat4">SQLITE_ENABLE_STAT4</a> as of
   SQLite <a href="releaselog/3_8_1.html">version 3.8.1</a> (2013-10-17).
   The SQLITE_ENABLE_STAT3 compile-time option
   continued to be supported through <a href="releaselog/3_29_0.html">version 3.29.0</a> (2019-07-10)
@@ -1406,6 +1454,14 @@ the available settings:</p>
 </p></blockquote><a name="soundex"></a>
 <p><b>SQLITE_SOUNDEX</b></p><blockquote><p>
   This option enables the <a href="lang_corefunc.html#soundex">soundex() SQL function</a>.
+</p></blockquote><a name="strict_subtype"></a>
+<p><b>SQLITE_STRICT_SUBTYPE=1</b></p><blockquote><p>
+  This option causes <a href="appfunc.html">application-defined SQL functions</a> to raise an SQL
+  error if they invoke the <a href="c3ref/result_subtype.html">sqlite3_result_subtype()</a> interface but
+  where not registered with the <a href="c3ref/c_deterministic.html#sqliteresultsubtype">SQLITE_RESULT_SUBTYPE</a> property.
+  This recommended option helps to identify problems in the
+  implementation of application-defined SQL functions early in the
+  development cycle.
 </p></blockquote><a name="use_alloca"></a>
 <p><b>SQLITE_USE_ALLOCA</b></p><blockquote><p>
   If this option is enabled, then the alloca() memory allocator will be
@@ -1487,6 +1543,12 @@ the available settings:</p>
   This option disables the use of compiler-specific built-in functions
   such as __builtin_bswap32() and __builtin_add_overflow() in GCC and Clang,
   or _byteswap_ulong() and _ReadWriteBarrier() with MSVC.
+</p></blockquote><a name="disable_pagecache_overflow_stats"></a>
+<p><b>SQLITE_DISABLE_PAGECACHE_OVERFLOW_STATS</b></p><blockquote><p>
+  This option disables the collection of the <a href="c3ref/status.html">sqlite3_status()</a> 
+  <a href="c3ref/c_status_malloc_count.html#sqlitestatuspagecacheoverflow">SQLITE_STATUS_PAGECACHE_OVERFLOW</a> and <a href="c3ref/c_status_malloc_count.html#sqlitestatuspagecachesize">SQLITE_STATUS_PAGECACHE_SIZE</a>
+  statistics.  Setting this option has been shown to increase performance in
+  high concurrency multi-threaded applications.
 </p></blockquote>
 
 <a name="omitfeatures"></a>
@@ -2067,5 +2129,5 @@ macros is included for completeness.</p>
   This macro may not be used in combination with any of <a href="compile.html#apicall">SQLITE_APICALL</a>,
   <a href="compile.html#callback">SQLITE_CALLBACK</a>, <a href="compile.html#cdecl">SQLITE_CDECL</a> or <a href="compile.html#sysapi">SQLITE_SYSAPI</a>.
 </p></blockquote>
-
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/compile.in?m=1a49b43fd9">2024-01-09 20:59:08</a> UTC </small></i></p>
 

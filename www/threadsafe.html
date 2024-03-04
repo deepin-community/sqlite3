@@ -143,8 +143,8 @@ is used in two or more threads at the same time.
 </p></li>
 
 <li><p><b>Serialized</b>.
-In serialized mode, API calls to control SQLite any <a href="c3ref/sqlite3.html">database connection</a> or
-any object derived from a database connection
+In serialized mode, API calls to affect or use any SQLite <a href="c3ref/sqlite3.html">database connection</a>
+or any object derived from such a database connection
 can be made safely from multiple threads.
 The effect on an individual object is the same as if the API calls had all
 been made in the same order from a single thread.  The name "serialized"
@@ -158,7 +158,7 @@ library is being compiled from source code) or at start-time (when the
 application that intends to use SQLite is initializing) or at
 run-time (when a new SQLite database connection is being created).
 Generally speaking, run-time overrides start-time and start-time
-overrides compile-time.  Except, single-thread mode cannot be 
+overrides compile-time.  Except, single-thread mode cannot be
 overridden once selected.
 </p>
 
@@ -224,5 +224,5 @@ to be in serialized mode.  If neither flag is specified or if
 <a href="c3ref/open.html">sqlite3_open_v2()</a>, then the default
 mode determined by the compile-time and start-time settings is used.
 </p>
-
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/threadsafe.in?m=84a776bde3">2023-12-05 14:43:20</a> UTC </small></i></p>
 

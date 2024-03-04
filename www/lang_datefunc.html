@@ -329,7 +329,7 @@ SELECT unixepoch(B) - unixepoch(A);
 The timediff(A,B) might return the same result even for values A and B
 that span a different number of days - depending on the starting date.
 For example, both of the following two timediff() calls return the
-same result ("+0000-01-00 00:00:00.000") even though the first timespan
+same result ("-0000-01-00 00:00:00.000") even though the first timespan
 is 28 days and the seconds is 31 days:
 </p><blockquote>
 SELECT timediff('2023-02-15','2023-03-15');<br>
@@ -674,5 +674,5 @@ getting results correct back to 1986, when the rules were also changed.</p>
 <a href="http://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a>
 system.  They also assume that every
 day is exactly 86400 seconds in duration; no leap seconds are incorporated.</p>
-<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/lang_datefunc.in?m=5409636a72">2023-10-26 01:12:18</a> UTC </small></i></p>
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/lang_datefunc.in?m=eb291a29ad">2024-01-29 11:00:27</a> UTC </small></i></p>
 

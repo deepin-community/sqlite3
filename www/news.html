@@ -119,7 +119,51 @@ antiRobotDefense();
 
 <h2>Recent News</h2>
 
-<a name="2023_11_01"></a><h3>2023-11-01 - <a href="releaselog/3_44_0.html">Version 3.44.0</a></h3><blockquote>
+<a name="2024_01_30"></a><h3>2024-01-30 - <a href="releaselog/3_45_1.html">Version 3.45.1</a></h3><blockquote>
+Version 3.45.1 is a patch against SQLite version 3.45.0.
+<p>
+The main focus of this patch release is to restore certain
+undocumented legacy behavior in the <a href="json1.html">JSON SQL functions</a> that
+the developers were unaware of but which some applications
+had come to depend on.  This undocumented behavior was "fixed"
+in the 3.45.0, resulting in breakage for applications that were
+using it.  So it has now been restored and documented.
+<p>
+Other obscure issues that have come up since the 3.45.0 release,
+some related to the release itself and some going back years,
+are also fixed.
+</blockquote><hr width="50%"><a name="2024_01_15"></a><h3>2024-01-15 - <a href="releaselog/3_45_0.html">Version 3.45.0</a></h3><blockquote>
+Version 3.45.0 is an enhancement release of SQLite.
+<p>
+The most impactful change is likely enhancements to
+the <a href="json1.html">JSON SQL functions</a> such that they are now able to
+store their internal JSON parse trees in the database
+as BLOB values.  This can significantly increase the
+performance of applications that process large JSON
+strings as it omits the need to translate JSON text
+to and from the internal binary format used by SQLite.
+<p>
+A second noteworthy change is that any
+<a href="appfunc.html">application-defined SQL functions</a> that make use of
+the <a href="c3ref/result_subtype.html">sqlite3_result_subtype()</a> interface must now include
+the <a href="c3ref/c_deterministic.html#sqliteresultsubtype">SQLITE_RESULT_SUBTYPE</a> attribute when the function
+is registered using <a href="c3ref/create_function.html">sqlite3_create_function()</a> or similar.
+Failure to include the SQLITE_RESULT_SUBTYPE attribute on
+functions that use <a href="c3ref/result_subtype.html">sqlite3_result_subtype()</a> might result
+in incorrect answers.
+<p>
+See the <a href="releaselog/3_45_0.html">change log</a>
+for additional enhancements that are part of the 3.45.0 release.
+</blockquote><hr width="50%"><a name="2023_11_24"></a><h3>2023-11-24 - <a href="releaselog/3_44_2.html">Version 3.44.2</a></h3><blockquote>
+The <a href="cli.html">CLI</a> fix in version 3.44.1 introduced a new bug, which is
+fixed by patch release 3.44.2.  Version 3.44.2 also fixes an
+FTS5 problem that was found by a fuzzer just minutes after the
+3.44.1 release.
+</blockquote><hr width="50%"><a name="2023_11_22"></a><h3>2023-11-22 - <a href="releaselog/3_44_1.html">Version 3.44.1</a></h3><blockquote>
+Version 3.44.1 is a patch release that fixes various obscure
+bugs.  There is no need to upgrade, unless you are having
+problems with a prior release.
+</blockquote><hr width="50%"><a name="2023_11_01"></a><h3>2023-11-01 - <a href="releaselog/3_44_0.html">Version 3.44.0</a></h3><blockquote>
 Version 3.44.0 is new enhancement release of SQLite.
 <p>
 It has only been 69 days since the previous major

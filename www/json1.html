@@ -154,14 +154,15 @@ Table Of Contents
 <div class="fancy-toc2"><a href="#the_jsonb_object_function">4.13. The jsonb_object() function</a></div>
 <div class="fancy-toc2"><a href="#the_json_patch_function">4.14. The json_patch() function</a></div>
 <div class="fancy-toc2"><a href="#the_jsonb_patch_function">4.15. The jsonb_patch() function</a></div>
-<div class="fancy-toc2"><a href="#the_json_remove_function">4.16. The json_remove() function</a></div>
-<div class="fancy-toc2"><a href="#the_jsonb_remove_function">4.17. The jsonb_remove() function</a></div>
-<div class="fancy-toc2"><a href="#the_json_type_function">4.18. The json_type() function</a></div>
-<div class="fancy-toc2"><a href="#the_json_valid_function">4.19. The json_valid() function</a></div>
-<div class="fancy-toc2"><a href="#the_json_quote_function">4.20. The json_quote() function</a></div>
-<div class="fancy-toc2"><a href="#array_and_object_aggregate_functions">4.21. Array and object aggregate functions</a></div>
-<div class="fancy-toc2"><a href="#the_json_each_and_json_tree_table_valued_functions">4.22. The json_each() and json_tree() table-valued functions</a></div>
-<div class="fancy-toc3"><a href="#examples_using_json_each_and_json_tree_">4.22.1. Examples using json_each() and json_tree()</a></div>
+<div class="fancy-toc2"><a href="#the_json_pretty_function">4.16. The json_pretty() function</a></div>
+<div class="fancy-toc2"><a href="#the_json_remove_function">4.17. The json_remove() function</a></div>
+<div class="fancy-toc2"><a href="#the_jsonb_remove_function">4.18. The jsonb_remove() function</a></div>
+<div class="fancy-toc2"><a href="#the_json_type_function">4.19. The json_type() function</a></div>
+<div class="fancy-toc2"><a href="#the_json_valid_function">4.20. The json_valid() function</a></div>
+<div class="fancy-toc2"><a href="#the_json_quote_function">4.21. The json_quote() function</a></div>
+<div class="fancy-toc2"><a href="#array_and_object_aggregate_functions">4.22. Array and object aggregate functions</a></div>
+<div class="fancy-toc2"><a href="#the_json_each_and_json_tree_table_valued_functions">4.23. The json_each() and json_tree() table-valued functions</a></div>
+<div class="fancy-toc3"><a href="#examples_using_json_each_and_json_tree_">4.23.1. Examples using json_each() and json_tree()</a></div>
 </div>
 </div>
 <script>
@@ -185,12 +186,12 @@ mk.innerHTML = "&#x25ba;";
 
 <h1 id="overview"><span>1. </span>Overview</h1>
 <p>
-By default, SQLite supports twenty-nine functions and two operators for
+By default, SQLite supports thirty functions and two operators for
 dealing with JSON values.  There are also two <a href="vtab.html#tabfunc2">table-valued functions</a>
 that can be used to decompose a JSON string.
 
 </p><p>
-There are 25 scalar functions and operators:
+There are twenty-six scalar functions and operators:
 
 </p><ol>
 <li value='1'>
@@ -258,38 +259,42 @@ There are 25 scalar functions and operators:
 </li>
 
 <li value='17'>
-<a href='#jrm'>json_remove</a>(<i>json</i>,<i>path</i>,...)
+<a href='#jpretty'>json_pretty</a>(<i>json</i>)
 </li>
 
 <li value='18'>
-<a href='#jrmb'>jsonb_remove</a>(<i>json</i>,<i>path</i>,...)
+<a href='#jrm'>json_remove</a>(<i>json</i>,<i>path</i>,...)
 </li>
 
 <li value='19'>
-<a href='#jrepl'>json_replace</a>(<i>json</i>,<i>path</i>,<i>value</i>,...)
+<a href='#jrmb'>jsonb_remove</a>(<i>json</i>,<i>path</i>,...)
 </li>
 
 <li value='20'>
-<a href='#jreplb'>jsonb_replace</a>(<i>json</i>,<i>path</i>,<i>value</i>,...)
+<a href='#jrepl'>json_replace</a>(<i>json</i>,<i>path</i>,<i>value</i>,...)
 </li>
 
 <li value='21'>
-<a href='#jset'>json_set</a>(<i>json</i>,<i>path</i>,<i>value</i>,...)
+<a href='#jreplb'>jsonb_replace</a>(<i>json</i>,<i>path</i>,<i>value</i>,...)
 </li>
 
 <li value='22'>
-<a href='#jsetb'>jsonb_set</a>(<i>json</i>,<i>path</i>,<i>value</i>,...)
+<a href='#jset'>json_set</a>(<i>json</i>,<i>path</i>,<i>value</i>,...)
 </li>
 
 <li value='23'>
-<a href='#jtype'>json_type</a>(<i>json</i>)<br><a href='#jtype'>json_type</a>(<i>json</i>,<i>path</i>)
+<a href='#jsetb'>jsonb_set</a>(<i>json</i>,<i>path</i>,<i>value</i>,...)
 </li>
 
 <li value='24'>
-<a href='#jvalid'>json_valid</a>(<i>json</i>)<br><a href='#jvalid'>json_valid</a>(<i>json</i>,flags)
+<a href='#jtype'>json_type</a>(<i>json</i>)<br><a href='#jtype'>json_type</a>(<i>json</i>,<i>path</i>)
 </li>
 
 <li value='25'>
+<a href='#jvalid'>json_valid</a>(<i>json</i>)<br><a href='#jvalid'>json_valid</a>(<i>json</i>,flags)
+</li>
+
+<li value='26'>
 <a href='#jquote'>json_quote</a>(<i>value</i>)
 </li>
 
@@ -299,19 +304,19 @@ There are 25 scalar functions and operators:
 <p>There are four <a href="lang_aggfunc.html">aggregate SQL functions</a>:
 
 </p><ol>
-<li value='26'>
+<li value='27'>
 <a href='#jgrouparray'>json_group_array</a>(<i>value</i>)
 </li>
 
-<li value='27'>
+<li value='28'>
 <a href='#jgrouparrayb'>jsonb_group_array</a>(<i>value</i>)
 </li>
 
-<li value='28'>
+<li value='29'>
 <a href='#jgroupobject'>json_group_object</a>(<i>label</i>,<i>value</i>)
 </li>
 
-<li value='29'>
+<li value='30'>
 <a href='#jgroupobjectb'>jsonb_group_object</a>(name,<i>value</i>)
 </li>
 
@@ -321,11 +326,11 @@ There are 25 scalar functions and operators:
 <p>The two <a href="vtab.html#tabfunc2">table-valued functions</a> are:
 
 </p><ol>
-<li value='30'>
+<li value='31'>
 <a href='#jeach'>json_each</a>(<i>json</i>)<br><a href='#jeach'>json_each</a>(<i>json</i>,<i>path</i>)
 </li>
 
-<li value='31'>
+<li value='32'>
 <a href='#jtree'>json_tree</a>(<i>json</i>)<br><a href='#jtree'>json_tree</a>(<i>json</i>,<i>path</i>)
 </li>
 
@@ -395,7 +400,7 @@ internal "parse tree" representation of JSON to be stored on disk,
 as a BLOB, in a format that we call "JSONB".  By storing SQLite's internal
 binary representation of JSON directly in the database, applications
 can bypass the overhead of parsing and rendering JSON when reading and
-updating JSON values.  The internal JSONB format is also uses slightly
+updating JSON values.  The internal JSONB format also uses slightly
 less disk space then text JSON.
 
 </p><p>
@@ -698,7 +703,7 @@ text JSON when cast to text, then it is accepted as text JSON.
 This is actually a long-standing bug in the original implementation
 that the SQLite developers were unaware of.  The documentation stated
 that a BLOB input to a JSON function should raise an error.  But in the
-actually implementation, the input would be accepted as long
+actual implementation, the input would be accepted as long
 as the BLOB content was a valid JSON string in the text encoding of
 the database.
 
@@ -849,7 +854,7 @@ well-formed JSON or if P is not a well-formed path.
 
 </p><h2 id="the_json_error_position_function"><span>4.6. </span>The json_error_position() function</h2>
 
-<p>The json_error_positionf(X) function returns 0 if the input X is a
+<p>The json_error_position(X) function returns 0 if the input X is a
 well-formed JSON or JSON5 string.  If the input X contains one or more
 syntax errors, then this function returns the character position of the
 first syntax error.  The left-most character is position 1.
@@ -1241,9 +1246,23 @@ especially Arrays with lots of substructure.
 The jsonb_patch() function works just like the <a href="json1.html#jpatch">json_patch()</a> function
 except that the patched JSON is returned in the binary JSONB format.
 
+<a name="jpretty"></a>
+
+</p><h2 id="the_json_pretty_function"><span>4.16. </span>The json_pretty() function</h2>
+<p>
+The json_pretty() function works like <a href="json1.html#jmini">json()</a> except that it adds
+extra whitespace to make the JSON result easier for humans to read.
+The first argument is the JSON or JSONB that is to be pretty-printed.
+The optional second argument is a text string that is used for indentation.
+If the second argument is omitted or is NULL, then indentation is four
+spaces per level.
+</p><p>
+The json_pretty() function was added with SQLite version 3.46.0 
+(2024-05-23).
+
 <a name="jrm"></a>
 
-</p><h2 id="the_json_remove_function"><span>4.16. </span>The json_remove() function</h2>
+</p><h2 id="the_json_remove_function"><span>4.17. </span>The json_remove() function</h2>
 
 <p>The json_remove(X,P,...) function takes a single JSON value as its
 first argument followed by zero or more path arguments.
@@ -1295,14 +1314,14 @@ path.
 
 <a name="jrmb"></a>
 
-</p><h2 id="the_jsonb_remove_function"><span>4.17. </span>The jsonb_remove() function</h2>
+</p><h2 id="the_jsonb_remove_function"><span>4.18. </span>The jsonb_remove() function</h2>
 <p>
 The jsonb_remove() function works just like the <a href="json1.html#jrm">json_remove()</a> function
 except that the edited JSON result is returned in the binary JSONB format.
 
 <a name="jtype"></a>
 
-</p><h2 id="the_json_type_function"><span>4.18. </span>The json_type() function</h2>
+</p><h2 id="the_json_type_function"><span>4.19. </span>The json_type() function</h2>
 
 <p>The json_type(X) function returns the "type" of the outermost element
 of X.  The json_type(X,P) function returns the "type" of the element
@@ -1354,7 +1373,7 @@ JSON path.
 
 <a name="jvalid"></a>
 
-</p><h2 id="the_json_valid_function"><span>4.19. </span>The json_valid() function</h2>
+</p><h2 id="the_json_valid_function"><span>4.20. </span>The json_valid() function</h2>
 
 <p>The json_valid(X,Y) function return 1 if the argument X is well-formed
 JSON, or returns 0 if X is not well-formed.  The Y parameter is an integer
@@ -1435,7 +1454,7 @@ returns NULL.
 
 <a name="jquote"></a>
 
-</p><h2 id="the_json_quote_function"><span>4.20. </span>The json_quote() function</h2>
+</p><h2 id="the_json_quote_function"><span>4.21. </span>The json_quote() function</h2>
 
 <p>The json_quote(X) function converts the SQL value X (a number or a
 string) into its corresponding JSON representation.  If X is a JSON value
@@ -1467,7 +1486,7 @@ returned by another JSON function, then this function is a no-op.
 <a name="jgrouparrayb"></a>
 <a name="jgroupobjectb"></a>
 
-</p><h2 id="array_and_object_aggregate_functions"><span>4.21. </span>Array and object aggregate functions</h2>
+</p><h2 id="array_and_object_aggregate_functions"><span>4.22. </span>Array and object aggregate functions</h2>
 
 <p>The json_group_array(X) function is an
 <a href="lang_aggfunc.html">aggregate SQL function</a> that returns a JSON array
@@ -1481,7 +1500,7 @@ result in the binary <a href="json1.html#jsonbx">JSONB</a> format.
 
 <a name="jtree"></a>
 
-</p><h2 id="the_json_each_and_json_tree_table_valued_functions"><span>4.22. </span>The json_each() and json_tree() table-valued functions</h2>
+</p><h2 id="the_json_each_and_json_tree_table_valued_functions"><span>4.23. </span>The json_each() and json_tree() table-valued functions</h2>
 
 <p>The json_each(X) and json_tree(X) <a href="vtab.html#tabfunc2">table-valued functions</a> walk the
 JSON value provided as their first argument and return one row for each
@@ -1556,7 +1575,7 @@ the current row, or the path to the current row in the case where the
 iteration starts on a primitive type and thus only provides a single
 row of output.
 
-</p><h3 id="examples_using_json_each_and_json_tree_"><span>4.22.1. </span>Examples using json_each() and json_tree()</h3>
+</p><h3 id="examples_using_json_each_and_json_tree_"><span>4.23.1. </span>Examples using json_each() and json_tree()</h3>
 
 <p>Suppose the table "CREATE TABLE user(name,phone)" stores zero or
 more phone numbers as a JSON array object in the user.phone field.
@@ -1616,5 +1635,5 @@ SELECT DISTINCT json_extract(big.json,'$.id')
  WHERE json_tree.key='uuid'
    AND json_tree.value='6fa5181e-5721-11e5-a04e-57f3d7b32808';
 </pre></blockquote>
-
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/json1.in?m=d0ca839304">2024-07-25 15:06:57</a> UTC </small></i></p>
 

@@ -376,10 +376,11 @@ in numeric order.
   result code.  If application does encounter this result code, it shows
   that there is a bug in the database engine.
   <p>
-  SQLite does not currently generate this result code.
+  This result code might be caused by a bug in SQLite.
   However, <a href="appfunc.html">application-defined SQL functions</a> or
-  <a href="vtab.html">virtual tables</a>, or <a href="vfs.html">VFSes</a>, or other extensions might cause this 
-  result code to be returned.
+  <a href="vtab.html">virtual tables</a>, or <a href="vfs.html">VFSes</a>, or other extensions can also cause this 
+  result code to be returned, so the problem might not be the fault
+  of the core SQLite.
 
 
 <!--------------------------------------------------------------->
@@ -1557,5 +1558,5 @@ in numeric order.
 
 
 
-</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/rescode.in?m=3b9436392c">2023-09-14 14:42:56</a> UTC </small></i></p>
+</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/rescode.in?m=a100f5b2dc">2024-08-10 18:17:30</a> UTC </small></i></p>
 

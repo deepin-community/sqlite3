@@ -119,7 +119,44 @@ antiRobotDefense();
 
 <h2>Recent News</h2>
 
-<a name="2024_01_30"></a><h3>2024-01-30 - <a href="releaselog/3_45_1.html">Version 3.45.1</a></h3><blockquote>
+<a name="2024_08_13"></a><h3>2024-08-13 - <a href="releaselog/3_46_1.html">Version 3.46.1</a></h3><blockquote>
+Version 3.46.1 is a patch release that fixes several minor
+problems in version 3.46.0.  There are minimal changes from
+the previous release.
+</blockquote><hr width="50%"><a name="2024_05_23"></a><h3>2024-05-23 - <a href="releaselog/3_46_0.html">Version 3.46.0</a></h3><blockquote>
+Version 3.46.0 is an enhancement release.  Enhancements include:
+<ul>
+<li> Improvements to the <a href="pragma.html#pragma_optimize">PRAGMA optimize</a> command
+<li> Enhancements to the <a href="lang_datefunc.html">date and time functions</a>
+<li> The ability to put "_" between digits in numeric literals for readability
+<li> Added the <a href="json1.html#jpretty">json_pretty()</a> function
+<li> Improvements to the query planner, especially a new faster implementation
+     for VALUES clauses with many terms.
+</ul>
+<p>
+None of these enhancements are critical.  Update at your convenience.
+</blockquote><hr width="50%"><a name="2024_04_15"></a><h3>2024-04-15 - <a href="releaselog/3_45_3.html">Version 3.45.3</a></h3><blockquote>
+Version 3.45.3 is a patch release that fixes a few obscure problems,
+including:
+<ul>
+<li> The "old.*" values in an <a href="lang_createtrigger.html">UPDATE trigger</a> might be incorrect
+     if the trigger fires in response to an <a href="lang_upsert.html">UPSERT</a>.
+<li> The <a href="lang_aggfunc.html#sumunc">sum()</a> function might return NULL in some cases where Infinity
+     would be a better answer.
+</ul>
+None of the problems are emergencies.  Upgrade at your convenience.
+</blockquote><hr width="50%"><a name="2024_03_12"></a><h3>2024-03-12 - <a href="releaselog/3_45_2.html">Version 3.45.2</a></h3><blockquote>
+Version 3.45.2 is a patch against SQLite versions 3.45.0 and 3.45.1.
+<p>
+The primary reason for this patch is to fix two bugs three-year-old
+bugs identified by Forum posts
+<a href="https://sqlite.org/forum/forumpost/919c6579c8">919c6579c8</a>
+and <a href="https://sqlite.org/forum/forumpost/440f2a2f17">440f2a2f17</a>.
+These problems could results in incorrect query results or corrupt
+indexes.  See the associated forum threads for details.
+<p>
+Other trifling fixes are also included in the patch.
+</blockquote><hr width="50%"><a name="2024_01_30"></a><h3>2024-01-30 - <a href="releaselog/3_45_1.html">Version 3.45.1</a></h3><blockquote>
 Version 3.45.1 is a patch against SQLite version 3.45.0.
 <p>
 The main focus of this patch release is to restore certain
@@ -831,5 +868,5 @@ the Firefox developers at Mozilla.  The differences from version
 </blockquote><hr width="50%">
 
 <a href="oldnews.html">Old news...</a>
-
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/news.in?m=4e1df204ab">2024-08-13 09:24:49</a> UTC </small></i></p>
 

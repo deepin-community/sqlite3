@@ -165,6 +165,7 @@ Other Documentation Indexes:
 <li> <a href="syntax/alter-table-stmt.html">alter-table-stmt syntax diagram</a> </li>
 <li> <a href="amalgamation.html">amalgamation</a> </li>
 <li> <a href="download.html">amalgamation tarball</a> </li>
+<li> <a href="lang_datefunc.html#dtambg">ambiguous dates</a> </li>
 <li> <a href="testing.html#aflfuzz">American Fuzzy Lop fuzzer</a> </li>
 <li> <a href="pragma.html#pragma_analysis_limit">analysis_limit pragma</a> </li>
 <li> <a href="syntax/analyze-stmt.html">analyze-stmt</a> </li>
@@ -179,6 +180,7 @@ Other Documentation Indexes:
 <li> <a href="flextypegood.html">appreciate the freedom</a> </li>
 <li> <a href="whentouse.html">Appropriate Uses For SQLite</a> </li>
 <li> <a href="lang_analyze.html#approx">approximate ANALYZE</a> </li>
+<li> <a href="lang_analyze.html#approx">Approximate ANALYZE For Large Databases</a> </li>
 <li> <a href="cli.html#sqlar">.archive command</a> </li>
 <li> <a href="lang_mathfunc.html#asin">asin() SQL function</a> </li>
 <li> <a href="lang_mathfunc.html#asinh">asinh() SQL function</a> </li>
@@ -418,7 +420,8 @@ Other Documentation Indexes:
 <li> <a href="csv.html">CSV virtual table</a> </li>
 <li> <a href="syntax/cte-table-name.html">cte-table-name</a> </li>
 <li> <a href="syntax/cte-table-name.html">cte-table-name syntax diagram</a> </li>
-<li> <a href="fts5.html#_custom_auxiliary_functions_api_reference_">custom auxiliary functions</a> </li>
+<li> <a href="fts5.html#custom_auxiliary_functions_api_reference">custom auxiliary functions</a> </li>
+<li> <a href="fts5.html#custom_auxiliary_functions_api_overview">custom auxiliary overview</a> </li>
 <li> <a href="custombuild.html">custom builds</a> </li>
 <li> <a href="rtree.html#customquery">custom r-tree queries</a> </li>
 <li> <a href="appfunc.html">custom SQL function</a> </li>
@@ -659,6 +662,7 @@ Other Documentation Indexes:
 <li> <a href="compile.html#omit_reindex">-DSQLITE_OMIT_REINDEX</a> </li>
 <li> <a href="compile.html#omit_schema_pragmas">-DSQLITE_OMIT_SCHEMA_PRAGMAS</a> </li>
 <li> <a href="compile.html#omit_schema_version_pragmas">-DSQLITE_OMIT_SCHEMA_VERSION_PRAGMAS</a> </li>
+<li> <a href="compile.html#omit_seh">-DSQLITE_OMIT_SEH</a> </li>
 <li> <a href="compile.html#omit_shared_cache">-DSQLITE_OMIT_SHARED_CACHE</a> </li>
 <li> <a href="compile.html#omit_subquery">-DSQLITE_OMIT_SUBQUERY</a> </li>
 <li> <a href="compile.html#omit_tcl_variable">-DSQLITE_OMIT_TCL_VARIABLE</a> </li>
@@ -978,7 +982,7 @@ Other Documentation Indexes:
 <li> <a href="lang_expr.html#isisnot">IS operator</a> </li>
 <li> <a href="isolation.html">isolation</a> </li>
 <li> <a href="testing.html#dbsqlfuzz">jfuzz</a> </li>
-<li> <a href="optoverview.html#table_order">join order</a> </li>
+<li> <a href="optoverview.html#joins">join order</a> </li>
 <li> <a href="syntax/join-clause.html">join-clause</a> </li>
 <li> <a href="syntax/join-clause.html">join-clause syntax diagram</a> </li>
 <li> <a href="syntax/join-constraint.html">join-constraint</a> </li>
@@ -1015,6 +1019,8 @@ Other Documentation Indexes:
 <li> <a href="json1.html#jobj">json_object SQL function</a> </li>
 <li> <a href="json1.html#jpatch">json_patch</a> </li>
 <li> <a href="json1.html#jpatch">json_patch SQL function</a> </li>
+<li> <a href="json1.html#jpretty">json_pretty</a> </li>
+<li> <a href="json1.html#jpretty">json_pretty SQL function</a> </li>
 <li> <a href="json1.html#jquote">json_quote</a> </li>
 <li> <a href="json1.html#jquote">json_quote SQL function</a> </li>
 <li> <a href="json1.html#jrm">json_remove</a> </li>
@@ -1165,6 +1171,7 @@ Other Documentation Indexes:
 <li> <a href="lang_select.html#nullslast">NULLS FIRST</a> </li>
 <li> <a href="lang_select.html#nullslast">NULLS LAST</a> </li>
 <li> <a href="tclsqlite.html#nullvalue">nullvalue method</a> </li>
+<li> <a href="lang_expr.html#litvalue">numeric literals</a> </li>
 <li> <a href="syntax/numeric-literal.html">numeric-literal</a> </li>
 <li> <a href="syntax/numeric-literal.html">numeric-literal syntax diagram</a> </li>
 <li> <a href="lang_naming.html">object resolution</a> </li>
@@ -1319,6 +1326,7 @@ Other Documentation Indexes:
 <li> <a href="syntax/pragma-value.html">pragma-value syntax diagram</a> </li>
 <li> <a href="pragma.html#pragma_pragma_list">pragma_list pragma</a> </li>
 <li> <a href="amalgamation.html#amalgtarball">precompiled amalgamation tarballs</a> </li>
+<li> <a href="optoverview.html#pushdown">predicate push-down</a> </li>
 <li> <a href="fts3.html#termprefix">prefix queries</a> </li>
 <li> <a href="fts3.html#termprefix">prefix query</a> </li>
 <li> <a href="c3ref/stmt.html">prepared statement</a> </li>
@@ -1349,6 +1357,9 @@ Other Documentation Indexes:
 <li> <a href="optoverview.html">query planner</a> </li>
 <li> <a href="queryplanner-ng.html#howtofix">query planner checklist</a> </li>
 <li> <a href="queryplanner-ng.html#qpstab">query planner stability guarantee</a> </li>
+<li> <a href="optoverview.html#autoindex">query-time index</a> </li>
+<li> <a href="optoverview.html#autoindex">Query-time indexes</a> </li>
+<li> <a href="optoverview.html#autoindex">query-time indexing</a> </li>
 <li> <a href="pragma.html#pragma_query_only">query_only pragma</a> </li>
 <li> <a href="quickstart.html">Quick Start Guide</a> </li>
 <li> <a href="pragma.html#pragma_quick_check">quick_check pragma</a> </li>
@@ -1379,10 +1390,10 @@ Other Documentation Indexes:
 <li> <a href="rtree.html#readwrite">reading and writing an rtree at the same time</a> </li>
 <li> <a href="fts3.html#*fts4rebuidcmd">"rebuild" command</a> </li>
 <li> <a href="cves.html#cvetab">recent CVEs</a> </li>
-<li> <a href="lang_analyze.html#req">recommended ANALYZE usage pattern</a> </li>
 <li> <a href="locrsf.html">recommended by the US Library of Congress</a> </li>
 <li> <a href="compile.html#rcmd">recommended compile-time option</a> </li>
 <li> <a href="locrsf.html">recommended storage format</a> </li>
+<li> <a href="lang_analyze.html#req">Recommended usage patterns for ANALYZE</a> </li>
 <li> <a href="fileformat2.html#record_format">record format</a> </li>
 <li> <a href="cli.html#recover">.recover dot-command</a> </li>
 <li> <a href="walformat.html#recovery">recovery</a> </li>
@@ -1439,6 +1450,7 @@ Other Documentation Indexes:
 <li> <a href="datatype3.html#affname">rules for determining column affinity</a> </li>
 <li> <a href="datatype3.html#affview">rules for determining column affinity in VIEWs</a> </li>
 <li> <a href="loadext.html">Run-Time Loadable Extensions</a> </li>
+<li> <a href="lang_analyze.html#pragopt">running ANALYZE via PRAGMA optimize</a> </li>
 <li> <a href="cli.html#safemode">safe command-line option</a> </li>
 <li> <a href="cli.html#safemode">--safe command-line option</a> </li>
 <li> <a href="howtocorrupt.html#svptbug">SAVEPOINT bug</a> </li>
@@ -1894,6 +1906,7 @@ Other Documentation Indexes:
 <li> <a href="c3ref/win32_set_directory.html">sqlite3_win32_set_directory16</a> </li>
 <li> <a href="c3ref/win32_set_directory.html">sqlite3_win32_set_directory8</a> </li>
 <li> <a href="session/sqlite3changegroup_add.html">sqlite3changegroup_add</a> </li>
+<li> <a href="session/sqlite3changegroup_add_change.html">sqlite3changegroup_add_change</a> </li>
 <li> <a href="session/sqlite3changegroup_add_strm.html">sqlite3changegroup_add_strm</a> </li>
 <li> <a href="session/sqlite3changegroup_delete.html">sqlite3changegroup_delete</a> </li>
 <li> <a href="session/sqlite3changegroup_new.html">sqlite3changegroup_new</a> </li>
@@ -2012,6 +2025,7 @@ Other Documentation Indexes:
 <li> <a href="c3ref/c_config_covering_index_scan.html#sqliteconfigpcache2">SQLITE_CONFIG_PCACHE2</a> </li>
 <li> <a href="c3ref/c_config_covering_index_scan.html#sqliteconfigpcachehdrsz">SQLITE_CONFIG_PCACHE_HDRSZ</a> </li>
 <li> <a href="c3ref/c_config_covering_index_scan.html#sqliteconfigpmasz">SQLITE_CONFIG_PMASZ</a> </li>
+<li> <a href="c3ref/c_config_covering_index_scan.html#sqliteconfigrowidinview">SQLITE_CONFIG_ROWID_IN_VIEW</a> </li>
 <li> <a href="c3ref/c_config_covering_index_scan.html#sqliteconfigscratch">SQLITE_CONFIG_SCRATCH</a> </li>
 <li> <a href="c3ref/c_config_covering_index_scan.html#sqliteconfigserialized">SQLITE_CONFIG_SERIALIZED</a> </li>
 <li> <a href="c3ref/c_config_covering_index_scan.html#sqliteconfigsinglethread">SQLITE_CONFIG_SINGLETHREAD</a> </li>
@@ -2431,6 +2445,7 @@ Other Documentation Indexes:
 <li> <a href="compile.html#omit_reindex">SQLITE_OMIT_REINDEX</a> </li>
 <li> <a href="compile.html#omit_schema_pragmas">SQLITE_OMIT_SCHEMA_PRAGMAS</a> </li>
 <li> <a href="compile.html#omit_schema_version_pragmas">SQLITE_OMIT_SCHEMA_VERSION_PRAGMAS</a> </li>
+<li> <a href="compile.html#omit_seh">SQLITE_OMIT_SEH</a> </li>
 <li> <a href="compile.html#omit_shared_cache">SQLITE_OMIT_SHARED_CACHE</a> </li>
 <li> <a href="compile.html#omit_subquery">SQLITE_OMIT_SUBQUERY</a> </li>
 <li> <a href="compile.html#omit_tcl_variable">SQLITE_OMIT_TCL_VARIABLE</a> </li>
@@ -2645,6 +2660,7 @@ Other Documentation Indexes:
 <li> <a href="howtocorrupt.html#stalefd">stale file descriptor</a> </li>
 <li> <a href="uri.html#coreqp">standard query parameters</a> </li>
 <li> <a href="tempfiles.html#stmtjrnl">statement journal</a> </li>
+<li> <a href="lang_analyze.html#statanal">static ANALYZE results</a> </li>
 <li> <a href="loadext.html#statext">statically linked extensions</a> </li>
 <li> <a href="pragma.html#pragma_stats">stats pragma</a> </li>
 <li> <a href="tclsqlite.html#status">status method</a> </li>
@@ -2772,8 +2788,10 @@ Other Documentation Indexes:
 <li> <a href="pragma.html#pragma_threads">threads pragma</a> </li>
 <li> <a href="testing.html#harnesses">three test harnesses</a> </li>
 <li> <a href="lang_datefunc.html#tmshf">time shift modifiers</a> </li>
+<li> <a href="lang_datefunc.html#tmval">time value</a> </li>
 <li> <a href="lang_datefunc.html#dttm">time()</a> </li>
 <li> <a href="lang_datefunc.html#dttm">time() SQL function</a> </li>
+<li> <a href="lang_datefunc.html#tmval">time-value</a> </li>
 <li> <a href="lang_datefunc.html#tmdif">timediff()</a> </li>
 <li> <a href="lang_datefunc.html#tmdif">timediff() SQL function</a> </li>
 <li> <a href="tclsqlite.html#timeout">timeout method</a> </li>
@@ -2815,6 +2833,7 @@ Other Documentation Indexes:
 <li> <a href="lang_createtable.html#uniqueconst">UNIQUE</a> </li>
 <li> <a href="lang_createtable.html#uniqueconst">unique constraint</a> </li>
 <li> <a href="lang_createindex.html#uniqueidx">unique index</a> </li>
+<li> <a href="lang_datefunc.html#jdmod">unixepoch modifier</a> </li>
 <li> <a href="lang_datefunc.html#uepch">unixepoch()</a> </li>
 <li> <a href="lang_datefunc.html#uepch">unixepoch() function</a> </li>
 <li> <a href="lang_datefunc.html#uepch">unixepoch() SQL function</a> </li>
@@ -2852,6 +2871,7 @@ Other Documentation Indexes:
 <li> <a href="whentouse.html#website">using SQLite for websites</a> </li>
 <li> <a href="backup.html">Using the SQLite Online Backup API</a> </li>
 <li> <a href="unlock_notify.html">Using the SQLite Unlock Notification Feature</a> </li>
+<li> <a href="lang_datefunc.html#localtime">'utc' and 'localtime' modifiers</a> </li>
 <li> <a href="lang_datefunc.html#localtime">'utc' modifier</a> </li>
 <li> <a href="lang_vacuum.html">vacuum</a> </li>
 <li> <a href="lang_vacuum.html#vacuuminto">VACUUM INTO</a> </li>
@@ -3030,6 +3050,10 @@ Other Documentation Indexes:
 <li> <a href="releaselog/3_44_2.html">Version 3.44.2</a> </li>
 <li> <a href="releaselog/3_45_0.html">Version 3.45.0</a> </li>
 <li> <a href="releaselog/3_45_1.html">Version 3.45.1</a> </li>
+<li> <a href="releaselog/3_45_2.html">Version 3.45.2</a> </li>
+<li> <a href="releaselog/3_45_3.html">Version 3.45.3</a> </li>
+<li> <a href="releaselog/3_46_0.html">Version 3.46.0</a> </li>
+<li> <a href="releaselog/3_46_1.html">Version 3.46.1</a> </li>
 <li> <a href="releaselog/3_5_0.html">Version 3.5.0</a> </li>
 <li> <a href="releaselog/3_5_1.html">Version 3.5.1</a> </li>
 <li> <a href="releaselog/3_5_2.html">Version 3.5.2</a> </li>
@@ -3174,7 +3198,9 @@ Other Documentation Indexes:
 <li> <a href="affcase1.html">What If OpenOffice Used SQLite</a> </li>
 <li> <a href="withoutrowid.html#wtu">when to use WITHOUT ROWID</a> </li>
 <li> <a href="lang_select.html#whereclause">WHERE clause</a> </li>
+<li> <a href="optoverview.html#pushdown">WHERE-clause push-down optimization</a> </li>
 <li> <a href="lang_altertable.html#altertableishard">why ALTER TABLE is so difficult</a> </li>
+<li> <a href="whybytecode.html">Why SQLite Uses Bytecode</a> </li>
 <li> <a href="malloc.html#win32heap">Win32 native memory allocator</a> </li>
 <li> <a href="windowfunctions.html#wchaining">window chaining</a> </li>
 <li> <a href="windowfunctions.html">window function</a> </li>

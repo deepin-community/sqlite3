@@ -562,7 +562,7 @@ sqlite&gt;
 
 <p>In "column" mode (and also in "box", "table", and "markdown" modes)
 the width of columns adjusts automatically.  But you can override this,
-providing a speicified width for each column using the ".width" command.
+providing a specified width for each column using the ".width" command.
 The arguments to ".width" are integers which are the number of
 characters to devote to each column.  Negative numbers mean right-justify.
 Thus:</p>
@@ -1945,16 +1945,19 @@ script to run under --safe mode.
 
 </p><h2 id="the_unsafe_testing_command_line_option"><span>23.2. </span>The --unsafe-testing command-line option</h2>
 
-<p>The --unsafe-testing command-line option supports use of the CLI for
-internal testing of the SQLite library. It is not needed or useful for using
-the CLI as a utility for creating, modifying or querying SQLite databases.
-Its intended use is to permit scripted testing with direct schema changes,
-defensive measures defeated, and certain special-purpose, undocumented,
-test-oriented dot-commands enabled.
+<p>The --unsafe-testing command-line option enables features of the CLI
+that are intended for internal testing only.  The --unsafe-testing option
+disables defenses that are built into SQLite.  Examples of
+that are disabled defenses include <a href="c3ref/c_dbconfig_defensive.html#sqlitedbconfigdefensive">SQLITE_DBCONFIG_DEFENSIVE</a> and
+<a href="c3ref/c_dbconfig_defensive.html#sqlitedbconfigtrustedschema">SQLITE_DBCONFIG_TRUSTED_SCHEMA</a>.
+The --unsafe-testing option also enables features that, if misused, might
+cause database corruption, memory errors, or
+similar problems in the CLI itself or in the SQLite library.
+Example of features that --unsafe-testing enables include
+the <a href="imposter.html#dotimposter">.imposter dot-command</a> and <a href="c3ref/c_testctrl_always.html">SQLITE_TESTCTRL_ASSERT</a>.
 </p><p>
-Misbehavior which requires use of the --unsafe-testing option to be induced
-will generally not be considered a bug for that reason alone. CLI behavior
-with --unsafe-testing is not supported or defined.
+Misbehavior which requires use of the --unsafe-testing option
+will generally not be considered a bug.
 
 </p><h2 id="the_no_utf8_and_utf8_command_line_options"><span>23.3. </span>The --no-utf8 and --utf8 command-line options</h2>
 
@@ -2046,5 +2049,5 @@ provide a full-featured command-line shell:
 </li><li> <a href="compile.html#enable_fts4">-DSQLITE_ENABLE_FTS4</a>
 </li><li> <a href="compile.html#enable_fts5">-DSQLITE_ENABLE_FTS5</a>
 </li></ul>
-<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/cli.in?m=ab1e42c23b">2023-12-05 14:43:20</a> UTC </small></i></p>
+
 

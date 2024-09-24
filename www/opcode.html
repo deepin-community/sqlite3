@@ -172,6 +172,9 @@ about the bytecode engine change from one release of SQLite to the next.
 Applications that use SQLite should not depend on any of the details
 found in this document.
 
+</p><p>See the document "<a href="whybytecode.html">Why SQLite Uses Bytecode</a>" for some reasons why
+SQLite prefers to use bytecode to implement SQL.
+
 
 
 </p><h1 id="introduction"><span>2. </span>Introduction</h1>
@@ -217,8 +220,8 @@ output from SQLite, you should reference the version of this document
 that corresponds to the version of SQLite that ran the <a href="lang_explain.html">EXPLAIN</a>.
 Otherwise, the description of the opcodes may not be accurate.
 This document is derived from SQLite
- version 3.45.1 check-in
-<a href='https://www.sqlite.org/src/timeline?c=e876e51a0ed5c'>e876e51a0ed5c</a> dated 2024-01-30.
+ version 3.46.1 check-in
+<a href='https://www.sqlite.org/src/timeline?c=c9c2ab54ba1f5'>c9c2ab54ba1f5</a> dated 2024-08-13.
 
 
 
@@ -446,15 +449,15 @@ opcodes defined by the virtual machine.
 All currently defined opcodes are described in the table below.
 This table was generated automatically by scanning the source code
 from the file
-<a href="https://www.sqlite.org/src/artifact/96ac876e57f480bd35ec8d74ed992bca6ae9deebe8b527a3a718e7b4714d6c2e">vdbe.c</a>.
+<a href="https://www.sqlite.org/src/artifact/3b1793c5d2235ae89b01ef051a33d7d2ad3704c71799653b112686735ad401ff">vdbe.c</a>.
 
 
 </p><p>Remember: The VDBE opcodes are <u>not</u> part of the interface 
 definition for SQLite.  The number of opcodes and their names and meanings
 change from one release of SQLite to the next.
 The opcodes shown in the table below are valid for SQLite
- version 3.45.1 check-in
-<a href='https://www.sqlite.org/src/timeline?c=e876e51a0ed5c'>e876e51a0ed5c</a> dated 2024-01-30.
+ version 3.46.1 check-in
+<a href='https://www.sqlite.org/src/timeline?c=c9c2ab54ba1f5'>c9c2ab54ba1f5</a> dated 2024-08-13.
 
 <a name="codes"></a>
 
@@ -888,7 +891,9 @@ would have been false or NULL, then fall through.</td></tr>
 <a name="EndCoroutine"></a>EndCoroutine
 <td>The instruction at the address in register P1 is a <a href="opcode.html#Yield">Yield</a>.
 <a href="opcode.html#Jump">Jump</a> to the P2 parameter of that <a href="opcode.html#Yield">Yield</a>.
-After the jump, register P1 becomes undefined.</p>
+After the jump, the value register P1 is left with a value
+such that subsequent OP_Yields go back to the this same
+<a href="opcode.html#EndCoroutine">EndCoroutine</a> instruction.</p>
 
 <p>See also: <a href="opcode.html#InitCoroutine">InitCoroutine</a></td></tr>
 <tr><td valign="top" align="center">
@@ -1228,9 +1233,12 @@ value in P1 and jump to P2.</p>
 <p>If the initial value of register P1 is less than 1, then the
 value is unchanged and control passes through to the next instruction.</td></tr>
 <tr><td valign="top" align="center">
-<a name="IfSmaller"></a>IfSmaller
-<td>Estimate the number of rows in the table P1.  <a href="opcode.html#Jump">Jump</a> to P2 if that
-estimate is less than approximately 2**(0.1*P3).</td></tr>
+<a name="IfSizeBetween"></a>IfSizeBetween
+<td>Let N be the approximate number of rows in the table or index
+with cursor P1 and let X be 10*log2(N) if N is positive or -1
+if N is zero.</p>
+
+<p>Jump to P2 if X is in between P3 and P4, inclusive.</td></tr>
 <tr><td valign="top" align="center">
 <a name="IncrVacuum"></a>IncrVacuum
 <td>Perform a single step of the incremental vacuum procedure on
@@ -1313,11 +1321,11 @@ values.</td></tr>
 <tr><td valign="top" align="center">
 <a name="IntegrityCk"></a>IntegrityCk
 <td>Do an analysis of the currently open database.  Store in
-register P1 the text of an error message describing any problems.
-If no problems are found, store a NULL in register P1.</p>
+register (P1+1) the text of an error message describing any problems.
+If no problems are found, store a NULL in register (P1+1).</p>
 
-<p>The register P3 contains one less than the maximum number of allowed errors.
-At most reg(P3) errors will be reported.
+<p>The register (P1) contains one less than the maximum number of allowed
+errors.  At most reg(P1) errors will be reported.
 In other words, the analysis stops as soon as reg(P1) errors are
 seen.  Reg(P1) is updated with the number of errors remaining.</p>
 
@@ -1727,7 +1735,8 @@ individual columns using the <a href="opcode.html#Column">Column</a> opcode.  Th
 is the only cursor opcode that works with a pseudo-table.</p>
 
 <p>P3 is the number of fields in the records that will be stored by
-the pseudo-table.</td></tr>
+the pseudo-table.  If P2 is 0 or negative then the pseudo-cursor
+will return NULL for every column.</td></tr>
 <tr><td valign="top" align="center">
 <a name="OpenRead"></a>OpenRead
 <td>Open a read-only cursor for the database table whose root page is
@@ -1854,7 +1863,9 @@ number P5-1 in the prepared statement is incremented.</td></tr>
 <p>P1 contains the address of the memory cell that contains the first memory
 cell in an array of values used as arguments to the sub-program. P2
 contains the address to jump to if the sub-program throws an IGNORE
-exception using the RAISE() function. Register P3 contains the address
+exception using the RAISE() function. P2 might be zero, if there is
+no possibility that an IGNORE exception will be raised.
+Register P3 contains the address
 of a memory cell in this (the parent) VM that is used to allocate the
 memory required by the sub-vdbe at runtime.</p>
 
@@ -2414,9 +2425,15 @@ identified by P1, invoke this opcode to actually do the sorting.
 for Sorter objects.</td></tr>
 <tr><td valign="top" align="center">
 <a name="SqlExec"></a>SqlExec
-<td>Run the SQL statement or statements specified in the P4 string.
-Disable Auth and <a href="opcode.html#Trace">Trace</a> callbacks while those statements are running if
-P1 is true.</td></tr>
+<td>Run the SQL statement or statements specified in the P4 string.</p>
+
+<p>The P1 parameter is a bitmask of options:</p>
+
+<p>0x0001     Disable Auth and <a href="opcode.html#Trace">Trace</a> callbacks while the statements
+in P4 are running.</p>
+
+<p>0x0002     Set db-&gt;nAnalysisLimit to P2 while the statements in
+P4 are running.</p></td></tr>
 <tr><td valign="top" align="center">
 <a name="String"></a>String
 <td>The string value P4 of length P1 (bytes) is stored in register P2.</p>
@@ -2525,10 +2542,7 @@ the file into which the result of vacuum should be written.  When
 P2 is zero, the vacuum overwrites the original database.</td></tr>
 <tr><td valign="top" align="center">
 <a name="Variable"></a>Variable
-<td>Transfer the values of bound parameter P1 into register P2</p>
-
-<p>If the parameter is named, then its name appears in P4.
-The P4 value is used by sqlite3_bind_parameter_name().</td></tr>
+<td>Transfer the values of bound parameter P1 into register P2</td></tr>
 <tr><td valign="top" align="center">
 <a name="VBegin"></a>VBegin
 <td>P4 may be a pointer to an sqlite3_vtab structure. If so, call the

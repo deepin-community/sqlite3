@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Laszlo Boszormenyi (GCS) <gcs@debian.org>
 Build-Depends: debhelper-compat (= 13), autoconf (>= 2.59), libtool (>= 1.5.2), automake, chrpath, lynx, libreadline-dev, tcl8.6-dev
 Build-Conflicts: tcl8.4, tcl8.4-dev, tcl8.5, tcl8.5-dev
-Standards-Version: 4.6.2
+Standards-Version: 4.7.0
 Rules-Requires-Root: no
 Homepage: https://www.sqlite.org/
 

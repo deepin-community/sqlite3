@@ -566,7 +566,7 @@ SQLite developers.  Having multiple independently-developed fuzzers for SQLite
 is good, as it means that obscure issues are more likely to be uncovered.
 
 </p><p>Near the end of January 2024, a second libFuzzer-based tool called
-"jfuzz" come into use.  Jfuzz generates corrupt <a href="json1.html#jsonbx">JSONB</a> blobs and feeds
+"jfuzz" came into use.  Jfuzz generates corrupt <a href="json1.html#jsonbx">JSONB</a> blobs and feeds
 them into the <a href="json1.html">JSON SQL functions</a> to verify that the JSON functions
 are able to safely and efficiently deal with corrupt binary inputs.
 
@@ -585,9 +585,7 @@ This mechanism of having many independent testers is similar to
 "given enough eyeballs, all bugs are shallow".
 
 </p><p>One fuzzing researcher of particular note is
-<a href="https://www.manuelrigger.at/">Manuel Rigger</a>, currently
-(as this paragraph is written on 2019-12-21)
-at <a href="https://ethz.ch/en.html">ETH Zurich</a>.
+<a href="https://www.manuelrigger.at/">Manuel Rigger</a>.
 Most fuzzers only look for assertion faults, crashes, undefined behavior (UB),
 or other easily detected anomalies.  Dr. Rigger's fuzzers, on the other hand,
 are able to find cases where SQLite computes an incorrect answer.
@@ -598,9 +596,7 @@ conversions and affinity transformations, and a good number of the finds
 are against unreleased features.  Nevertheless, his finds are still important
 as they are real bugs,
 and the SQLite developers are grateful to be able to identify and fix
-the underlying problems.  Rigger's work is currently unpublished.  When it
-is released, it could be as influential as Zalewski's invention of AFL
-and profile-guided fuzzing.
+the underlying problems.
 
 <a name="fuzzcheck"></a>
 

@@ -129,6 +129,121 @@ https://www.sqlite.org/src/timeline?t=release</a>.
 See the <a href="chronology.html">chronology</a> a succinct listing of releases.
 </p>
 
+<a name="version_3_46_1"></a>
+<h3>2024-08-13 (3.46.1)</h3><p><ol class='lessindent'>
+<li> Improved robustness while parsing the <a href="fts5.html#tokenizers">tokenize= arguments</a> in <a href="fts5.html">FTS5</a>.
+     <a href="https://sqlite.org/forum/forumpost/171bcc2bcd">Forum post 171bcc2bcd</a>.
+<li> Enhancements to <a href="queryplanner.html#covidx">covering index</a> prediction in the query planner. 
+     Add early detection of over-prediction of covering indexes so that
+     <a href="c3ref/prepare.html">sqlite3_prepare()</a> will return an error rather than just generate bad bytecode. 
+     <a href="https://sqlite.org/forum/forumpost/e60e4c295d22f8ce">Forum post e60e4c295d22f8ce</a>.
+<li> Do not let the number of terms on a <a href="lang_select.html#values">VALUES clause</a> be limited by
+     <a href="c3ref/c_limit_attached.html#sqlitelimitcompoundselect">SQLITE_LIMIT_COMPOUND_SELECT</a>, even if the VALUES clause contains
+     elements that appear to be variables due to 
+     <a href="quirks.html#dblquote">double-quoted string literals</a>.
+<li> Fix the <a href="windowfunctions.html">window function</a> version of <a href="lang_aggfunc.html#group_concat">group_concat()</a> so that it returns
+     an empty string if it has one or more empty string inputs.
+<li> In <a href="fts5.html#the_secure_delete_configuration_option">FTS5 secure-delete mode</a>, fix false-positive
+     integrity-check reports about corrupt indexes.
+<li> Syntax errors in <a href="lang_altertable.html">ALTER TABLE</a> should always return <a href="rescode.html#error">SQLITE_ERROR</a>.  In
+     some cases, they were formerly returning <a href="rescode.html#internal">SQLITE_INTERNAL</a>.
+<li> JavaScript/WASM:
+     <ol type="a">
+     <li> Fix a corruption-causing bug in the JavaScript "opfs" VFS.
+     <li> Work around a couple of browser-specific OPFS quirks.
+     </ol>
+<li> Other minor fixes.
+<p><b>Hashes:</b>
+<li>SQLITE_SOURCE_ID: 2024-08-13 09:16:08 c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33
+<li>SHA3-256 for sqlite3.c: 186a1baa476b6d546de155160ca6d30ff7b7e6ee375f0bb6445e1a3d180a7dad
+
+</ol></p>
+<a name="version_3_46_0"></a>
+<h3>2024-05-23 (3.46.0)</h3><p><ol class='lessindent'>
+<li> Enhance <a href="pragma.html#pragma_optimize">PRAGMA optimize</a> in multiple ways, to make it
+     <a href="lang_analyze.html#pragopt">simpler to use</a>:
+     <ol type="a">
+     <li> PRAGMA optimize automatically implements a temporary
+          <a href="pragma.html#pragma_analysis_limit">analysis limit</a> to prevent excess runtime
+          on large databases.
+     <li> Added the new 0x10000 bitmask option to check for updates on all tables.
+     <li> Automatically re-analyze tables that do not have sqlite_stat1 entries.
+     </ol>
+<li> Enhancements to the <a href="lang_datefunc.html">date and time functions</a>:
+     <ol type="a">
+     <li> The <a href="lang_datefunc.html#strftm">strftime() SQL function</a> now supports %G, %g, %U, and %V.
+     <li> New modifiers 'ceiling' and 'floor' control the algorithm used to
+          resolve <a href="lang_datefunc.html#dtambg">ambiguous dates</a> when shifting a date by an integer number
+          of months and/or years.
+     <li> The <a href="lang_datefunc.html#localtime">'utc' and 'localtime' modifiers</a> are now no-ops if SQLite knows
+          that the time is already in UTC or in the localtime, respectively.
+     </ol>
+<li> Add support for underscore ("_") characters between digits in
+     <a href="lang_expr.html#litvalue">numeric literals</a>.
+<li> Add the <a href="json1.html#jpretty">json_pretty()</a> SQL function.
+<li> Query planner improvements:
+     <ol type="a">
+     <li> The "VALUES-as-coroutine" optimization enables INSERT statements with 
+          thousands of rows in the VALUES clause to parse and run in about half
+          the time and using about half as much memory.
+     <li> Allow the use of an index for queries like "SELECT count(DISTINCT col) FROM ...",
+          even if the index records are not smaller than the table records.
+     <li> Improved recognition of cases where the value of an SQL function is
+          constant because all its arguments are constant.
+     <li> Enhance the <a href="optoverview.html#pushdown">WHERE-clause push-down optimization</a> so that it is able to
+          push down WHERE clause terms containing uncorrelated subqueries.
+     </ol>
+<li> Allocate additional memory from the heap for the SQL parser stack if
+     that stack overflows, rather than reporting a "parser stack overflow" error.
+<li> JSON changes:
+     <ol type="a">
+     <li> Allow ASCII control characters within JSON5 string literals.
+     <li> Fix <a href="json1.html#jptr">the -> and ->> operators</a> so that when the right-hand side operand is a string
+          that looks like an integer it is still treated as a string, because that is what
+          PostgreSQL does.
+     </ol>
+<li> Allow large hexadecimal literals to be used as the DEFAULT value to a table column.
+<p><b>Hashes:</b>
+<li>SQLITE_SOURCE_ID: 2024-05-23 13:25:27 96c92aba00c8375bc32fafcdf12429c58bd8aabfcadab6683e35bbb9cdebf19e
+<li>SHA3-256 for sqlite3.c: 094429ea827fcd32275e767134bc6c7b9ea394a2c5a9e653dd0a0690b2c11358
+
+</ol></p>
+<a name="version_3_45_3"></a>
+<h3>2024-04-15 (3.45.3)</h3><p><ol class='lessindent'>
+<li> Fix a long-standing bug (going back to <a href="#version_3_24_0">version 3.24.0</a>)
+     that might (rarely) cause the "old.*" values of an <a href="lang_createtrigger.html">UPDATE trigger</a>
+     to be incorrect if that trigger fires in response to an <a href="lang_upsert.html">UPSERT</a>.
+     <a href="https://sqlite.org/forum/forumpost/284955a3cd454a15">Forum post 284955a3cd454a15</a>.
+<li> Fix a bug in <a href="lang_aggfunc.html#sumunc">sum()</a> that could cause it to return NULL when it should return
+     Infinity.  <a href="https://sqlite.org/forum/forumpost/23b8688ef4">Forum post 23b8688ef4</a>.
+<li> Other trifling corrections and compiler warning fixes that have come up
+     since the previous patch release.  See the
+     <a href="https://sqlite.org/src/timeline?from=version-3.45.2&to=version-3.45.3&to2=branch-3.45">timeline</a>
+     for details.
+<p><b>Hashes:</b>
+<li>SQLITE_SOURCE_ID: 2024-04-15 13:34:05 8653b758870e6ef0c98d46b3ace27849054af85da891eb121e9aaa537f1e8355
+<li>SHA3-256 for sqlite3.c: 21dbe688a71b449d28e2a8ec6a43e7520e54df456e02b6d4f6a1d1c7a998c826
+
+</ol></p>
+<a name="version_3_45_2"></a>
+<h3>2024-03-12 (3.45.2)</h3><p><ol class='lessindent'>
+<li> Fix an error in <a href="lang_upsert.html">UPSERT</a>, introduced by enhancement 3a in <a href="#version_3_35_0">version 3.35.0</a>
+     (2021-03-12), that could cause an index to get out-of-sync with its table.
+     <a href="https://sqlite.org/forum/forumpost/919c6579c8">Forum thread 919c6579c8</a>.
+<li> Reduce the scope of the NOT NULL strength reduction optimization that was
+     added as item 8e in <a href="#version_3_35_0">version 3.35.0</a> (2021-03-12).  The optimization
+     was being attempted in some contexts where it did not work, resulting in
+     incorrect query results.
+     <a href="https://sqlite.org/forum/forumpost/440f2a2f17">Forum thread 440f2a2f17</a>.
+<li> Other trifling corrections and compiler warning fixes that have come up
+     since the previous patch release.  See the
+     <a href="https://sqlite.org/src/timeline?from=version-3.45.1&to=version-3.45.2&to2=branch-3.45">timeline</a>
+     for details.
+<p><b>Hashes:</b>
+<li>SQLITE_SOURCE_ID: "2024-03-12 11:06:23 d8cd6d49b46a395b13955387d05e9e1a2a47e54fb99f3c9b59835bbefad6af77"
+<li>SHA3-256 for sqlite3.c: bd76ad2dc9cde151e469e86627a7e8753aa8ef1a6f657c5a80ba48324b53226b
+
+</ol></p>
 <a name="version_3_45_1"></a>
 <h3>2024-01-30 (3.45.1)</h3><p><ol class='lessindent'>
 <li> Restore the <a href="json1.html#jblobbug">JSON BLOB input bug</a>, and promise to support the anomaly in
@@ -259,7 +374,7 @@ See the <a href="chronology.html">chronology</a> a succinct listing of releases.
      by <a href="pragma.html#pragma_integrity_check">PRAGMA integrity_check</a>.
 <li> <a href="compile.html#use_seh">SQLITE_USE_SEH</a> (Structured Exception Handling) is now enabled by default whenever
      SQLite is built using the Microsoft C compiler.  It can be disabled using
-     -DSQLITE_USE_SEH=0
+     -D<a href="compile.html#omit_seh">SQLITE_OMIT_SEH</a>.
 <li> Query planner optimizations:
      <ol type="a">
      <li> In partial index scans, if the WHERE clause implies a constant value for a table
@@ -366,7 +481,7 @@ See the <a href="chronology.html">chronology</a> a succinct listing of releases.
      <ol type="a">
      <li> Enable the "count-of-view" optimization by default.
      <li> Avoid computing unused columns in subqueries.
-     <li> Improvements to the <a href="optoverview.html#pushdown">push-down optimization</a>.
+     <li> Improvements to the <a href="optoverview.html#pushdown">WHERE-clause push-down optimization</a>.
      </ol>
 <li> Enhancements to the <a href="cli.html">CLI</a>:
      <ol type="a">
@@ -2721,7 +2836,7 @@ with a home-baked pie.</center>
     the table has one or more indexes that are able to trigger the OR optimization,
     but none of the indexes reference any table columns other than the INTEGER PRIMARY KEY.
     Ticket <a href="https://www.sqlite.org/src/info/16c9801ceba49">16c9801ceba49</a>.
-<li>When checking for the WHERE-clause push-down optimization, verify that all terms
+<li>When checking for the <a href="optoverview.html#pushdown">WHERE-clause push-down optimization</a>, verify that all terms
     of the compound inner SELECT are non-aggregate, not just the last term. Fix for ticket
     <a href="https://www.sqlite.org/src/info/f7f8c97e97597">f7f8c97e97597</a>.
 <li>Fix a locking race condition in Windows that can occur when two or more processes
@@ -3074,7 +3189,7 @@ with a home-baked pie.</center>
     <a href="c3ref/initialize.html">sqlite3_initialize()</a> to help ensure that it is thread-safe.
 <li>Fix the <a href="optoverview.html#or_opt">OR optimization</a> so that it always ignores subplans that
     do not use an index.
-<li>Do not apply the WHERE-clause pushdown optimization on terms that originate
+<li>Do not apply the <a href="optoverview.html#pushdown">WHERE-clause push-down optimization</a> on terms that originate
     in the ON or USING clause of a LEFT JOIN.  Fix for ticket
     <a href="https://www.sqlite.org/src/info/c2a19d81652f40568c">c2a19d81652f40568c</a>.
 

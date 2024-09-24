@@ -175,6 +175,7 @@ code file sqlite3session.h.</p>
 <div class='columns' style='columns: 15em auto;'>
 <ul style='padding-top:0;'>
 <li><a href='#sqlite3changegroup_add'>sqlite3changegroup_add</a></li>
+<li><a href='#sqlite3changegroup_add_change'>sqlite3changegroup_add_change</a></li>
 <li><a href='#sqlite3changegroup_add_strm'>sqlite3changegroup_add_strm</a></li>
 <li><a href='#sqlite3changegroup_delete'>sqlite3changegroup_delete</a></li>
 <li><a href='#sqlite3changegroup_new'>sqlite3changegroup_new</a></li>
@@ -247,6 +248,7 @@ A changegroup is an object used to combine two or more
 <p>Destructor: <a href="#sqlite3changegroup_delete">sqlite3changegroup_delete()</a></p>
 <p>Methods:
  <a href="#sqlite3changegroup_add">sqlite3changegroup_add()</a>,
+<a href="#sqlite3changegroup_add_change">sqlite3changegroup_add_change()</a>,
 <a href="#sqlite3changegroup_output">sqlite3changegroup_output()</a></p>
 <hr><a name="sqlite3_changeset_iter"></a>
 <h2>Changeset Iterator Handle</h2><blockquote><pre>typedef struct sqlite3_changeset_iter sqlite3_changeset_iter;
@@ -465,6 +467,24 @@ occurs during processing, this function returns SQLITE_NOMEM. </p>
 
 <p>In all cases, if an error occurs the state of the final contents of the
 changegroup is undefined. If no error occurs, SQLITE_OK is returned.
+</p><hr><a name="sqlite3changegroup_add_change"></a>
+<h2>Add A Single Change To A Changegroup</h2><blockquote><pre>int sqlite3changegroup_add_change(
+  sqlite3_changegroup*,
+  sqlite3_changeset_iter*
+);
+</pre></blockquote><p>
+This function adds the single change currently indicated by the iterator
+passed as the second argument to the changegroup object. The rules for
+adding the change are just as described for <a href="#sqlite3changegroup_add">sqlite3changegroup_add()</a>.</p>
+
+<p>If the change is successfully added to the changegroup, SQLITE_OK is
+returned. Otherwise, an SQLite error code is returned.</p>
+
+<p>The iterator must point to a valid entry when this function is called.
+If it does not, SQLITE_ERROR is returned and no change is added to the
+changegroup. Additionally, the iterator must not have been opened with
+the SQLITE_CHANGESETAPPLY_INVERT flag. In this case SQLITE_ERROR is also
+returned.
 </p><hr><a name="sqlite3changegroup_delete"></a>
 <h2>Delete A Changegroup Object</h2><blockquote><pre>void sqlite3changegroup_delete(sqlite3_changegroup*);
 </pre></blockquote><p></p><hr><a name="sqlite3changegroup_new"></a>

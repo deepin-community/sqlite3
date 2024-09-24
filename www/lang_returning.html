@@ -129,7 +129,8 @@ Table Of Contents
 <div class="fancy-toc2"><a href="#typical_use">1.1. Typical Use</a></div>
 <div class="fancy-toc1"><a href="#details">2. Details</a></div>
 <div class="fancy-toc2"><a href="#processing_order">2.1. Processing Order</a></div>
-<div class="fancy-toc2"><a href="#acid_changes">2.2. ACID Changes</a></div>
+<div class="fancy-toc2"><a href="#self_referential_subqueries_are_indeterminate">2.2. Self-Referential Subqueries Are Indeterminate</a></div>
+<div class="fancy-toc2"><a href="#acid_changes">2.3. ACID Changes</a></div>
 <div class="fancy-toc1"><a href="#limitations_and_caveats">3. Limitations And Caveats</a></div>
 </div>
 </div>
@@ -154,8 +155,8 @@ mk.innerHTML = "&#x25ba;";
 <h1 id="overview"><span>1. </span>Overview</h1>
 
 <p><b><a href="syntax/returning-clause.html">returning-clause:</a></b>
-<button id='x7976e0a4' onclick='hideorshow("x7976e0a4","xa416104f")'>hide</button></p>
- <div id='xa416104f' class='imgcontainer'>
+<button id='x93686241' onclick='hideorshow("x93686241","x4d62f2b3")'>hide</button></p>
+ <div id='x4d62f2b3' class='imgcontainer'>
  <div style="max-width:628px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 628.709 140.4">
 <circle cx="5" cy="47" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="27,47 15,51 15,43" style="fill:rgb(0,0,0)"/>
@@ -203,8 +204,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/expr.html">expr:</a></b>
-<button id='xe691e618' onclick='hideorshow("xe691e618","x63f05421")'>show</button></p>
- <div id='x63f05421' style='display:none;' class='imgcontainer'>
+<button id='xabd0493f' onclick='hideorshow("xabd0493f","x74ec7287")'>show</button></p>
+ <div id='x74ec7287' style='display:none;' class='imgcontainer'>
  <div style="max-width:963px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 963.96 1068.77">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -685,8 +686,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/filter-clause.html">filter-clause:</a></b>
-<button id='x87b9cf48' onclick='hideorshow("x87b9cf48","x711413a7")'>show</button></p>
- <div id='x711413a7' style='display:none;' class='imgcontainer'>
+<button id='x1de3098d' onclick='hideorshow("x1de3098d","x565db2c0")'>show</button></p>
+ <div id='x565db2c0' style='display:none;' class='imgcontainer'>
  <div style="max-width:422px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 422.381 34.56">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -716,8 +717,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/function-arguments.html">function-arguments:</a></b>
-<button id='x697afbc6' onclick='hideorshow("x697afbc6","x1531016b")'>show</button></p>
- <div id='x1531016b' style='display:none;' class='imgcontainer'>
+<button id='x01bf2b13' onclick='hideorshow("x01bf2b13","xefc0fb02")'>show</button></p>
+ <div id='xefc0fb02' style='display:none;' class='imgcontainer'>
  <div style="max-width:456px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 456.566 223.344">
 <circle cx="5" cy="56" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,56 20,60 20,52" style="fill:rgb(0,0,0)"/>
@@ -779,8 +780,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/ordering-term.html">ordering-term:</a></b>
-<button id='xea5af493' onclick='hideorshow("xea5af493","xd5c9781e")'>show</button></p>
- <div id='xd5c9781e' style='display:none;' class='imgcontainer'>
+<button id='x0d9c7108' onclick='hideorshow("x0d9c7108","x20dfb2f8")'>show</button></p>
+ <div id='x20dfb2f8' style='display:none;' class='imgcontainer'>
  <div style="max-width:798px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 798.451 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -841,8 +842,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/literal-value.html">literal-value:</a></b>
-<button id='x36c988c0' onclick='hideorshow("x36c988c0","x3488dc16")'>show</button></p>
- <div id='x3488dc16' style='display:none;' class='imgcontainer'>
+<button id='x99b8dcab' onclick='hideorshow("x99b8dcab","xb8141712")'>show</button></p>
+ <div id='xb8141712' style='display:none;' class='imgcontainer'>
  <div style="max-width:341px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 341.376 336.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,319 39,324 39,315" style="fill:rgb(0,0,0)"/>
@@ -912,8 +913,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/over-clause.html">over-clause:</a></b>
-<button id='x65b3ab14' onclick='hideorshow("x65b3ab14","x7bfe6f78")'>show</button></p>
- <div id='x7bfe6f78' style='display:none;' class='imgcontainer'>
+<button id='x49225cb8' onclick='hideorshow("x49225cb8","xcc92b330")'>show</button></p>
+ <div id='xcc92b330' style='display:none;' class='imgcontainer'>
  <div style="max-width:600px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 600.706 418.392">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1004,8 +1005,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='x5e5db0c0' onclick='hideorshow("x5e5db0c0","xd67aa226")'>show</button></p>
- <div id='xd67aa226' style='display:none;' class='imgcontainer'>
+<button id='x29fbae00' onclick='hideorshow("x29fbae00","x6dd19d65")'>show</button></p>
+ <div id='x6dd19d65' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -1214,8 +1215,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/ordering-term.html">ordering-term:</a></b>
-<button id='x88289188' onclick='hideorshow("x88289188","x471ed888")'>show</button></p>
- <div id='x471ed888' style='display:none;' class='imgcontainer'>
+<button id='x83e37f5d' onclick='hideorshow("x83e37f5d","x17c66599")'>show</button></p>
+ <div id='x17c66599' style='display:none;' class='imgcontainer'>
  <div style="max-width:798px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 798.451 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1276,8 +1277,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/raise-function.html">raise-function:</a></b>
-<button id='x04e1e87f' onclick='hideorshow("x04e1e87f","x12e4cf29")'>show</button></p>
- <div id='x12e4cf29' style='display:none;' class='imgcontainer'>
+<button id='x5990e23a' onclick='hideorshow("x5990e23a","x4f2086c8")'>show</button></p>
+ <div id='x4f2086c8' style='display:none;' class='imgcontainer'>
  <div style="max-width:627px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 627.302 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1332,8 +1333,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='x97c3dd79' onclick='hideorshow("x97c3dd79","xa0026cbe")'>show</button></p>
- <div id='xa0026cbe' style='display:none;' class='imgcontainer'>
+<button id='x87730d7b' onclick='hideorshow("x87730d7b","xea9b0edd")'>show</button></p>
+ <div id='xea9b0edd' style='display:none;' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -1611,8 +1612,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/common-table-expression.html">common-table-expression:</a></b>
-<button id='xbd24aa66' onclick='hideorshow("xbd24aa66","xe4768ac0")'>show</button></p>
- <div id='xe4768ac0' style='display:none;' class='imgcontainer'>
+<button id='x9e53d5f6' onclick='hideorshow("x9e53d5f6","xb73e6b02")'>show</button></p>
+ <div id='xb73e6b02' style='display:none;' class='imgcontainer'>
  <div style="max-width:638px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 638.525 167.4">
 <circle cx="5" cy="29" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,29 20,33 20,24" style="fill:rgb(0,0,0)"/>
@@ -1682,8 +1683,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/compound-operator.html">compound-operator:</a></b>
-<button id='x7945722c' onclick='hideorshow("x7945722c","xd5bf2b0b")'>show</button></p>
- <div id='xd5bf2b0b' style='display:none;' class='imgcontainer'>
+<button id='x6b280e04' onclick='hideorshow("x6b280e04","xf96608d6")'>show</button></p>
+ <div id='xf96608d6' style='display:none;' class='imgcontainer'>
  <div style="max-width:293px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 293.842 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1724,8 +1725,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='x3c5dcc36' onclick='hideorshow("x3c5dcc36","x280534b9")'>show</button></p>
- <div id='x280534b9' style='display:none;' class='imgcontainer'>
+<button id='x80bfe36d' onclick='hideorshow("x80bfe36d","x0a5fe5c8")'>show</button></p>
+ <div id='x0a5fe5c8' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1756,8 +1757,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='xe3d931b0' onclick='hideorshow("xe3d931b0","x31f5087a")'>show</button></p>
- <div id='x31f5087a' style='display:none;' class='imgcontainer'>
+<button id='xf2dd6526' onclick='hideorshow("xf2dd6526","xb8c656ba")'>show</button></p>
+ <div id='xb8c656ba' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -1804,8 +1805,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='xad8e0edd' onclick='hideorshow("xad8e0edd","x399d36e6")'>show</button></p>
- <div id='x399d36e6' style='display:none;' class='imgcontainer'>
+<button id='x4c00610b' onclick='hideorshow("x4c00610b","x3d7f5768")'>show</button></p>
+ <div id='x3d7f5768' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -1872,8 +1873,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/ordering-term.html">ordering-term:</a></b>
-<button id='x1cdd5f8d' onclick='hideorshow("x1cdd5f8d","xf44d8110")'>show</button></p>
- <div id='xf44d8110' style='display:none;' class='imgcontainer'>
+<button id='x4711e23a' onclick='hideorshow("x4711e23a","xa7d4295c")'>show</button></p>
+ <div id='xa7d4295c' style='display:none;' class='imgcontainer'>
  <div style="max-width:798px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 798.451 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1933,8 +1934,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='xf0c5d5df' onclick='hideorshow("xf0c5d5df","x6951e04e")'>show</button></p>
- <div id='x6951e04e' style='display:none;' class='imgcontainer'>
+<button id='x443d9e83' onclick='hideorshow("x443d9e83","x9b740539")'>show</button></p>
+ <div id='x9b740539' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -1986,8 +1987,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='xfdd4c15e' onclick='hideorshow("xfdd4c15e","x73e7549d")'>show</button></p>
- <div id='x73e7549d' style='display:none;' class='imgcontainer'>
+<button id='x50c4134b' onclick='hideorshow("x50c4134b","x5db26160")'>show</button></p>
+ <div id='x5db26160' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -2131,8 +2132,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='x1d3a8086' onclick='hideorshow("x1d3a8086","x44ec2984")'>show</button></p>
- <div id='x44ec2984' style='display:none;' class='imgcontainer'>
+<button id='x62329f73' onclick='hideorshow("x62329f73","x03778e2f")'>show</button></p>
+ <div id='x03778e2f' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -2212,8 +2213,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='x55b16cf1' onclick='hideorshow("x55b16cf1","x2dd27741")'>show</button></p>
- <div id='x2dd27741' style='display:none;' class='imgcontainer'>
+<button id='xf29a1826' onclick='hideorshow("xf29a1826","x505763ac")'>show</button></p>
+ <div id='x505763ac' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -2424,8 +2425,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/type-name.html">type-name:</a></b>
-<button id='xe23774a6' onclick='hideorshow("xe23774a6","xa28beb6b")'>show</button></p>
- <div id='xa28beb6b' style='display:none;' class='imgcontainer'>
+<button id='xbbd0a9f9' onclick='hideorshow("xbbd0a9f9","x49dd2c71")'>show</button></p>
+ <div id='x49dd2c71' style='display:none;' class='imgcontainer'>
  <div style="max-width:661px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 661.008 110.16">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -2479,8 +2480,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/signed-number.html">signed-number:</a></b>
-<button id='xd35c20d0' onclick='hideorshow("xd35c20d0","x336c96ab")'>show</button></p>
- <div id='x336c96ab' style='display:none;' class='imgcontainer'>
+<button id='x39c981de' onclick='hideorshow("x39c981de","x04ae9d48")'>show</button></p>
+ <div id='x04ae9d48' style='display:none;' class='imgcontainer'>
  <div style="max-width:292px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 292.013 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,44 39,48 39,40" style="fill:rgb(0,0,0)"/>
@@ -2593,36 +2594,6 @@ string or BLOB values, then the statement might use a lot of
 temporary memory to hold those values while it is running.
 
 </p><p>
-The first prototype of the RETURNING clause returned
-values as they were generated.  That approach used less memory, but
-it had other problems:
-
-</p><ol>
-<li><p>
-If the calls sqlite3_step() for two or more DML statements
-where interleaved and if one of the
-statements hit a constraint failure and aborted, reverting its
-changes, then that could disrupt the operation of the other
-DML statement.  This could not corrupt the database file, but
-it could yield surprising and difficult-to-explain results in
-the database.
-
-</p></li><li><p>
-If an application failed to call sqlite3_step() repeatedly until
-it received SQLITE_DONE, then some of the database changes might
-never occur.
-
-</p></li><li><p>
-The order of operations was different from client/server database
-engines like PostgreSQL, which might cause portability issues
-for some applications.
-</p></li></ol>
-
-<p>
-For these reasons, the current implementation was modified so that
-all database changes happen before any RETURNING output is emitted.
-
-</p><p>
 While SQLite does guarantee that all database changes will occur
 before any RETURNING output is emitted, it does <i>not</i> guarantee
 that the order of individual RETURNING rows will match the order in
@@ -2630,7 +2601,26 @@ which those rows were changed in the database.  The output order
 for the RETURNING rows is arbitrary and is not necessarily related
 to the order in which the rows were processed internally.
 
-</p><h2 id="acid_changes"><span>2.2. </span>ACID Changes</h2>
+</p><h2 id="self_referential_subqueries_are_indeterminate"><span>2.2. </span>Self-Referential Subqueries Are Indeterminate</h2>
+
+<p>
+SQLite guarantees that all database changes will occur before
+any RETURNING output is <em>emitted</em>, but SQLite makes no
+guarantees about the order in which database changes occur nor
+when the RETURNING output is <em>computed</em> in relation to
+those database changes.  RETURNING clause outputs are all computed and
+placed in temporary storage during the first call to sqlite3_step() 
+but the specific order of when those output are computed and the
+order in which database changes occur is unspecified.  The order 
+can change from one query to the next.
+
+</p><p>
+Hence if column of RETURNING output contains a
+subquery that references the table being modified, then the result
+of that subquery might depend on unspecified behavior and hence
+could vary from one invocation of the query to the next.
+
+</p><h2 id="acid_changes"><span>2.3. </span>ACID Changes</h2>
 
 <p>
 When the previous "<i>Processing Order</i>" section says that
@@ -2642,7 +2632,7 @@ does not occur until the statement finishes, and maybe not even then
 if the statement is part of a larger transaction.  Changes to the
 database are still atomic, consistent, isolated, and durable (ACID).
 When the previous section says "changes occur",
-this means that internal data structure are adjusted pending a transaction
+this means that internal data structures are adjusted pending a transaction
 commit.  Some of those changes may or may not spill into the
 <a href="wal.html">write-ahead log</a>, depending on how much pressure there is on the
 page cache.  If the page cache is not under memory pressure, then
@@ -2708,5 +2698,5 @@ In an <a href="lang_update.html#upfrom">UPDATE FROM</a> statement, the auxiliary
 clause may not participate in the RETURNING clause.
 
 </p></li></ol>
-
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/lang_returning.in?m=a90bba5a4f">2024-05-08 20:36:57</a> UTC </small></i></p>
 

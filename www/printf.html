@@ -249,7 +249,7 @@ Every IEEE-754 double can be represented <i>exactly</i> as a decimal
 value, but for many doubles the exact decimal representation requires
 more than 16 or 26 significant digits.
 The SQLite printf() function only renders the first 16 or 26 significant digits
-because that can be done efficient and because 16 decimal digits it is sufficient
+because that can be done efficiently and because 16 decimal digits suffice
 to distinguish every possible double value.  Use the <a href="floatingpoint.html#decext">decimal extension</a> to get
 the exact decimal equivalent of double value for the rare cases where that is
 required.
@@ -448,21 +448,23 @@ by a single "." character.  If there is no width, then the "." that introduces
 the precision immediately follows either the flags (if there are any) or
 the initial "%".
 
-</p><p>For string substitutions (%s, %z, %q, %Q, or %w) the precision is the number
+</p><p>For string substitutions %s, %z, %q, %Q, or %w the precision is the number
 of byte or character used from the argument.  The number is bytes by default but
 is characters if the "!" flag is present.  If there is no precision, then the
 entire string is substituted.  Examples:  "%.3s" substitutes the first 3 bytes
 of the argument string.  "%!.3s" substitutes the first three characters of the
 argument string.
 
-</p><p>For integer substitutions (%d, %i, %x, %X, %o, and %p) the precision specifies
+</p><p>For integer substitutions %d, %i, %x, %X, %o, and %p the precision specifies
 minimum number of digits to display.  Leading zeros are added if necessary, to
 expand the output to the minimum number of digits.
 
-</p><p>For floating-point substitutions (%e, %E, %f, %g, %G) the precision specifies 
-the number of digits to display to the right of the decimal point.
+</p><p>For floating-point substitutions %e, %E,  and %f the precision specifies 
+the number of digits to display to the right of the decimal point.  With
+the %g and %G, the precision is the total number of significant digits, rounded
+up to 1 if the specified precision is 0.
 
-</p><p>For the character substitution (%c) a precision N greater than 1 causes the
+</p><p>For the character substitution %c a precision N greater than 1 causes the
 character to be repeated N times.  This is a non-standard extension found only
 in SQLite.
 
@@ -560,5 +562,5 @@ routine. This is because there was no snprintf() routine in the
 standard C library
 when Hipp was first implementing his version, and he chose a different order
 than the designers of the standard C library.
-</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/printf.in?m=4880d4e1ee">2023-06-29 23:18:37</a> UTC </small></i></p>
+</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/printf.in?m=644a1d8ad6">2024-07-15 21:17:15</a> UTC </small></i></p>
 

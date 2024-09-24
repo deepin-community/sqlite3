@@ -141,7 +141,8 @@ Table Of Contents
 <div class="fancy-toc1"><a href="#table_valued_functions_in_the_from_clause">8. Table-valued Functions In The FROM Clause</a></div>
 <div class="fancy-toc1"><a href="#deviations_from_standard_sql">9. Deviations From Standard SQL</a></div>
 <div class="fancy-toc2"><a href="#strange_join_names">9.1. Strange JOIN names</a></div>
-<div class="fancy-toc2"><a href="#precedence_of_comma_joins_and_cross_join">9.2. Precedence of comma-joins and CROSS JOIN</a></div>
+<div class="fancy-toc2"><a href="#flexible_join_syntax">9.2. Flexible join syntax</a></div>
+<div class="fancy-toc2"><a href="#precedence_of_comma_joins_and_cross_join">9.3. Precedence of comma-joins and CROSS JOIN</a></div>
 </div>
 </div>
 <script>
@@ -164,8 +165,8 @@ mk.innerHTML = "&#x25ba;";
 
 <h1 id="overview"><span>1. </span>Overview</h1>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='xf2381d42' onclick='hideorshow("xf2381d42","xf05ef6ce")'>hide</button></p>
- <div id='xf05ef6ce' class='imgcontainer'>
+<button id='xfb231e3b' onclick='hideorshow("xfb231e3b","x5badd154")'>hide</button></p>
+ <div id='x5badd154' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -443,8 +444,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/common-table-expression.html">common-table-expression:</a></b>
-<button id='xb3186489' onclick='hideorshow("xb3186489","x280d7205")'>show</button></p>
- <div id='x280d7205' style='display:none;' class='imgcontainer'>
+<button id='x28ec4d8d' onclick='hideorshow("x28ec4d8d","xa7b638b2")'>show</button></p>
+ <div id='xa7b638b2' style='display:none;' class='imgcontainer'>
  <div style="max-width:638px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 638.525 167.4">
 <circle cx="5" cy="29" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,29 20,33 20,24" style="fill:rgb(0,0,0)"/>
@@ -514,8 +515,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/compound-operator.html">compound-operator:</a></b>
-<button id='xbc45df4d' onclick='hideorshow("xbc45df4d","x13dd8e0c")'>show</button></p>
- <div id='x13dd8e0c' style='display:none;' class='imgcontainer'>
+<button id='x5240d97d' onclick='hideorshow("x5240d97d","xcce70f61")'>show</button></p>
+ <div id='xcce70f61' style='display:none;' class='imgcontainer'>
  <div style="max-width:293px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 293.842 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -556,8 +557,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/expr.html">expr:</a></b>
-<button id='xb5c926c8' onclick='hideorshow("xb5c926c8","x878b8407")'>show</button></p>
- <div id='x878b8407' style='display:none;' class='imgcontainer'>
+<button id='x2f7ba4fe' onclick='hideorshow("x2f7ba4fe","xfdd47173")'>show</button></p>
+ <div id='xfdd47173' style='display:none;' class='imgcontainer'>
  <div style="max-width:963px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 963.96 1068.77">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -1038,8 +1039,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/filter-clause.html">filter-clause:</a></b>
-<button id='x22ac5e9d' onclick='hideorshow("x22ac5e9d","xa2879e2c")'>show</button></p>
- <div id='xa2879e2c' style='display:none;' class='imgcontainer'>
+<button id='x7917b60e' onclick='hideorshow("x7917b60e","xd0307fc8")'>show</button></p>
+ <div id='xd0307fc8' style='display:none;' class='imgcontainer'>
  <div style="max-width:422px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 422.381 34.56">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1069,8 +1070,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/function-arguments.html">function-arguments:</a></b>
-<button id='x57d52cb6' onclick='hideorshow("x57d52cb6","x22c93439")'>show</button></p>
- <div id='x22c93439' style='display:none;' class='imgcontainer'>
+<button id='xd29b1290' onclick='hideorshow("xd29b1290","xcf00c8e5")'>show</button></p>
+ <div id='xcf00c8e5' style='display:none;' class='imgcontainer'>
  <div style="max-width:456px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 456.566 223.344">
 <circle cx="5" cy="56" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,56 20,60 20,52" style="fill:rgb(0,0,0)"/>
@@ -1133,8 +1134,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/literal-value.html">literal-value:</a></b>
-<button id='x9ed64fc0' onclick='hideorshow("x9ed64fc0","x7b2f36e6")'>show</button></p>
- <div id='x7b2f36e6' style='display:none;' class='imgcontainer'>
+<button id='xed9e9225' onclick='hideorshow("xed9e9225","xfb66ede4")'>show</button></p>
+ <div id='xfb66ede4' style='display:none;' class='imgcontainer'>
  <div style="max-width:341px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 341.376 336.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,319 39,324 39,315" style="fill:rgb(0,0,0)"/>
@@ -1204,8 +1205,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/over-clause.html">over-clause:</a></b>
-<button id='x824bcb06' onclick='hideorshow("x824bcb06","x6ade2ba5")'>show</button></p>
- <div id='x6ade2ba5' style='display:none;' class='imgcontainer'>
+<button id='x49495f61' onclick='hideorshow("x49495f61","x03f1b76a")'>show</button></p>
+ <div id='x03f1b76a' style='display:none;' class='imgcontainer'>
  <div style="max-width:600px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 600.706 418.392">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1296,8 +1297,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='xd8e79248' onclick='hideorshow("xd8e79248","x5ddb9706")'>show</button></p>
- <div id='x5ddb9706' style='display:none;' class='imgcontainer'>
+<button id='xf79b0477' onclick='hideorshow("xf79b0477","x553cba85")'>show</button></p>
+ <div id='x553cba85' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -1507,8 +1508,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/raise-function.html">raise-function:</a></b>
-<button id='xd9e25840' onclick='hideorshow("xd9e25840","x858831f7")'>show</button></p>
- <div id='x858831f7' style='display:none;' class='imgcontainer'>
+<button id='x4ac91b13' onclick='hideorshow("x4ac91b13","xfb828d36")'>show</button></p>
+ <div id='xfb828d36' style='display:none;' class='imgcontainer'>
  <div style="max-width:627px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 627.302 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1563,8 +1564,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/type-name.html">type-name:</a></b>
-<button id='x827f6b30' onclick='hideorshow("x827f6b30","xcd6f4330")'>show</button></p>
- <div id='xcd6f4330' style='display:none;' class='imgcontainer'>
+<button id='x914530dd' onclick='hideorshow("x914530dd","x1e2ec979")'>show</button></p>
+ <div id='x1e2ec979' style='display:none;' class='imgcontainer'>
  <div style="max-width:661px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 661.008 110.16">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -1618,8 +1619,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/signed-number.html">signed-number:</a></b>
-<button id='x3317224a' onclick='hideorshow("x3317224a","x5f8e952c")'>show</button></p>
- <div id='x5f8e952c' style='display:none;' class='imgcontainer'>
+<button id='xed1dd36c' onclick='hideorshow("xed1dd36c","xc7a77558")'>show</button></p>
+ <div id='xc7a77558' style='display:none;' class='imgcontainer'>
  <div style="max-width:292px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 292.013 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,44 39,48 39,40" style="fill:rgb(0,0,0)"/>
@@ -1647,8 +1648,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='x19cb2983' onclick='hideorshow("x19cb2983","xf1916896")'>show</button></p>
- <div id='xf1916896' style='display:none;' class='imgcontainer'>
+<button id='xc5e341e8' onclick='hideorshow("xc5e341e8","x0d8d3977")'>show</button></p>
+ <div id='x0d8d3977' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1679,8 +1680,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='x3d452e70' onclick='hideorshow("x3d452e70","x8012aaad")'>show</button></p>
- <div id='x8012aaad' style='display:none;' class='imgcontainer'>
+<button id='x3ee5afd0' onclick='hideorshow("x3ee5afd0","x41880008")'>show</button></p>
+ <div id='x41880008' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -1727,8 +1728,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='x4ac18b9d' onclick='hideorshow("x4ac18b9d","x77661d39")'>show</button></p>
- <div id='x77661d39' style='display:none;' class='imgcontainer'>
+<button id='xe24ed947' onclick='hideorshow("xe24ed947","xda58e77c")'>show</button></p>
+ <div id='xda58e77c' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -1795,8 +1796,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/ordering-term.html">ordering-term:</a></b>
-<button id='x15c2e5f3' onclick='hideorshow("x15c2e5f3","x2035a2bd")'>show</button></p>
- <div id='x2035a2bd' style='display:none;' class='imgcontainer'>
+<button id='xf112f1e0' onclick='hideorshow("xf112f1e0","x46f24f2d")'>show</button></p>
+ <div id='x46f24f2d' style='display:none;' class='imgcontainer'>
  <div style="max-width:798px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 798.451 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1856,8 +1857,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='xf79db399' onclick='hideorshow("xf79db399","xe0753924")'>show</button></p>
- <div id='xe0753924' style='display:none;' class='imgcontainer'>
+<button id='x4c4a5b7f' onclick='hideorshow("x4c4a5b7f","x54195310")'>show</button></p>
+ <div id='x54195310' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -1909,8 +1910,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='x30756a23' onclick='hideorshow("x30756a23","x25aced32")'>show</button></p>
- <div id='x25aced32' style='display:none;' class='imgcontainer'>
+<button id='x1e152b03' onclick='hideorshow("x1e152b03","x74379f9e")'>show</button></p>
+ <div id='x74379f9e' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -2054,8 +2055,8 @@ mk.innerHTML = "&#x25ba;";
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='xe24da894' onclick='hideorshow("xe24da894","x883d91aa")'>show</button></p>
- <div id='x883d91aa' style='display:none;' class='imgcontainer'>
+<button id='x7926ec00' onclick='hideorshow("x7926ec00","xb067d03e")'>show</button></p>
+ <div id='xb067d03e' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -2135,8 +2136,8 @@ mk.innerHTML = "&#x25ba;";
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='x2acdfc23' onclick='hideorshow("x2acdfc23","x46136d83")'>show</button></p>
- <div id='x46136d83' style='display:none;' class='imgcontainer'>
+<button id='xc728aee3' onclick='hideorshow("xc728aee3","x3333ccd0")'>show</button></p>
+ <div id='x3333ccd0' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -2361,8 +2362,8 @@ syntax diagrams that expresses the same syntax but tries to break the syntax
 down into smaller chunks.
 
 <p><b><a href="syntax/factored-select-stmt.html">factored-select-stmt:</a></b>
-<button id='x18fb4b68' onclick='hideorshow("x18fb4b68","x1f334094")'>show</button></p>
- <div id='x1f334094' style='display:none;' class='imgcontainer'>
+<button id='x6b1af3c7' onclick='hideorshow("x6b1af3c7","xdaa171a0")'>show</button></p>
+ <div id='xdaa171a0' style='display:none;' class='imgcontainer'>
  <div style="max-width:629px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 629.266 500.04">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -2468,8 +2469,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/common-table-expression.html">common-table-expression:</a></b>
-<button id='xd14beeed' onclick='hideorshow("xd14beeed","x285547b6")'>show</button></p>
- <div id='x285547b6' style='display:none;' class='imgcontainer'>
+<button id='x25c5aa5b' onclick='hideorshow("x25c5aa5b","x9a44c688")'>show</button></p>
+ <div id='x9a44c688' style='display:none;' class='imgcontainer'>
  <div style="max-width:638px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 638.525 167.4">
 <circle cx="5" cy="29" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,29 20,33 20,24" style="fill:rgb(0,0,0)"/>
@@ -2538,8 +2539,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='x612291e7' onclick='hideorshow("x612291e7","x8d8a489b")'>show</button></p>
- <div id='x8d8a489b' style='display:none;' class='imgcontainer'>
+<button id='xb156ad90' onclick='hideorshow("xb156ad90","x71861a9b")'>show</button></p>
+ <div id='x71861a9b' style='display:none;' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -2817,8 +2818,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='x338b6388' onclick='hideorshow("x338b6388","x0b2e484c")'>show</button></p>
- <div id='x0b2e484c' style='display:none;' class='imgcontainer'>
+<button id='x04712806' onclick='hideorshow("x04712806","xdb872a11")'>show</button></p>
+ <div id='xdb872a11' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -2849,8 +2850,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='x87114650' onclick='hideorshow("x87114650","x8f9809c2")'>show</button></p>
- <div id='x8f9809c2' style='display:none;' class='imgcontainer'>
+<button id='xe3fccdf4' onclick='hideorshow("xe3fccdf4","x5695b381")'>show</button></p>
+ <div id='x5695b381' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -2897,8 +2898,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='xa3fd0a0d' onclick='hideorshow("xa3fd0a0d","xdff7089e")'>show</button></p>
- <div id='xdff7089e' style='display:none;' class='imgcontainer'>
+<button id='x32842ee3' onclick='hideorshow("x32842ee3","xb159619c")'>show</button></p>
+ <div id='xb159619c' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -2965,8 +2966,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='xb3703585' onclick='hideorshow("xb3703585","xa1e522d4")'>show</button></p>
- <div id='xa1e522d4' style='display:none;' class='imgcontainer'>
+<button id='xee21263d' onclick='hideorshow("xee21263d","xda995059")'>show</button></p>
+ <div id='xda995059' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -3018,8 +3019,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='xd5648fdd' onclick='hideorshow("xd5648fdd","x8ff2b0c6")'>show</button></p>
- <div id='x8ff2b0c6' style='display:none;' class='imgcontainer'>
+<button id='x9d36624b' onclick='hideorshow("x9d36624b","xc2937370")'>show</button></p>
+ <div id='xc2937370' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -3163,8 +3164,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='x5a5d40ab' onclick='hideorshow("x5a5d40ab","x2ad0f471")'>show</button></p>
- <div id='x2ad0f471' style='display:none;' class='imgcontainer'>
+<button id='xdff2c8dd' onclick='hideorshow("xdff2c8dd","xe587979e")'>show</button></p>
+ <div id='xe587979e' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -3244,8 +3245,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='xb79a64f3' onclick='hideorshow("xb79a64f3","x11c28187")'>show</button></p>
- <div id='x11c28187' style='display:none;' class='imgcontainer'>
+<button id='xd721deee' onclick='hideorshow("xd721deee","xaf37b11b")'>show</button></p>
+ <div id='xaf37b11b' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -3457,8 +3458,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/compound-operator.html">compound-operator:</a></b>
-<button id='x8b583cba' onclick='hideorshow("x8b583cba","xb5e903a6")'>show</button></p>
- <div id='xb5e903a6' style='display:none;' class='imgcontainer'>
+<button id='x2dfa9d1f' onclick='hideorshow("x2dfa9d1f","xcbdab688")'>show</button></p>
+ <div id='xcbdab688' style='display:none;' class='imgcontainer'>
  <div style="max-width:293px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 293.842 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -3499,8 +3500,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/expr.html">expr:</a></b>
-<button id='xf450d44a' onclick='hideorshow("xf450d44a","x65d92beb")'>show</button></p>
- <div id='x65d92beb' style='display:none;' class='imgcontainer'>
+<button id='xb1b1b460' onclick='hideorshow("xb1b1b460","xdb5d9f61")'>show</button></p>
+ <div id='xdb5d9f61' style='display:none;' class='imgcontainer'>
  <div style="max-width:963px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 963.96 1068.77">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -3981,8 +3982,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/filter-clause.html">filter-clause:</a></b>
-<button id='x490bdf90' onclick='hideorshow("x490bdf90","xd15964f8")'>show</button></p>
- <div id='xd15964f8' style='display:none;' class='imgcontainer'>
+<button id='xd111ee07' onclick='hideorshow("xd111ee07","x9dad8b7f")'>show</button></p>
+ <div id='x9dad8b7f' style='display:none;' class='imgcontainer'>
  <div style="max-width:422px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 422.381 34.56">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -4012,8 +4013,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/function-arguments.html">function-arguments:</a></b>
-<button id='x4f74be68' onclick='hideorshow("x4f74be68","x1c44911c")'>show</button></p>
- <div id='x1c44911c' style='display:none;' class='imgcontainer'>
+<button id='x93fdfbc3' onclick='hideorshow("x93fdfbc3","xda4da07d")'>show</button></p>
+ <div id='xda4da07d' style='display:none;' class='imgcontainer'>
  <div style="max-width:456px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 456.566 223.344">
 <circle cx="5" cy="56" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,56 20,60 20,52" style="fill:rgb(0,0,0)"/>
@@ -4076,8 +4077,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/literal-value.html">literal-value:</a></b>
-<button id='xed1bfd0d' onclick='hideorshow("xed1bfd0d","xfd4bddef")'>show</button></p>
- <div id='xfd4bddef' style='display:none;' class='imgcontainer'>
+<button id='x15d4b2c0' onclick='hideorshow("x15d4b2c0","x00768916")'>show</button></p>
+ <div id='x00768916' style='display:none;' class='imgcontainer'>
  <div style="max-width:341px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 341.376 336.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,319 39,324 39,315" style="fill:rgb(0,0,0)"/>
@@ -4147,8 +4148,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/over-clause.html">over-clause:</a></b>
-<button id='xcbf1149d' onclick='hideorshow("xcbf1149d","x5185a371")'>show</button></p>
- <div id='x5185a371' style='display:none;' class='imgcontainer'>
+<button id='xd58dbcc8' onclick='hideorshow("xd58dbcc8","x0ed5a4f6")'>show</button></p>
+ <div id='x0ed5a4f6' style='display:none;' class='imgcontainer'>
  <div style="max-width:600px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 600.706 418.392">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -4239,8 +4240,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='x2701af05' onclick='hideorshow("x2701af05","x50514221")'>show</button></p>
- <div id='x50514221' style='display:none;' class='imgcontainer'>
+<button id='x684355d2' onclick='hideorshow("x684355d2","x23b94f69")'>show</button></p>
+ <div id='x23b94f69' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -4450,8 +4451,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/raise-function.html">raise-function:</a></b>
-<button id='xe89538f7' onclick='hideorshow("xe89538f7","x6dd0b61c")'>show</button></p>
- <div id='x6dd0b61c' style='display:none;' class='imgcontainer'>
+<button id='xd2bb907e' onclick='hideorshow("xd2bb907e","x3a3edd32")'>show</button></p>
+ <div id='x3a3edd32' style='display:none;' class='imgcontainer'>
  <div style="max-width:627px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 627.302 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -4506,8 +4507,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='xb169d67a' onclick='hideorshow("xb169d67a","x25688559")'>show</button></p>
- <div id='x25688559' style='display:none;' class='imgcontainer'>
+<button id='xa6ccbf0f' onclick='hideorshow("xa6ccbf0f","x1295befb")'>show</button></p>
+ <div id='x1295befb' style='display:none;' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -4785,8 +4786,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='xf9f9d5ae' onclick='hideorshow("xf9f9d5ae","x48ca088e")'>show</button></p>
- <div id='x48ca088e' style='display:none;' class='imgcontainer'>
+<button id='x3c6a6813' onclick='hideorshow("x3c6a6813","xa3cbe50b")'>show</button></p>
+ <div id='xa3cbe50b' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -4817,8 +4818,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='xf4c54059' onclick='hideorshow("xf4c54059","x7ef5fecd")'>show</button></p>
- <div id='x7ef5fecd' style='display:none;' class='imgcontainer'>
+<button id='x30efc704' onclick='hideorshow("x30efc704","x69ad921a")'>show</button></p>
+ <div id='x69ad921a' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -4865,8 +4866,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='xb4c7876b' onclick='hideorshow("xb4c7876b","xab7735c2")'>show</button></p>
- <div id='xab7735c2' style='display:none;' class='imgcontainer'>
+<button id='x84c71f4a' onclick='hideorshow("x84c71f4a","xfcecd8c1")'>show</button></p>
+ <div id='xfcecd8c1' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -4933,8 +4934,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='xbada6a4f' onclick='hideorshow("xbada6a4f","x1093a306")'>show</button></p>
- <div id='x1093a306' style='display:none;' class='imgcontainer'>
+<button id='x625df1e1' onclick='hideorshow("x625df1e1","x43c9cf99")'>show</button></p>
+ <div id='x43c9cf99' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -4986,8 +4987,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='xca6e6bcb' onclick='hideorshow("xca6e6bcb","x2d71c2ed")'>show</button></p>
- <div id='x2d71c2ed' style='display:none;' class='imgcontainer'>
+<button id='x1e1b9e66' onclick='hideorshow("x1e1b9e66","x54e77329")'>show</button></p>
+ <div id='x54e77329' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -5131,8 +5132,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='xf1b82923' onclick='hideorshow("xf1b82923","x4462294d")'>show</button></p>
- <div id='x4462294d' style='display:none;' class='imgcontainer'>
+<button id='x17addd5f' onclick='hideorshow("x17addd5f","xcba751ce")'>show</button></p>
+ <div id='xcba751ce' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -5212,8 +5213,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='xf25e022a' onclick='hideorshow("xf25e022a","x86c017df")'>show</button></p>
- <div id='x86c017df' style='display:none;' class='imgcontainer'>
+<button id='x43f77217' onclick='hideorshow("x43f77217","x3f12529c")'>show</button></p>
+ <div id='x3f12529c' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -5424,8 +5425,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/type-name.html">type-name:</a></b>
-<button id='xb0449a50' onclick='hideorshow("xb0449a50","x2b121701")'>show</button></p>
- <div id='x2b121701' style='display:none;' class='imgcontainer'>
+<button id='xdfbc1631' onclick='hideorshow("xdfbc1631","xcf1a35c0")'>show</button></p>
+ <div id='xcf1a35c0' style='display:none;' class='imgcontainer'>
  <div style="max-width:661px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 661.008 110.16">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -5479,8 +5480,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/signed-number.html">signed-number:</a></b>
-<button id='x93a42f33' onclick='hideorshow("x93a42f33","x4983f8af")'>show</button></p>
- <div id='x4983f8af' style='display:none;' class='imgcontainer'>
+<button id='xa2472aa8' onclick='hideorshow("xa2472aa8","x0e10ff5d")'>show</button></p>
+ <div id='x0e10ff5d' style='display:none;' class='imgcontainer'>
  <div style="max-width:292px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 292.013 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,44 39,48 39,40" style="fill:rgb(0,0,0)"/>
@@ -5508,8 +5509,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/ordering-term.html">ordering-term:</a></b>
-<button id='xb6b8148e' onclick='hideorshow("xb6b8148e","x9f0de7af")'>show</button></p>
- <div id='x9f0de7af' style='display:none;' class='imgcontainer'>
+<button id='x670edbd8' onclick='hideorshow("x670edbd8","xd9ad17b7")'>show</button></p>
+ <div id='xd9ad17b7' style='display:none;' class='imgcontainer'>
  <div style="max-width:798px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 798.451 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -5569,8 +5570,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/select-core.html">select-core:</a></b>
-<button id='xcb42dcab' onclick='hideorshow("xcb42dcab","x6e5c7a43")'>show</button></p>
- <div id='x6e5c7a43' style='display:none;' class='imgcontainer'>
+<button id='x246ff4e4' onclick='hideorshow("x246ff4e4","x1ab12699")'>show</button></p>
+ <div id='x1ab12699' style='display:none;' class='imgcontainer'>
  <div style="max-width:655px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 655.157 728.568">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="63,17 51,21 51,12" style="fill:rgb(0,0,0)"/>
@@ -5747,8 +5748,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='xf2ed18ef' onclick='hideorshow("xf2ed18ef","xb560e673")'>show</button></p>
- <div id='xb560e673' style='display:none;' class='imgcontainer'>
+<button id='xfc5371b4' onclick='hideorshow("xfc5371b4","xbb3ee51d")'>show</button></p>
+ <div id='xbb3ee51d' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -5779,8 +5780,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='x31719a7d' onclick='hideorshow("x31719a7d","xadb4a00d")'>show</button></p>
- <div id='xadb4a00d' style='display:none;' class='imgcontainer'>
+<button id='x8caea1d9' onclick='hideorshow("x8caea1d9","x2f3699d3")'>show</button></p>
+ <div id='x2f3699d3' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -5827,8 +5828,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='x6f659b63' onclick='hideorshow("x6f659b63","xae1a9ab1")'>show</button></p>
- <div id='xae1a9ab1' style='display:none;' class='imgcontainer'>
+<button id='x0bd5d5d4' onclick='hideorshow("x0bd5d5d4","xa9f327fe")'>show</button></p>
+ <div id='xa9f327fe' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -5895,8 +5896,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='x5c1f3322' onclick='hideorshow("x5c1f3322","x8abaa843")'>show</button></p>
- <div id='x8abaa843' style='display:none;' class='imgcontainer'>
+<button id='x6dcceba5' onclick='hideorshow("x6dcceba5","x3b9c4086")'>show</button></p>
+ <div id='x3b9c4086' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -5948,8 +5949,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='x0367bd25' onclick='hideorshow("x0367bd25","x40f45b85")'>show</button></p>
- <div id='x40f45b85' style='display:none;' class='imgcontainer'>
+<button id='xdba15e83' onclick='hideorshow("xdba15e83","x4ebdb799")'>show</button></p>
+ <div id='x4ebdb799' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -6092,8 +6093,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='x33471d11' onclick='hideorshow("x33471d11","xc9752374")'>show</button></p>
- <div id='xc9752374' style='display:none;' class='imgcontainer'>
+<button id='xd6369f16' onclick='hideorshow("xd6369f16","xe33b0a57")'>show</button></p>
+ <div id='xe33b0a57' style='display:none;' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -6373,8 +6374,8 @@ down into smaller chunks.
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='x6c771130' onclick='hideorshow("x6c771130","x90d90faf")'>show</button></p>
- <div id='x90d90faf' style='display:none;' class='imgcontainer'>
+<button id='x105b6d44' onclick='hideorshow("x105b6d44","x6c4e047b")'>show</button></p>
+ <div id='x6c4e047b' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -6454,8 +6455,8 @@ down into smaller chunks.
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='xebf078d1' onclick='hideorshow("xebf078d1","xbeaaefa2")'>show</button></p>
- <div id='xbeaaefa2' style='display:none;' class='imgcontainer'>
+<button id='x5e5289bd' onclick='hideorshow("x5e5289bd","x6e96b239")'>show</button></p>
+ <div id='x6e96b239' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -6696,8 +6697,8 @@ this or any other specific process.
 In practice, most SELECT statements are simple SELECT statements.
 
 <p><b><a href="syntax/simple-select-stmt.html">simple-select-stmt:</a></b>
-<button id='xf4d39422' onclick='hideorshow("xf4d39422","x793d5c47")'>hide</button></p>
- <div id='x793d5c47' class='imgcontainer'>
+<button id='x14bcc21e' onclick='hideorshow("x14bcc21e","x42fa10bc")'>hide</button></p>
+ <div id='x42fa10bc' class='imgcontainer'>
  <div style="max-width:629px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 629.266 348.84">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -6796,8 +6797,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/common-table-expression.html">common-table-expression:</a></b>
-<button id='xe303724e' onclick='hideorshow("xe303724e","x1304d3be")'>show</button></p>
- <div id='x1304d3be' style='display:none;' class='imgcontainer'>
+<button id='x5e52e5bf' onclick='hideorshow("x5e52e5bf","xc568875f")'>show</button></p>
+ <div id='xc568875f' style='display:none;' class='imgcontainer'>
  <div style="max-width:638px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 638.525 167.4">
 <circle cx="5" cy="29" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,29 20,33 20,24" style="fill:rgb(0,0,0)"/>
@@ -6866,8 +6867,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='x002dc602' onclick='hideorshow("x002dc602","x0b27af7d")'>show</button></p>
- <div id='x0b27af7d' style='display:none;' class='imgcontainer'>
+<button id='x0c6deccf' onclick='hideorshow("x0c6deccf","x9514e549")'>show</button></p>
+ <div id='x9514e549' style='display:none;' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -7145,8 +7146,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/compound-operator.html">compound-operator:</a></b>
-<button id='xb40860b7' onclick='hideorshow("xb40860b7","x21aa2d8c")'>show</button></p>
- <div id='x21aa2d8c' style='display:none;' class='imgcontainer'>
+<button id='x41c5f6fe' onclick='hideorshow("x41c5f6fe","x9dd2dbd3")'>show</button></p>
+ <div id='x9dd2dbd3' style='display:none;' class='imgcontainer'>
  <div style="max-width:293px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 293.842 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -7187,8 +7188,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='xb73d032c' onclick='hideorshow("xb73d032c","xc894a2b3")'>show</button></p>
- <div id='xc894a2b3' style='display:none;' class='imgcontainer'>
+<button id='xe6b677e5' onclick='hideorshow("xe6b677e5","x2a337403")'>show</button></p>
+ <div id='x2a337403' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -7219,8 +7220,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='x037100cf' onclick='hideorshow("x037100cf","x509cdbdb")'>show</button></p>
- <div id='x509cdbdb' style='display:none;' class='imgcontainer'>
+<button id='xdf83c11c' onclick='hideorshow("xdf83c11c","x4cc0e891")'>show</button></p>
+ <div id='x4cc0e891' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -7267,8 +7268,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='xb0ae2d6e' onclick='hideorshow("xb0ae2d6e","x29126674")'>show</button></p>
- <div id='x29126674' style='display:none;' class='imgcontainer'>
+<button id='x951441df' onclick='hideorshow("x951441df","xcf1eab4b")'>show</button></p>
+ <div id='xcf1eab4b' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -7335,8 +7336,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='x197ecf2e' onclick='hideorshow("x197ecf2e","x5567adb3")'>show</button></p>
- <div id='x5567adb3' style='display:none;' class='imgcontainer'>
+<button id='x7c242736' onclick='hideorshow("x7c242736","x2db8f7b4")'>show</button></p>
+ <div id='x2db8f7b4' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -7388,8 +7389,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='xb21a4197' onclick='hideorshow("xb21a4197","xec95716d")'>show</button></p>
- <div id='xec95716d' style='display:none;' class='imgcontainer'>
+<button id='xe8b061b6' onclick='hideorshow("xe8b061b6","xc4aaadda")'>show</button></p>
+ <div id='xc4aaadda' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -7533,8 +7534,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='x56f314bd' onclick='hideorshow("x56f314bd","xdb58841c")'>show</button></p>
- <div id='xdb58841c' style='display:none;' class='imgcontainer'>
+<button id='x30aa1685' onclick='hideorshow("x30aa1685","x966d860d")'>show</button></p>
+ <div id='x966d860d' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -7614,8 +7615,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='x7135de03' onclick='hideorshow("x7135de03","x54367b61")'>show</button></p>
- <div id='x54367b61' style='display:none;' class='imgcontainer'>
+<button id='xc8267947' onclick='hideorshow("xc8267947","x0bca7cf4")'>show</button></p>
+ <div id='x0bca7cf4' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -7827,8 +7828,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/expr.html">expr:</a></b>
-<button id='xdb85b9d6' onclick='hideorshow("xdb85b9d6","xde8f239b")'>show</button></p>
- <div id='xde8f239b' style='display:none;' class='imgcontainer'>
+<button id='x3773e62b' onclick='hideorshow("x3773e62b","x0453da68")'>show</button></p>
+ <div id='x0453da68' style='display:none;' class='imgcontainer'>
  <div style="max-width:963px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 963.96 1068.77">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -8309,8 +8310,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/filter-clause.html">filter-clause:</a></b>
-<button id='x33d80a14' onclick='hideorshow("x33d80a14","x6f94100e")'>show</button></p>
- <div id='x6f94100e' style='display:none;' class='imgcontainer'>
+<button id='xb28a2ea3' onclick='hideorshow("xb28a2ea3","x0e474180")'>show</button></p>
+ <div id='x0e474180' style='display:none;' class='imgcontainer'>
  <div style="max-width:422px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 422.381 34.56">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -8340,8 +8341,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/function-arguments.html">function-arguments:</a></b>
-<button id='x060984e5' onclick='hideorshow("x060984e5","xee7f8fc0")'>show</button></p>
- <div id='xee7f8fc0' style='display:none;' class='imgcontainer'>
+<button id='x44d044f4' onclick='hideorshow("x44d044f4","xb3074862")'>show</button></p>
+ <div id='xb3074862' style='display:none;' class='imgcontainer'>
  <div style="max-width:456px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 456.566 223.344">
 <circle cx="5" cy="56" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,56 20,60 20,52" style="fill:rgb(0,0,0)"/>
@@ -8404,8 +8405,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/literal-value.html">literal-value:</a></b>
-<button id='x283d8f59' onclick='hideorshow("x283d8f59","x2eea733a")'>show</button></p>
- <div id='x2eea733a' style='display:none;' class='imgcontainer'>
+<button id='x7cd50809' onclick='hideorshow("x7cd50809","x63f9e85f")'>show</button></p>
+ <div id='x63f9e85f' style='display:none;' class='imgcontainer'>
  <div style="max-width:341px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 341.376 336.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,319 39,324 39,315" style="fill:rgb(0,0,0)"/>
@@ -8475,8 +8476,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/over-clause.html">over-clause:</a></b>
-<button id='x4d3f1c2b' onclick='hideorshow("x4d3f1c2b","xecba4e98")'>show</button></p>
- <div id='xecba4e98' style='display:none;' class='imgcontainer'>
+<button id='xc88bacb6' onclick='hideorshow("xc88bacb6","xe72c3dc7")'>show</button></p>
+ <div id='xe72c3dc7' style='display:none;' class='imgcontainer'>
  <div style="max-width:600px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 600.706 418.392">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -8567,8 +8568,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='xbf16314b' onclick='hideorshow("xbf16314b","x6f0e6653")'>show</button></p>
- <div id='x6f0e6653' style='display:none;' class='imgcontainer'>
+<button id='xd03b1294' onclick='hideorshow("xd03b1294","xb3ce48bd")'>show</button></p>
+ <div id='xb3ce48bd' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -8778,8 +8779,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/raise-function.html">raise-function:</a></b>
-<button id='xb489060c' onclick='hideorshow("xb489060c","x85779a10")'>show</button></p>
- <div id='x85779a10' style='display:none;' class='imgcontainer'>
+<button id='x77ccb53e' onclick='hideorshow("x77ccb53e","x5a2e35c7")'>show</button></p>
+ <div id='x5a2e35c7' style='display:none;' class='imgcontainer'>
  <div style="max-width:627px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 627.302 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -8834,8 +8835,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='xc1a3c356' onclick='hideorshow("xc1a3c356","xeaffe9c4")'>show</button></p>
- <div id='xeaffe9c4' style='display:none;' class='imgcontainer'>
+<button id='x096dbe17' onclick='hideorshow("x096dbe17","xd3deb524")'>show</button></p>
+ <div id='xd3deb524' style='display:none;' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -9113,8 +9114,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/compound-operator.html">compound-operator:</a></b>
-<button id='x5eefbfd0' onclick='hideorshow("x5eefbfd0","x18a116dd")'>show</button></p>
- <div id='x18a116dd' style='display:none;' class='imgcontainer'>
+<button id='x869111bd' onclick='hideorshow("x869111bd","x0093985c")'>show</button></p>
+ <div id='x0093985c' style='display:none;' class='imgcontainer'>
  <div style="max-width:293px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 293.842 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -9155,8 +9156,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='x3b732021' onclick='hideorshow("x3b732021","x0bc880df")'>show</button></p>
- <div id='x0bc880df' style='display:none;' class='imgcontainer'>
+<button id='x1be590ba' onclick='hideorshow("x1be590ba","x1aa869af")'>show</button></p>
+ <div id='x1aa869af' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -9187,8 +9188,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='xb205fe1a' onclick='hideorshow("xb205fe1a","x443d8054")'>show</button></p>
- <div id='x443d8054' style='display:none;' class='imgcontainer'>
+<button id='x899b5f45' onclick='hideorshow("x899b5f45","xe773c0a0")'>show</button></p>
+ <div id='xe773c0a0' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -9235,8 +9236,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='xa3f08acc' onclick='hideorshow("xa3f08acc","xcb4d76ea")'>show</button></p>
- <div id='xcb4d76ea' style='display:none;' class='imgcontainer'>
+<button id='x705cb54e' onclick='hideorshow("x705cb54e","x861c0bb5")'>show</button></p>
+ <div id='x861c0bb5' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -9303,8 +9304,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='x8ea66a31' onclick='hideorshow("x8ea66a31","x1b65ccd9")'>show</button></p>
- <div id='x1b65ccd9' style='display:none;' class='imgcontainer'>
+<button id='x0cdc8d06' onclick='hideorshow("x0cdc8d06","xf01ef1f8")'>show</button></p>
+ <div id='xf01ef1f8' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -9356,8 +9357,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='x41cc3cd1' onclick='hideorshow("x41cc3cd1","xbef26e88")'>show</button></p>
- <div id='xbef26e88' style='display:none;' class='imgcontainer'>
+<button id='xa087f8e3' onclick='hideorshow("xa087f8e3","x2593cc83")'>show</button></p>
+ <div id='x2593cc83' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -9501,8 +9502,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='x468c49ac' onclick='hideorshow("x468c49ac","xbbef8e34")'>show</button></p>
- <div id='xbbef8e34' style='display:none;' class='imgcontainer'>
+<button id='x32ca8acb' onclick='hideorshow("x32ca8acb","x4e7202e2")'>show</button></p>
+ <div id='x4e7202e2' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -9582,8 +9583,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='xea5ec156' onclick='hideorshow("xea5ec156","x2df1eaa9")'>show</button></p>
- <div id='x2df1eaa9' style='display:none;' class='imgcontainer'>
+<button id='x1d190374' onclick='hideorshow("x1d190374","xe5052b97")'>show</button></p>
+ <div id='xe5052b97' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -9794,8 +9795,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/type-name.html">type-name:</a></b>
-<button id='x9f9bb566' onclick='hideorshow("x9f9bb566","x0be7e6ca")'>show</button></p>
- <div id='x0be7e6ca' style='display:none;' class='imgcontainer'>
+<button id='xb80ef37e' onclick='hideorshow("xb80ef37e","x97b0d68d")'>show</button></p>
+ <div id='x97b0d68d' style='display:none;' class='imgcontainer'>
  <div style="max-width:661px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 661.008 110.16">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -9849,8 +9850,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/signed-number.html">signed-number:</a></b>
-<button id='x5ca2d540' onclick='hideorshow("x5ca2d540","x42d87c3a")'>show</button></p>
- <div id='x42d87c3a' style='display:none;' class='imgcontainer'>
+<button id='x33dd47d7' onclick='hideorshow("x33dd47d7","xac5d148d")'>show</button></p>
+ <div id='xac5d148d' style='display:none;' class='imgcontainer'>
  <div style="max-width:292px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 292.013 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,44 39,48 39,40" style="fill:rgb(0,0,0)"/>
@@ -9878,8 +9879,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/ordering-term.html">ordering-term:</a></b>
-<button id='x6d034886' onclick='hideorshow("x6d034886","x320e6273")'>show</button></p>
- <div id='x320e6273' style='display:none;' class='imgcontainer'>
+<button id='x4bf1481a' onclick='hideorshow("x4bf1481a","xf422d8f5")'>show</button></p>
+ <div id='xf422d8f5' style='display:none;' class='imgcontainer'>
  <div style="max-width:798px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 798.451 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -9939,8 +9940,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/select-core.html">select-core:</a></b>
-<button id='x046254b2' onclick='hideorshow("x046254b2","x81614949")'>hide</button></p>
- <div id='x81614949' class='imgcontainer'>
+<button id='x542475bd' onclick='hideorshow("x542475bd","xf3624c5d")'>hide</button></p>
+ <div id='xf3624c5d' class='imgcontainer'>
  <div style="max-width:655px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 655.157 728.568">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="63,17 51,21 51,12" style="fill:rgb(0,0,0)"/>
@@ -10117,8 +10118,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='x28ecd5fe' onclick='hideorshow("x28ecd5fe","xee5ebb83")'>show</button></p>
- <div id='xee5ebb83' style='display:none;' class='imgcontainer'>
+<button id='xf64cc9d1' onclick='hideorshow("xf64cc9d1","xfabe1157")'>show</button></p>
+ <div id='xfabe1157' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -10149,8 +10150,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='xc47fdc79' onclick='hideorshow("xc47fdc79","xa72bfe9b")'>show</button></p>
- <div id='xa72bfe9b' style='display:none;' class='imgcontainer'>
+<button id='x92ae3604' onclick='hideorshow("x92ae3604","xfea88cf1")'>show</button></p>
+ <div id='xfea88cf1' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -10197,8 +10198,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='x3d0be55d' onclick='hideorshow("x3d0be55d","x5e3f1679")'>show</button></p>
- <div id='x5e3f1679' style='display:none;' class='imgcontainer'>
+<button id='x35574abf' onclick='hideorshow("x35574abf","x8937e6be")'>show</button></p>
+ <div id='x8937e6be' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -10265,8 +10266,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='x0bfc21e5' onclick='hideorshow("x0bfc21e5","xc884f577")'>show</button></p>
- <div id='xc884f577' style='display:none;' class='imgcontainer'>
+<button id='x0fb8db30' onclick='hideorshow("x0fb8db30","xae40a33a")'>show</button></p>
+ <div id='xae40a33a' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -10318,8 +10319,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='xbff34af5' onclick='hideorshow("xbff34af5","x36cb15fd")'>show</button></p>
- <div id='x36cb15fd' style='display:none;' class='imgcontainer'>
+<button id='x6bcf3d64' onclick='hideorshow("x6bcf3d64","x86b46ad3")'>show</button></p>
+ <div id='x86b46ad3' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -10462,8 +10463,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='x9767e441' onclick='hideorshow("x9767e441","xa0bfe660")'>show</button></p>
- <div id='xa0bfe660' style='display:none;' class='imgcontainer'>
+<button id='x44bc0958' onclick='hideorshow("x44bc0958","xd2959042")'>show</button></p>
+ <div id='xd2959042' style='display:none;' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -10741,8 +10742,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/compound-operator.html">compound-operator:</a></b>
-<button id='x8eb79397' onclick='hideorshow("x8eb79397","x84912f48")'>show</button></p>
- <div id='x84912f48' style='display:none;' class='imgcontainer'>
+<button id='xdfa12119' onclick='hideorshow("xdfa12119","x4c8daef2")'>show</button></p>
+ <div id='x4c8daef2' style='display:none;' class='imgcontainer'>
  <div style="max-width:293px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 293.842 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -10785,8 +10786,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='x4a49b898' onclick='hideorshow("x4a49b898","x14b7e517")'>show</button></p>
- <div id='x14b7e517' style='display:none;' class='imgcontainer'>
+<button id='x82585551' onclick='hideorshow("x82585551","x8e61bc86")'>show</button></p>
+ <div id='x8e61bc86' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -10866,8 +10867,8 @@ In practice, most SELECT statements are simple SELECT statements.
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='x84df1f0c' onclick='hideorshow("x84df1f0c","x82b1389c")'>show</button></p>
- <div id='x82b1389c' style='display:none;' class='imgcontainer'>
+<button id='x9d509eae' onclick='hideorshow("x9d509eae","x9a4aa266")'>show</button></p>
+ <div id='x9a4aa266' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -11254,14 +11255,14 @@ evaluates to either false or NULL.
 
 </p><p>For a JOIN or INNER JOIN or CROSS JOIN, there is no difference between 
 a constraint expression in the WHERE clause and one in the ON clause.  However,
-for a LEFT JOIN or LEFT OUTER JOIN, the difference is very important.  
-In a LEFT JOIN,
-the extra NULL row for the right-hand table is added after ON clause processing
+for a LEFT or RIGHT or FULL OUTER JOIN, the difference is very important.  
+In an outer join, the extra NULL rows for non-matched rows on the other
+operand are added after ON clause processing
 but before WHERE clause processing.  A constraint of the form "left.x=right.y"
-in an ON clause will therefore allow through the added all-NULL rows of the
-right table.  But if that same constraint is in the WHERE clause a NULL in
-"right.y" will prevent the expression "left.x=right.y" from being true, and
-thus exclude that row from the output.
+in an ON clause will therefore allow through for the added all-NULL rows.
+But if that same constraint is in the WHERE clause, a NULL in one of
+"right.y" or "left.x" will prevent the expression "left.x=right.y" from being true,
+and thus exclude that row from the output.
 
 <a name="resultset"></a>
 
@@ -11441,8 +11442,8 @@ a compound SELECT using the UNION, UNION ALL, INTERSECT or EXCEPT operator,
 as shown by the following diagram:
 
 <p><b><a href="syntax/compound-select-stmt.html">compound-select-stmt:</a></b>
-<button id='x79298984' onclick='hideorshow("x79298984","x25876c55")'>hide</button></p>
- <div id='x25876c55' class='imgcontainer'>
+<button id='x8510f929' onclick='hideorshow("x8510f929","x7d357cdf")'>hide</button></p>
+ <div id='x7d357cdf' class='imgcontainer'>
  <div style="max-width:652px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 652.306 560.52">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -11581,8 +11582,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/common-table-expression.html">common-table-expression:</a></b>
-<button id='x297fc842' onclick='hideorshow("x297fc842","x0b16f6e4")'>show</button></p>
- <div id='x0b16f6e4' style='display:none;' class='imgcontainer'>
+<button id='x465bf0a6' onclick='hideorshow("x465bf0a6","x29388986")'>show</button></p>
+ <div id='x29388986' style='display:none;' class='imgcontainer'>
  <div style="max-width:638px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 638.525 167.4">
 <circle cx="5" cy="29" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,29 20,33 20,24" style="fill:rgb(0,0,0)"/>
@@ -11651,8 +11652,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='xe44cb4ee' onclick='hideorshow("xe44cb4ee","x5163e62f")'>show</button></p>
- <div id='x5163e62f' style='display:none;' class='imgcontainer'>
+<button id='x01afd55c' onclick='hideorshow("x01afd55c","x66b1cdd3")'>show</button></p>
+ <div id='x66b1cdd3' style='display:none;' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -11930,8 +11931,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/compound-operator.html">compound-operator:</a></b>
-<button id='xd96fe8d9' onclick='hideorshow("xd96fe8d9","x456b1eae")'>show</button></p>
- <div id='x456b1eae' style='display:none;' class='imgcontainer'>
+<button id='x7f03ad74' onclick='hideorshow("x7f03ad74","xf486c9ca")'>show</button></p>
+ <div id='xf486c9ca' style='display:none;' class='imgcontainer'>
  <div style="max-width:293px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 293.842 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -11972,8 +11973,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='xe1a9e7fb' onclick='hideorshow("xe1a9e7fb","x63d62ab9")'>show</button></p>
- <div id='x63d62ab9' style='display:none;' class='imgcontainer'>
+<button id='x66a86081' onclick='hideorshow("x66a86081","x95c61755")'>show</button></p>
+ <div id='x95c61755' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -12004,8 +12005,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='xcd9909f5' onclick='hideorshow("xcd9909f5","x8a186c96")'>show</button></p>
- <div id='x8a186c96' style='display:none;' class='imgcontainer'>
+<button id='xd47cf8e5' onclick='hideorshow("xd47cf8e5","x83bba41b")'>show</button></p>
+ <div id='x83bba41b' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -12052,8 +12053,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='x98275cc3' onclick='hideorshow("x98275cc3","xced84a8c")'>show</button></p>
- <div id='xced84a8c' style='display:none;' class='imgcontainer'>
+<button id='xfbe7a1a7' onclick='hideorshow("xfbe7a1a7","xf5150d08")'>show</button></p>
+ <div id='xf5150d08' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -12120,8 +12121,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='x31e27d3e' onclick='hideorshow("x31e27d3e","x670d2a67")'>show</button></p>
- <div id='x670d2a67' style='display:none;' class='imgcontainer'>
+<button id='xff220fc8' onclick='hideorshow("xff220fc8","x506dfd37")'>show</button></p>
+ <div id='x506dfd37' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -12173,8 +12174,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='xfc280618' onclick='hideorshow("xfc280618","x3c6348f4")'>show</button></p>
- <div id='x3c6348f4' style='display:none;' class='imgcontainer'>
+<button id='x9ef6b9a2' onclick='hideorshow("x9ef6b9a2","x35024829")'>show</button></p>
+ <div id='x35024829' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -12318,8 +12319,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='xce1ae0b0' onclick='hideorshow("xce1ae0b0","xe3df3276")'>show</button></p>
- <div id='xe3df3276' style='display:none;' class='imgcontainer'>
+<button id='xf564e8b4' onclick='hideorshow("xf564e8b4","x2e322a0a")'>show</button></p>
+ <div id='x2e322a0a' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -12399,8 +12400,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='x0b6da2cb' onclick='hideorshow("x0b6da2cb","xa55ff156")'>show</button></p>
- <div id='xa55ff156' style='display:none;' class='imgcontainer'>
+<button id='x8d3aaba0' onclick='hideorshow("x8d3aaba0","x2a4f2f78")'>show</button></p>
+ <div id='x2a4f2f78' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -12612,8 +12613,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/expr.html">expr:</a></b>
-<button id='xb0110d17' onclick='hideorshow("xb0110d17","xa58b7a65")'>show</button></p>
- <div id='xa58b7a65' style='display:none;' class='imgcontainer'>
+<button id='x386d0e85' onclick='hideorshow("x386d0e85","x6cd28ebe")'>show</button></p>
+ <div id='x6cd28ebe' style='display:none;' class='imgcontainer'>
  <div style="max-width:963px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 963.96 1068.77">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -13094,8 +13095,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/filter-clause.html">filter-clause:</a></b>
-<button id='xceda306e' onclick='hideorshow("xceda306e","xea62fd58")'>show</button></p>
- <div id='xea62fd58' style='display:none;' class='imgcontainer'>
+<button id='x24bbaf82' onclick='hideorshow("x24bbaf82","xbfc3b1ce")'>show</button></p>
+ <div id='xbfc3b1ce' style='display:none;' class='imgcontainer'>
  <div style="max-width:422px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 422.381 34.56">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -13125,8 +13126,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/function-arguments.html">function-arguments:</a></b>
-<button id='x3b1c4694' onclick='hideorshow("x3b1c4694","x05ebb606")'>show</button></p>
- <div id='x05ebb606' style='display:none;' class='imgcontainer'>
+<button id='x4aaee466' onclick='hideorshow("x4aaee466","x436b72be")'>show</button></p>
+ <div id='x436b72be' style='display:none;' class='imgcontainer'>
  <div style="max-width:456px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 456.566 223.344">
 <circle cx="5" cy="56" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,56 20,60 20,52" style="fill:rgb(0,0,0)"/>
@@ -13189,8 +13190,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/literal-value.html">literal-value:</a></b>
-<button id='xe3bbd990' onclick='hideorshow("xe3bbd990","x6fe52e16")'>show</button></p>
- <div id='x6fe52e16' style='display:none;' class='imgcontainer'>
+<button id='x02ecb1a9' onclick='hideorshow("x02ecb1a9","xaf24b70b")'>show</button></p>
+ <div id='xaf24b70b' style='display:none;' class='imgcontainer'>
  <div style="max-width:341px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 341.376 336.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,319 39,324 39,315" style="fill:rgb(0,0,0)"/>
@@ -13260,8 +13261,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/over-clause.html">over-clause:</a></b>
-<button id='xa8bb4111' onclick='hideorshow("xa8bb4111","xaafd812c")'>show</button></p>
- <div id='xaafd812c' style='display:none;' class='imgcontainer'>
+<button id='x971719a0' onclick='hideorshow("x971719a0","xb3496704")'>show</button></p>
+ <div id='xb3496704' style='display:none;' class='imgcontainer'>
  <div style="max-width:600px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 600.706 418.392">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -13352,8 +13353,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='xac187afd' onclick='hideorshow("xac187afd","x7446f303")'>show</button></p>
- <div id='x7446f303' style='display:none;' class='imgcontainer'>
+<button id='x44f617a7' onclick='hideorshow("x44f617a7","x7f88d487")'>show</button></p>
+ <div id='x7f88d487' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -13563,8 +13564,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/raise-function.html">raise-function:</a></b>
-<button id='xaf0ab36f' onclick='hideorshow("xaf0ab36f","x5a9d9547")'>show</button></p>
- <div id='x5a9d9547' style='display:none;' class='imgcontainer'>
+<button id='x8d3842ac' onclick='hideorshow("x8d3842ac","x9c6b9f93")'>show</button></p>
+ <div id='x9c6b9f93' style='display:none;' class='imgcontainer'>
  <div style="max-width:627px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 627.302 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -13619,8 +13620,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='x6462122b' onclick='hideorshow("x6462122b","x5f77c13d")'>show</button></p>
- <div id='x5f77c13d' style='display:none;' class='imgcontainer'>
+<button id='xaf688c89' onclick='hideorshow("xaf688c89","xf5fcceb6")'>show</button></p>
+ <div id='xf5fcceb6' style='display:none;' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -13898,8 +13899,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/compound-operator.html">compound-operator:</a></b>
-<button id='xf14d4425' onclick='hideorshow("xf14d4425","x1a6c3ae2")'>show</button></p>
- <div id='x1a6c3ae2' style='display:none;' class='imgcontainer'>
+<button id='x6e14dced' onclick='hideorshow("x6e14dced","xb2eb8c24")'>show</button></p>
+ <div id='xb2eb8c24' style='display:none;' class='imgcontainer'>
  <div style="max-width:293px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 293.842 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -13940,8 +13941,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='x1a2d29a6' onclick='hideorshow("x1a2d29a6","x2d706d77")'>show</button></p>
- <div id='x2d706d77' style='display:none;' class='imgcontainer'>
+<button id='x703ea4a5' onclick='hideorshow("x703ea4a5","x414ec75e")'>show</button></p>
+ <div id='x414ec75e' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -13972,8 +13973,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='x67e595a0' onclick='hideorshow("x67e595a0","xad556e60")'>show</button></p>
- <div id='xad556e60' style='display:none;' class='imgcontainer'>
+<button id='x6dc9fba6' onclick='hideorshow("x6dc9fba6","x4c41ef9b")'>show</button></p>
+ <div id='x4c41ef9b' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -14020,8 +14021,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='x6e06bdd2' onclick='hideorshow("x6e06bdd2","x566b7594")'>show</button></p>
- <div id='x566b7594' style='display:none;' class='imgcontainer'>
+<button id='x12e9de81' onclick='hideorshow("x12e9de81","x8f6a733f")'>show</button></p>
+ <div id='x8f6a733f' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -14088,8 +14089,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='x97092db7' onclick='hideorshow("x97092db7","x940219b8")'>show</button></p>
- <div id='x940219b8' style='display:none;' class='imgcontainer'>
+<button id='xdba1658e' onclick='hideorshow("xdba1658e","xdacd9a05")'>show</button></p>
+ <div id='xdacd9a05' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -14141,8 +14142,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='xd5bf60d0' onclick='hideorshow("xd5bf60d0","xd94f9210")'>show</button></p>
- <div id='xd94f9210' style='display:none;' class='imgcontainer'>
+<button id='xfd5b4100' onclick='hideorshow("xfd5b4100","xa7f13192")'>show</button></p>
+ <div id='xa7f13192' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -14286,8 +14287,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='x1fd092e6' onclick='hideorshow("x1fd092e6","xb8787981")'>show</button></p>
- <div id='xb8787981' style='display:none;' class='imgcontainer'>
+<button id='x2d69a673' onclick='hideorshow("x2d69a673","xaac5afbb")'>show</button></p>
+ <div id='xaac5afbb' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -14367,8 +14368,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='x27b5b481' onclick='hideorshow("x27b5b481","xedf30102")'>show</button></p>
- <div id='xedf30102' style='display:none;' class='imgcontainer'>
+<button id='x25cb4a13' onclick='hideorshow("x25cb4a13","x61e15955")'>show</button></p>
+ <div id='x61e15955' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -14579,8 +14580,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/type-name.html">type-name:</a></b>
-<button id='xcc909163' onclick='hideorshow("xcc909163","xcaf85157")'>show</button></p>
- <div id='xcaf85157' style='display:none;' class='imgcontainer'>
+<button id='x5816975f' onclick='hideorshow("x5816975f","xeb555151")'>show</button></p>
+ <div id='xeb555151' style='display:none;' class='imgcontainer'>
  <div style="max-width:661px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 661.008 110.16">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -14634,8 +14635,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/signed-number.html">signed-number:</a></b>
-<button id='x788a6107' onclick='hideorshow("x788a6107","x1b3d4145")'>show</button></p>
- <div id='x1b3d4145' style='display:none;' class='imgcontainer'>
+<button id='xbedd75e7' onclick='hideorshow("xbedd75e7","xdb5e196e")'>show</button></p>
+ <div id='xdb5e196e' style='display:none;' class='imgcontainer'>
  <div style="max-width:292px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 292.013 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,44 39,48 39,40" style="fill:rgb(0,0,0)"/>
@@ -14663,8 +14664,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/ordering-term.html">ordering-term:</a></b>
-<button id='x44708a7c' onclick='hideorshow("x44708a7c","x0cdb687a")'>show</button></p>
- <div id='x0cdb687a' style='display:none;' class='imgcontainer'>
+<button id='x9b0ecbd9' onclick='hideorshow("x9b0ecbd9","x938018e5")'>show</button></p>
+ <div id='x938018e5' style='display:none;' class='imgcontainer'>
  <div style="max-width:798px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 798.451 99.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -14724,8 +14725,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/select-core.html">select-core:</a></b>
-<button id='x10e80211' onclick='hideorshow("x10e80211","xba3ee58c")'>show</button></p>
- <div id='xba3ee58c' style='display:none;' class='imgcontainer'>
+<button id='x4af73037' onclick='hideorshow("x4af73037","xe1626af5")'>show</button></p>
+ <div id='xe1626af5' style='display:none;' class='imgcontainer'>
  <div style="max-width:655px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 655.157 728.568">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="63,17 51,21 51,12" style="fill:rgb(0,0,0)"/>
@@ -14902,8 +14903,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/join-clause.html">join-clause:</a></b>
-<button id='xc3747ad1' onclick='hideorshow("xc3747ad1","xd5279444")'>show</button></p>
- <div id='xd5279444' style='display:none;' class='imgcontainer'>
+<button id='xe00f7e00' onclick='hideorshow("xe00f7e00","xb93f5353")'>show</button></p>
+ <div id='xb93f5353' style='display:none;' class='imgcontainer'>
  <div style="max-width:793px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 793.282 84.24">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -14934,8 +14935,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/join-constraint.html">join-constraint:</a></b>
-<button id='x8fe4926f' onclick='hideorshow("x8fe4926f","x6a2007d5")'>show</button></p>
- <div id='x6a2007d5' style='display:none;' class='imgcontainer'>
+<button id='xb0e816d3' onclick='hideorshow("xb0e816d3","x56fcfdde")'>show</button></p>
+ <div id='x56fcfdde' style='display:none;' class='imgcontainer'>
  <div style="max-width:483px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 483.336 126.576">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,55 39,59 39,50" style="fill:rgb(0,0,0)"/>
@@ -14982,8 +14983,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='xcab301ef' onclick='hideorshow("xcab301ef","x3df9ba0e")'>show</button></p>
- <div id='x3df9ba0e' style='display:none;' class='imgcontainer'>
+<button id='xf0d31cf6' onclick='hideorshow("xf0d31cf6","xfe8b409f")'>show</button></p>
+ <div id='xfe8b409f' style='display:none;' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -15050,8 +15051,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/result-column.html">result-column:</a></b>
-<button id='x61f42f9c' onclick='hideorshow("x61f42f9c","xe09b6df9")'>show</button></p>
- <div id='xe09b6df9' style='display:none;' class='imgcontainer'>
+<button id='xf2b82177' onclick='hideorshow("xf2b82177","xfea02009")'>show</button></p>
+ <div id='xfea02009' style='display:none;' class='imgcontainer'>
  <div style="max-width:398px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 398.054 163.08">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="45,17 33,21 33,12" style="fill:rgb(0,0,0)"/>
@@ -15103,8 +15104,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/table-or-subquery.html">table-or-subquery:</a></b>
-<button id='xea7208de' onclick='hideorshow("xea7208de","xac9b420d")'>show</button></p>
- <div id='xac9b420d' style='display:none;' class='imgcontainer'>
+<button id='x48ac33ad' onclick='hideorshow("x48ac33ad","x9a398ffd")'>show</button></p>
+ <div id='x9a398ffd' style='display:none;' class='imgcontainer'>
  <div style="max-width:720px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 720.778 457.704">
 <circle cx="5" cy="36" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,74 39,78 39,70" style="fill:rgb(0,0,0)"/>
@@ -15247,8 +15248,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/select-stmt.html">select-stmt:</a></b>
-<button id='x90ffb670' onclick='hideorshow("x90ffb670","xd685fecf")'>show</button></p>
- <div id='xd685fecf' style='display:none;' class='imgcontainer'>
+<button id='xf29f61eb' onclick='hideorshow("xf29f61eb","xdd1a58bc")'>show</button></p>
+ <div id='xdd1a58bc' style='display:none;' class='imgcontainer'>
  <div style="max-width:669px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 669.677 1162.3">
 <path d="M55,845L667,845L667,99L55,99Z"  style="fill:none;stroke-width:3.24;stroke:rgb(211,211,211);" />
 <circle cx="6" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
@@ -15526,8 +15527,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/compound-operator.html">compound-operator:</a></b>
-<button id='x62aba7dc' onclick='hideorshow("x62aba7dc","xf7375003")'>show</button></p>
- <div id='xf7375003' style='display:none;' class='imgcontainer'>
+<button id='xc00870ec' onclick='hideorshow("xc00870ec","x85f235e2")'>show</button></p>
+ <div id='x85f235e2' style='display:none;' class='imgcontainer'>
  <div style="max-width:293px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 293.842 147.96">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -15570,8 +15571,8 @@ as shown by the following diagram:
 </div>
 </div>
 <p><b><a href="syntax/window-defn.html">window-defn:</a></b>
-<button id='x165ac4e6' onclick='hideorshow("x165ac4e6","xcd8a346f")'>show</button></p>
- <div id='xcd8a346f' style='display:none;' class='imgcontainer'>
+<button id='xb2b24b21' onclick='hideorshow("xb2b24b21","x76ab6808")'>show</button></p>
+ <div id='x76ab6808' style='display:none;' class='imgcontainer'>
  <div style="max-width:479px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 479.765 380.592">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -15651,8 +15652,8 @@ as shown by the following diagram:
 </svg>
 </div>
 <p><b><a href="syntax/frame-spec.html">frame-spec:</a></b>
-<button id='xd7ba7ea2' onclick='hideorshow("xd7ba7ea2","xd97ae810")'>show</button></p>
- <div id='xd97ae810' style='display:none;' class='imgcontainer'>
+<button id='x86862995' onclick='hideorshow("x86862995","x7aacbc15")'>show</button></p>
+ <div id='x7aacbc15' style='display:none;' class='imgcontainer'>
  <div style="max-width:1039px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 1039.65 522.72">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,92 39,97 39,88" style="fill:rgb(0,0,0)"/>
@@ -16101,8 +16102,8 @@ we leave it alone and document it here, rather than try to fix it.
 <p>SQLite accepts all of the usual syntax for JOIN operators:
 
 <p><b><a href="syntax/join-operator.html">join-operator:</a></b>
-<button id='xcd7cc9da' onclick='hideorshow("xcd7cc9da","x075b2cf8")'>hide</button></p>
- <div id='x075b2cf8' class='imgcontainer'>
+<button id='x34b7d5df' onclick='hideorshow("x34b7d5df","xfa214324")'>hide</button></p>
+ <div id='xfa214324' class='imgcontainer'>
  <div style="max-width:620px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 620.333 255.312">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="50,71 39,76 39,67" style="fill:rgb(0,0,0)"/>
@@ -16189,7 +16190,28 @@ which is the same as "FULL JOIN".
 </p><p>Remember:  you <i>can</i> use these non-standard join types but you <i>ought not</i>.
 Stick to using standard JOIN syntax for portability with other SQL database engines.
 
-</p><h2 id="precedence_of_comma_joins_and_cross_join"><span>9.2. </span>Precedence of comma-joins and CROSS JOIN</h2>
+</p><h2 id="flexible_join_syntax"><span>9.2. </span>Flexible join syntax</h2>
+
+<p>Standard SQL has tighter restrictions on join syntax than does SQLite.
+In standard SQL, all joins other than comma-joins, CROSS JOINs, and NATURAL
+joins must have either an ON clause or a USING clause and comma-joins, CROSS JOINs,
+and NATURAL joins must not have either an ON or USING clause.  SQLite is not
+nearly so fussy about join syntax.  SQLite will accept and process an ON or USING clause
+on a comma-join or CROSS JOIN, and will let you omit the ON or USING
+clause from any join at all.  In SQLite, the only restrictions are:
+
+</p><ul>
+<li><p> You cannot have an ON or USING clause on a NATURAL join.
+
+</p></li><li><p> You cannot have both an ON clause and a USING clause on the same join.
+</p></li></ul>
+
+<p>
+SQLite even allows you to omit the ON or USING clause from an outer join,
+though doing so means that the outer join is unconstrained (as if the ON clause
+where "<tt>ON true</tt>") which make the outer join behave like an inner join.
+
+</p><h2 id="precedence_of_comma_joins_and_cross_join"><span>9.3. </span>Precedence of comma-joins and CROSS JOIN</h2>
 
 <p>In standard SQL, joins that use the JOIN keyword take higher precedence
 than comma-joins.  That is to say, JOIN operators happen before comma operators.
@@ -16225,5 +16247,5 @@ programmers instinctively follow all of these suggestions without having to
 be told, and so the lack of precedence difference between comma-joins and
 the JOIN keyword in SQLite rarely comes up in practice.  But you should be aware
 of the problem, in case it ever does appear.
-</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/lang_select.in?m=22906d1d5a">2023-06-13 13:23:44</a> UTC </small></i></p>
+</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/lang_select.in?m=a3e8e5e645">2024-05-11 12:18:17</a> UTC </small></i></p>
 

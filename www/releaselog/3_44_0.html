@@ -143,7 +143,7 @@ antiRobotDefense();
      by <a href="../pragma.html#pragma_integrity_check">PRAGMA integrity_check</a>.
 <li> <a href="../compile.html#use_seh">SQLITE_USE_SEH</a> (Structured Exception Handling) is now enabled by default whenever
      SQLite is built using the Microsoft C compiler.  It can be disabled using
-     -DSQLITE_USE_SEH=0
+     -D<a href="../compile.html#omit_seh">SQLITE_OMIT_SEH</a>.
 <li> Query planner optimizations:
      <ol type="a">
      <li> In partial index scans, if the WHERE clause implies a constant value for a table

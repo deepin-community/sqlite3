@@ -416,17 +416,11 @@ But type enforcement is no help in prevent subtly incorrect data
 from being recorded.
 
 </p><p> So, for example, rigid type enforcement can successfully prevent
-the customer name (text) from being inserted into integer
+the customer name (text) from being inserted into the integer
 Customer.creditScore column.  On the other hand, if that mistake occurs,
 it is very easy to spot the problem and find all affected rows.
 But type enforcement is no help in preventing a bug where the customer
 family name and given name are reversed, since both are text fields.
-
-</p><p> (Aside:  Decades ago, I worked on a team where there was a woman
-named "Merritt Tracy".  "Merritt" was her given name and "Tracy" was
-her family name.  She reported that she spent an inordinate amount of
-time and energy trying to correct databases that had "Tracy" has her
-given name and "Merritt" as her family name.)
 
 </p><p> By suppressing easy-to-detect errors and passing through only the
 hard-to-detect errors, rigid type enforcement can actually make it more
@@ -491,5 +485,5 @@ datatype if not complete SQLite-style type flexibility.
 stores a single well-defined type.  But occasionally you will run
 across situations where having a flexible type system makes the
 solution to your problem cleaner and easier.
-</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/flextypegood.in?m=f43597ad0b">2023-12-05 14:43:20</a> UTC </small></i></p>
+</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/flextypegood.in?m=d774a91f3e">2024-07-14 22:39:43</a> UTC </small></i></p>
 

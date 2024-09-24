@@ -249,8 +249,8 @@ virtual table implementations.
 <p>A virtual table is created using a <a href="lang_createvtab.html">CREATE VIRTUAL TABLE</a> statement.
 
 <p><b><a href="syntax/create-virtual-table-stmt.html">create-virtual-table-stmt:</a></b>
-<button id='x94eee4ec' onclick='hideorshow("x94eee4ec","x299a7cc2")'>hide</button></p>
- <div id='x299a7cc2' class='imgcontainer'>
+<button id='xddd34e8a' onclick='hideorshow("xddd34e8a","xd826c93c")'>hide</button></p>
+ <div id='xd826c93c' class='imgcontainer'>
  <div style="max-width:624px"><svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 624.096 259.848">
 <circle cx="5" cy="17" r="3.6"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
 <polygon points="32,17 20,21 20,12" style="fill:rgb(0,0,0)"/>
@@ -1319,6 +1319,8 @@ SQLITE_CONSTRAINT, that means there is no way for the virtual table
 to be safely used, and the <a href="c3ref/prepare.html">sqlite3_prepare()</a> call will fail with
 a "no query solution" error.
 
+<a name="erpotvf"></a>
+
 </p><h3 id="enforcing_required_parameters_on_table_valued_functions"><span>2.3.4. </span>Enforcing Required Parameters On Table-Valued Functions</h3>
 
 <p>The SQLITE_CONSTRAINT return from xBestIndex
@@ -2043,5 +2045,5 @@ In that same release, the xIntegrity method was added to many built-in
 virtual tables, such as <a href="fts3.html">FTS3</a>, <a href="fts5.html">FTS5</a>, and <a href="rtree.html">RTREE</a> so that the content
 of those tables will henceforth be automatically checked for consistency
 when <a href="pragma.html#pragma_integrity_check">PRAGMA integrity_check</a> is run.
-</p><p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/vtab.in?m=45e542fb54">2023-12-05 14:43:20</a> UTC </small></i></p>
+</p>
 

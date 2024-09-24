@@ -156,7 +156,7 @@ antiRobotDefense();
     <a href="../c3ref/initialize.html">sqlite3_initialize()</a> to help ensure that it is thread-safe.
 <li>Fix the <a href="../optoverview.html#or_opt">OR optimization</a> so that it always ignores subplans that
     do not use an index.
-<li>Do not apply the WHERE-clause pushdown optimization on terms that originate
+<li>Do not apply the <a href="../optoverview.html#pushdown">WHERE-clause push-down optimization</a> on terms that originate
     in the ON or USING clause of a LEFT JOIN.  Fix for ticket
     <a href="https://www.sqlite.org/src/info/c2a19d81652f40568c">c2a19d81652f40568c</a>.
 

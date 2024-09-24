@@ -144,7 +144,7 @@ antiRobotDefense();
     the table has one or more indexes that are able to trigger the OR optimization,
     but none of the indexes reference any table columns other than the INTEGER PRIMARY KEY.
     Ticket <a href="https://www.sqlite.org/src/info/16c9801ceba49">16c9801ceba49</a>.
-<li>When checking for the WHERE-clause push-down optimization, verify that all terms
+<li>When checking for the <a href="../optoverview.html#pushdown">WHERE-clause push-down optimization</a>, verify that all terms
     of the compound inner SELECT are non-aggregate, not just the last term. Fix for ticket
     <a href="https://www.sqlite.org/src/info/f7f8c97e97597">f7f8c97e97597</a>.
 <li>Fix a locking race condition in Windows that can occur when two or more processes

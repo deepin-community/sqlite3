@@ -415,7 +415,7 @@ on the device.
 This file implements a shim used during SQLite testing that verifies that
 the database and rollback journal are written in the correct order and
 are "synced" at appropriate times in order to guarantee that the database
-can recover from a power lose are hard reset at any time.  The shim
+can recover from a power loss or hard reset at any time.  The shim
 checks several invariants on the operation of databases and rollback
 journals and raises exceptions if any of those invariants are violated.
 These invariants, in turn, assure that the database is always recoverable.
@@ -489,5 +489,5 @@ those objects are not registered directly with SQLite.  Instead, the
 <a href="c3ref/vfs.html">sqlite3_vfs</a> and the <a href="c3ref/file.html">sqlite3_file</a> object points to an instance
 of the <a href="c3ref/io_methods.html">sqlite3_io_methods</a> object.
 </p>
-
+<p align="center"><small><i>This page last modified on  <a href="https://sqlite.org/docsrc/honeypot" id="mtimelink"  data-href="https://sqlite.org/docsrc/finfo/pages/vfs.in?m=90886f1151">2024-02-22 15:53:45</a> UTC </small></i></p>
 

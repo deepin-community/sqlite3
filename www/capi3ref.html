@@ -264,6 +264,7 @@ be removed in some future release.</li>
 <li><a href='#sqliteconfigpcache2'>SQLITE_CONFIG_PCACHE2</a></li>
 <li><a href='#sqliteconfigpcachehdrsz'>SQLITE_CONFIG_PCACHE_HDRSZ</a></li>
 <li><a href='#sqliteconfigpmasz'>SQLITE_CONFIG_PMASZ</a></li>
+<li><a href='#sqliteconfigrowidinview'>SQLITE_CONFIG_ROWID_IN_VIEW</a></li>
 <li><a href='#sqliteconfigscratch'>SQLITE_CONFIG_SCRATCH</a></li>
 <li><a href='#sqliteconfigserialized'>SQLITE_CONFIG_SERIALIZED</a></li>
 <li><a href='#sqliteconfigsinglethread'>SQLITE_CONFIG_SINGLETHREAD</a></li>
@@ -686,8 +687,8 @@ be removed in some future release.</li>
 <p>Note: Functions marked with "<small><i>(exp)</i></small>"
 are <a href="capi3ref.html">experimental</a> and functions whose names are
 <s>struck through</s> are <a href="capi3ref.html">deprecated</a>.</p>
-<!-- number of functions: 290 -->
-<!-- number of deprecated functions: 7 -->
+<!-- number of functions: 288 -->
+<!-- number of deprecated functions: 9 -->
 <!-- number of experimental functions: 0 -->
 <div class='columns' style='columns: 15em auto;'>
 <ul style='padding-top:0;'>
@@ -856,7 +857,7 @@ are <a href="capi3ref.html">experimental</a> and functions whose names are
 <li><a href='#sqlite3_preupdate_blobwrite'>sqlite3_preupdate_hook</a></li>
 <li><a href='#sqlite3_preupdate_blobwrite'>sqlite3_preupdate_new</a></li>
 <li><a href='#sqlite3_preupdate_blobwrite'>sqlite3_preupdate_old</a></li>
-<li><a href='#sqlite3_profile'>sqlite3_profile</a></li>
+<li><s>sqlite3_profile</s></li>
 <li><a href='#sqlite3_progress_handler'>sqlite3_progress_handler</a></li>
 <li><a href='#sqlite3_randomness'>sqlite3_randomness</a></li>
 <li><a href='#sqlite3_free'>sqlite3_realloc</a></li>
@@ -936,7 +937,7 @@ are <a href="capi3ref.html">experimental</a> and functions whose names are
 <li><a href='#sqlite3_threadsafe'>sqlite3_threadsafe</a></li>
 <li><a href='#sqlite3_total_changes'>sqlite3_total_changes</a></li>
 <li><a href='#sqlite3_total_changes'>sqlite3_total_changes64</a></li>
-<li><a href='#sqlite3_profile'>sqlite3_trace</a></li>
+<li><s>sqlite3_trace</s></li>
 <li><a href='#sqlite3_trace_v2'>sqlite3_trace_v2</a></li>
 <li><s>sqlite3_transfer_bindings</s></li>
 <li><a href='#sqlite3_txn_state'>sqlite3_txn_state</a></li>
@@ -1375,10 +1376,11 @@ and not its inode needs to be synced.</p>
 </ul>
 xLock() upgrades the database file lock.  In other words, xLock() moves the
 database file lock in the direction NONE toward EXCLUSIVE. The argument to
-xLock() is always on of SHARED, RESERVED, PENDING, or EXCLUSIVE, never
+xLock() is always one of SHARED, RESERVED, PENDING, or EXCLUSIVE, never
 SQLITE_LOCK_NONE.  If the database file lock is already at or above the
 requested lock, then the call to xLock() is a no-op.
 xUnlock() downgrades the database file lock to either SHARED or NONE.
+If the lock is already at or below the requested lock state, then the call
 to xUnlock() is a no-op.
 The xCheckReservedLock() method checks whether any database connection,
 either in this process or in some other process, is holding a RESERVED,
@@ -2937,6 +2939,8 @@ is a valid and open <a href="#sqlite3">database connection</a>.
 the 1st parameter to sqlite3_exec() while sqlite3_exec() is running.
 <li> The application must not modify the SQL statement text passed into
 the 2nd parameter of sqlite3_exec() while sqlite3_exec() is running.
+<li> The application must not dereference the arrays or string pointers
+passed as the 3rd and 4th callback parameters after it returns.
 </ul>
 </p><hr><a name="sqlite3_extended_result_codes"></a>
 <h2>Enable Or Disable Extended Result Codes</h2>
@@ -4304,6 +4308,12 @@ invoked when rows are deleted using the <a href="lang_delete.html#truncateopt">t
 The exceptions defined in this paragraph might change in a future
 release of SQLite.</p>
 
+<p>Whether the update hook is invoked before or after the
+corresponding change is currently unspecified and may differ
+depending on the type of change. Do not rely on the order of the
+hook call with regards to the final result of the operation which
+triggers the hook.</p>
+
 <p>The update hook implementation must not do anything that will modify
 the database connection that invoked the update hook.  Any actions
 to modify the database connection must be deferred until after the
@@ -4464,23 +4474,44 @@ is doing a GROUP BY.
 <li value="2"><p>
 If the sqlite3_vtab_distinct() interface returns 2, that means
 that the query planner does not need the rows returned in any particular
-order, as long as rows with the same values in all "aOrderBy" columns
-are adjacent.  Furthermore, only a single row for each particular
-combination of values in the columns identified by the "aOrderBy" field
-needs to be returned.  It is always ok for two or more rows with the same
-values in all "aOrderBy" columns to be returned, as long as all such rows
-are adjacent.  The virtual table may, if it chooses, omit extra rows
-that have the same value for all columns identified by "aOrderBy".
-However omitting the extra rows is optional.
+order, as long as rows with the same values in all columns identified
+by "aOrderBy" are adjacent.  Furthermore, when two or more rows
+contain the same values for all columns identified by "colUsed", all but
+one such row may optionally be omitted from the result.
+The virtual table is not required to omit rows that are duplicates
+over the "colUsed" columns, but if the virtual table can do that without
+too much extra effort, it could potentially help the query to run faster.
 This mode is used for a DISTINCT query.
 <li value="3"><p>
-If the sqlite3_vtab_distinct() interface returns 3, that means
-that the query planner needs only distinct rows but it does need the
-rows to be sorted. The virtual table implementation is free to omit
-rows that are identical in all aOrderBy columns, if it wants to, but
-it is not required to omit any rows.  This mode is used for queries
+If the sqlite3_vtab_distinct() interface returns 3, that means the
+virtual table must return rows in the order defined by "aOrderBy" as
+if the sqlite3_vtab_distinct() interface had returned 0.  However if
+two or more rows in the result have the same values for all columns
+identified by "colUsed", then all but one such row may optionally be
+omitted.  Like when the return value is 2, the virtual table
+is not required to omit rows that are duplicates over the "colUsed"
+columns, but if the virtual table can do that without
+too much extra effort, it could potentially help the query to run faster.
+This mode is used for queries
 that have both DISTINCT and ORDER BY clauses.
 </ol></p>
+
+<p><p>The following table summarizes the conditions under which the
+virtual table is allowed to set the "orderByConsumed" flag based on
+the value returned by sqlite3_vtab_distinct().  This table is a
+restatement of the previous four paragraphs:</p>
+
+<p><table border=1 cellspacing=0 cellpadding=10 width="90%">
+<tr>
+<td valign="top">sqlite3_vtab_distinct() return value
+<td valign="top">Rows are returned in aOrderBy order
+<td valign="top">Rows with the same value in all aOrderBy columns are adjacent
+<td valign="top">Duplicates over all colUsed columns may be omitted
+<tr><td>0<td>yes<td>yes<td>no
+<tr><td>1<td>no<td>yes<td>no
+<tr><td>2<td>no<td>yes<td>yes
+<tr><td>3<td>yes<td>yes<td>yes
+</table></p>
 
 <p>For the purposes of comparing virtual table output values to see if the
 values are same value for sorting purposes, two NULL values are considered
@@ -5166,6 +5197,7 @@ meaning of each of these checkpoint modes.
 #define SQLITE_CONFIG_SMALL_MALLOC        27  /* boolean */
 #define SQLITE_CONFIG_SORTERREF_SIZE      28  /* int nByte */
 #define SQLITE_CONFIG_MEMDB_MAXSIZE       29  /* sqlite3_int64 */
+#define SQLITE_CONFIG_ROWID_IN_VIEW       30  /* int* */
 </pre></blockquote>
 <p>
 These constants are the available integer configuration options that
@@ -5559,7 +5591,24 @@ size can be adjusted up or down for individual databases using the
 <a href="#sqlitefcntlsizelimit">SQLITE_FCNTL_SIZE_LIMIT</a> <a href="#sqlite3_file_control">file-control</a>.  If this
 configuration setting is never used, then the default maximum is determined
 by the <a href="compile.html#memdb_default_maxsize">SQLITE_MEMDB_DEFAULT_MAXSIZE</a> compile-time option.  If that
-compile-time option is not set, then the default maximum is 1073741824.
+compile-time option is not set, then the default maximum is 1073741824.</p>
+
+<p><a name="sqliteconfigrowidinview"></a>
+
+<dt>SQLITE_CONFIG_ROWID_IN_VIEW
+<dd>The SQLITE_CONFIG_ROWID_IN_VIEW option enables or disables the ability
+for VIEWs to have a ROWID.  The capability can only be enabled if SQLite is
+compiled with -DSQLITE_ALLOW_ROWID_IN_VIEW, in which case the capability
+defaults to on.  This configuration option queries the current setting or
+changes the setting to off or on.  The argument is a pointer to an integer.
+If that integer initially holds a value of 1, then the ability for VIEWs to
+have ROWIDs is activated.  If the integer initially holds zero, then the
+ability is deactivated.  Any other initial value for the integer leaves the
+setting unchanged.  After changes, if any, the integer is written with
+a 1 or 0, if the ability for VIEWs to have ROWIDs is on or off.  If SQLite
+is compiled without -DSQLITE_ALLOW_ROWID_IN_VIEW (which is the usual and
+recommended case) then the integer is always filled with zero, regardless
+if its initial value.
 </dl>
 </p><hr><a name="SQLITE_DBCONFIG_DEFENSIVE"></a>
 <h2>Database Connection Configuration Options</h2>
@@ -6863,9 +6912,9 @@ and EXCLUSIVE.
 <h2>Compile-Time Library Version Numbers</h2>
 </div>
 <blockquote><pre>
-#define SQLITE_VERSION        "3.45.1"
-#define SQLITE_VERSION_NUMBER 3045001
-#define SQLITE_SOURCE_ID      "2024-01-30 16:01:20 e876e51a0ed5c5b3126f52e532044363a014bc594cfefa87ffb5b82257cc467a"
+#define SQLITE_VERSION        "3.46.1"
+#define SQLITE_VERSION_NUMBER 3046001
+#define SQLITE_SOURCE_ID      "2024-08-13 09:16:08 c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33"
 </pre></blockquote>
 <p>
 The <a href="#SQLITE_SOURCE_ID">SQLITE_VERSION</a> C preprocessor macro in the sqlite3.h header
@@ -7758,7 +7807,7 @@ sqlite3 object.
 <p>2 Destructors using this object:
  <a href="#sqlite3_close">sqlite3_close()</a>,
 <a href="#sqlite3_close">sqlite3_close_v2()</a></p>
-<p>79 Methods using this object:
+<p>77 Methods using this object:
 <div class='columns' style='columns: 17em auto;'>
 <ul style='padding-top:0;'>
 <li><a href='#sqlite3_autovacuum_pages'>sqlite3_autovacuum_pages</a></li>
@@ -7821,7 +7870,6 @@ sqlite3 object.
 <li><a href='#sqlite3_preupdate_blobwrite'>sqlite3_preupdate_hook</a></li>
 <li><a href='#sqlite3_preupdate_blobwrite'>sqlite3_preupdate_new</a></li>
 <li><a href='#sqlite3_preupdate_blobwrite'>sqlite3_preupdate_old</a></li>
-<li><a href='#sqlite3_profile'>sqlite3_profile</a></li>
 <li><a href='#sqlite3_progress_handler'>sqlite3_progress_handler</a></li>
 <li><a href='#sqlite3_commit_hook'>sqlite3_rollback_hook</a></li>
 <li><a href='#sqlite3_set_authorizer'>sqlite3_set_authorizer</a></li>
@@ -7831,7 +7879,6 @@ sqlite3 object.
 <li><a href='#sqlite3_table_column_metadata'>sqlite3_table_column_metadata</a></li>
 <li><a href='#sqlite3_total_changes'>sqlite3_total_changes</a></li>
 <li><a href='#sqlite3_total_changes'>sqlite3_total_changes64</a></li>
-<li><a href='#sqlite3_profile'>sqlite3_trace</a></li>
 <li><a href='#sqlite3_trace_v2'>sqlite3_trace_v2</a></li>
 <li><a href='#sqlite3_txn_state'>sqlite3_txn_state</a></li>
 <li><a href='#sqlite3_unlock_notify'>sqlite3_unlock_notify</a></li>
@@ -9680,7 +9727,7 @@ by enclosing in double-quotes) so as not to confuse the parser.</p>
 <p>The sqlite3_keyword_count() interface returns the number of distinct
 keywords understood by SQLite.</p>
 
-<p>The sqlite3_keyword_name(N,Z,L) interface finds the N-th keyword and
+<p>The sqlite3_keyword_name(N,Z,L) interface finds the 0-based N-th keyword and
 makes *Z point to that keyword expressed as UTF8 and writes the number
 of bytes in the keyword into *L.  The string that *Z points to is not
 zero-terminated.  The sqlite3_keyword_name(N,Z,L) routine returns
@@ -10399,7 +10446,7 @@ regular DELETE, sqlite3_preupdate_blobwrite() returns -1.</p>
 
 <p>See also:  <a href="#sqlite3_update_hook">sqlite3_update_hook()</a>
 </p><hr><a name="sqlite3_profile"></a>
-<h2>Tracing And Profiling Functions</h2>
+<h2>Deprecated Tracing And Profiling Functions</h2>
 </div>
 <blockquote><pre>
 void *sqlite3_trace(sqlite3*,

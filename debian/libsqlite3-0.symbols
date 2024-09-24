@@ -211,6 +211,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3DeleteTriggerStep@Base 3.37.0
  sqlite3Dequote@Base 3.37.0
  sqlite3DequoteExpr@Base 3.37.0
+ sqlite3DequoteNumber@Base 3.46.0
  sqlite3DequoteToken@Base 3.37.0
  sqlite3Detach@Base 3.37.0
  sqlite3DropIndex@Base 3.37.0
@@ -276,12 +277,10 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3ExprImpliesExpr@Base 3.37.0
  sqlite3ExprImpliesNonNullRow@Base 3.37.0
  sqlite3ExprIsConstant@Base 3.37.0
- sqlite3ExprIsConstantNotJoin@Base 3.37.0
  sqlite3ExprIsConstantOrFunction@Base 3.37.0
  sqlite3ExprIsConstantOrGroupBy@Base 3.37.0
  sqlite3ExprIsInteger@Base 3.37.0
  sqlite3ExprIsSingleTableConstraint@Base 3.42.0
- sqlite3ExprIsTableConstant@Base 3.37.0
  sqlite3ExprIsVector@Base 3.37.0
  sqlite3ExprListAppend@Base 3.37.0
  sqlite3ExprListAppendGrow@Base 3.37.0
@@ -460,6 +459,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3IsLikeFunction@Base 3.37.0
  sqlite3IsMemdb@Base 3.40.1
  sqlite3IsNaN@Base 3.37.0
+ sqlite3IsOverflow@Base 3.45.3
  sqlite3IsReadOnly@Base 3.37.0
  sqlite3IsRowid@Base 3.37.0
  sqlite3IsShadowTableOf@Base 3.37.0
@@ -499,11 +499,14 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3MayAbort@Base 3.37.0
  sqlite3MemCompare@Base 3.37.0
  sqlite3MemJournalOpen@Base 3.37.0
+ sqlite3MemSetArrayInt64@Base 3.46.0
  sqlite3MemSetDefault@Base 3.37.0
  sqlite3MemdbInit@Base 3.37.0
  sqlite3MemoryBarrier@Base 3.37.0
  sqlite3MisuseError@Base 3.37.0
  sqlite3MulInt64@Base 3.37.0
+ sqlite3MultiValues@Base 3.46.0
+ sqlite3MultiValuesEnd@Base 3.46.0
  sqlite3MultiWrite@Base 3.37.0
  sqlite3MutexAlloc@Base 3.37.0
  sqlite3MutexEnd@Base 3.37.0
@@ -1374,6 +1377,7 @@ libsqlite3.so.0 libsqlite3-0 #MINVER#
  sqlite3aGTb@Base 3.37.0
  sqlite3aLTb@Base 3.37.0
  sqlite3changegroup_add@Base 3.13.0
+ sqlite3changegroup_add_change@Base 3.46.0
  sqlite3changegroup_add_strm@Base 3.13.0
  sqlite3changegroup_delete@Base 3.13.0
  sqlite3changegroup_new@Base 3.13.0

@@ -1,3 +1,11 @@
+sqlite3 (3.46.1-8deepin1) unstable; urgency=high
+
+  * Backport upstream security fixes from SQLite 3.53.2:
+    - CVE-2026-11822: add missing bounds check in fts5LeafSeek
+    - CVE-2026-11824: fix boundary check in fts5LeafRead (nn<4 -> szLeaf<4)
+
+ -- deepin-ci-robot <packages@deepin.org>  Thu, 25 Jun 2026 19:00:00 +0800
+
 sqlite3 (3.46.1-8) unstable; urgency=high
 
   * Backport upstream security fix for CVE-2025-7709: integer overflow in the

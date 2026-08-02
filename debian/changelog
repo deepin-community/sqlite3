@@ -1,3 +1,9 @@
+sqlite3 (3.46.1-8deepin2) unstable; urgency=medium
+
+  * fix(cve): CVE-2026-50813
+
+ -- deepin-ci-robot <packages@deepin.org>  Sun, 02 Aug 2026 20:06:39 +0800
+
 sqlite3 (3.46.1-8deepin1) unstable; urgency=high
 
   * Backport upstream security fixes from SQLite 3.53.2:

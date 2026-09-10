@@ -1,3 +1,12 @@
+sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
+
+  * fix(cve): CVE-2026-39113 (unknown) - Improved defenses against
+    mischief.   Upstream:
+    https://github.com/sqlite/sqlite/commit/169f68ed88b34cb68f720191c64c
+    058f2ccec508
+
+ -- deepin-ci-robot <packages@deepin.org>  Fri, 11 Sep 2026 04:50:01 +0800
+
 sqlite3 (3.46.1-8deepin2) unstable; urgency=medium
 
   * fix(cve): CVE-2026-50813

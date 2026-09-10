@@ -1,3 +1,9 @@
+sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
+
+  * Rebuild with LTO enabled (dpkg vendor feature optimize/lto).
+
+ -- tunaichao <tunaichao@uniontech.com>  Thu, 10 Sep 2026 20:55:24 +0800
+
 sqlite3 (3.46.1-8deepin2) unstable; urgency=medium
 
   * fix(cve): CVE-2026-50813

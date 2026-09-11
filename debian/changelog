@@ -4,6 +4,11 @@ sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
     mischief.   Upstream:
     https://github.com/sqlite/sqlite/commit/169f68ed88b34cb68f720191c64c
     058f2ccec508
+  * fix(cve): CVE-2026-50812 (medium) - Fix a bug causing the session
+    module to dereference a NULL pointer when applying a corrupt
+    changeset.   Upstream:
+    https://github.com/sqlite/sqlite/commit/b869ed6b067d623cb1383549f2a1
+    8aa35508385d.patch
 
  -- deepin-ci-robot <packages@deepin.org>  Fri, 11 Sep 2026 04:50:01 +0800
 

@@ -1,6 +1,11 @@
 sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
 
   * Rebuild with LTO enabled (dpkg vendor feature optimize/lto).
+  * fix(cve): CVE-2026-119373 (unknown) - In fts5, account for the
+    possibility of negative docids when allocating a buffer to store the
+    results of merging detail=none prefix lists   Upstream:
+    https://github.com/sqlite/sqlite/commit/e1c9934f9f11a499029abb020ea7
+    15a08970da80
 
  -- tunaichao <tunaichao@uniontech.com>  Fri, 11 Sep 2026 18:03:23 +0800
 

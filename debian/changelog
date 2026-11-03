@@ -10,6 +10,12 @@ sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
     after-free in the fts3 snippet() function   Upstream:
     https://github.com/sqlite/sqlite/commit/a87bd2471a9c0606e78d3c3678bc
     d9cecaa0e731
+  * fix(cve): CVE-2026-119378 (unknown) - Avoid a use-after-free problem
+    in rtree triggered by an attacker manipulating the shadow table
+    schema to ensure sqlite3_last_insert_rowid() returns 0 after certain
+    INSERTs.   Upstream:
+    https://github.com/sqlite/sqlite/commit/d21bd37c7cfc1b85b17a6703555f
+    0926b6236e04
 
  -- tunaichao <tunaichao@uniontech.com>  Fri, 11 Sep 2026 18:03:23 +0800
 

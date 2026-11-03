@@ -22,6 +22,11 @@ sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
     https://github.com/sqlite/sqlite/commit/7ff247c5b9ead3ad8a69c26d3fd2
     64878e127237,https://github.com/sqlite/sqlite/commit/5694c3bb2a6a407
     70ecd2f65910eea756734dfd8
+  * fix(cve): CVE-2026-119375 (unknown) - When reading a frame from a
+    WAL file where the WAL pagesize and the database pagesize disagree,
+    be sure to fully initialize the page that is read.   Upstream:
+    https://github.com/sqlite/sqlite/commit/e5bf119821f25be1d7f10ef0a2ed
+    be175289166e
 
  -- tunaichao <tunaichao@uniontech.com>  Fri, 11 Sep 2026 18:03:23 +0800
 

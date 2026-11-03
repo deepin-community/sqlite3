@@ -6,6 +6,10 @@ sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
     results of merging detail=none prefix lists   Upstream:
     https://github.com/sqlite/sqlite/commit/e1c9934f9f11a499029abb020ea7
     15a08970da80
+  * fix(cve): CVE-2026-119372 (unknown) - Avoid a problem causing a use-
+    after-free in the fts3 snippet() function   Upstream:
+    https://github.com/sqlite/sqlite/commit/a87bd2471a9c0606e78d3c3678bc
+    d9cecaa0e731
 
  -- tunaichao <tunaichao@uniontech.com>  Fri, 11 Sep 2026 18:03:23 +0800
 

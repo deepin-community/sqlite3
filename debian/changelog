@@ -16,6 +16,12 @@ sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
     INSERTs.   Upstream:
     https://github.com/sqlite/sqlite/commit/d21bd37c7cfc1b85b17a6703555f
     0926b6236e04
+  * fix(cve): CVE-2026-119377 (unknown) - Be sure to invoke the
+    authorizer callback on all terms of the USING clause in a RIGHT JOIN
+    Upstream:
+    https://github.com/sqlite/sqlite/commit/7ff247c5b9ead3ad8a69c26d3fd2
+    64878e127237,https://github.com/sqlite/sqlite/commit/5694c3bb2a6a407
+    70ecd2f65910eea756734dfd8
 
  -- tunaichao <tunaichao@uniontech.com>  Fri, 11 Sep 2026 18:03:23 +0800
 

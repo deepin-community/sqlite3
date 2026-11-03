@@ -9,6 +9,10 @@ sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
     changeset.   Upstream:
     https://github.com/sqlite/sqlite/commit/b869ed6b067d623cb1383549f2a1
     8aa35508385d.patch
+  * fix(cve): CVE-2026-119379 (unknown) - Avoid a buffer overrun when
+    processing a strategically corrupted changeset   Upstream:
+    https://github.com/sqlite/sqlite/commit/64459c87cc702d600704fb77ee40
+    ca1782398a52.patch
 
  -- deepin-ci-robot <packages@deepin.org>  Fri, 11 Sep 2026 04:50:01 +0800
 

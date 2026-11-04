@@ -36,6 +36,10 @@ sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
     and causing a CPU stack overflow.   Upstream:
     https://github.com/sqlite/sqlite/commit/eff50a067c55f972909e7780e506
     e91382d08de2
+  * fix(cve): CVE-2026-119376 (unknown) - Fix expression tree depth
+    calculations for COLLATE   Upstream:
+    https://github.com/sqlite/sqlite/commit/d54522a5b832422ab893a1e9fa7a
+    99ab314ea4e2
 
  -- tunaichao <tunaichao@uniontech.com>  Fri, 11 Sep 2026 18:03:23 +0800
 

@@ -40,6 +40,10 @@ sqlite3 (3.46.1-8deepin3) unstable; urgency=medium
     calculations for COLLATE   Upstream:
     https://github.com/sqlite/sqlite/commit/d54522a5b832422ab893a1e9fa7a
     99ab314ea4e2
+  * fix(cve): CVE-2026-119371 (unknown) - Limit the depth of recursion
+    for CTEs using SQLITE_LIMIT_EXPR_DEPTH   Upstream:
+    https://github.com/sqlite/sqlite/commit/e6ff280c839fdfc7418fd5add12e
+    8f32702a17fb
 
  -- tunaichao <tunaichao@uniontech.com>  Fri, 11 Sep 2026 18:03:23 +0800
 

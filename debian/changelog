@@ -1,3 +1,17 @@
+sqlite3 (3.46.1-8deepin6) unstable; urgency=medium
+
+  * fix: link the ICU loadable extension against libicui18n/libicuuc
+    - ext/icu/icu.so was built without any DT_NEEDED entry for libicui18n
+      and libicuuc: when the pkg-config call in debian/rules failed it
+      expanded to an empty string and $(shell) swallowed the error, so the
+      module shipped with every ICU symbol unresolved and could not be
+      loaded: "undefined symbol: ucol_close_74".
+    - Resolve the ICU flags separately, fall back to -licui18n -licuuc,
+      link with -Wl,--no-undefined so a broken link fails the build instead
+      of producing an unusable module, and add pkg-config to Build-Depends.
+
+ -- lichenggang <lichenggang@uniontech.com>  Tue, 10 Nov 2026 11:51:33 +0800
+
 sqlite3 (3.46.1-8deepin5) unstable; urgency=medium
 
   * fix(cve): CVE-2026-119373 (unknown) - In fts5, account for the

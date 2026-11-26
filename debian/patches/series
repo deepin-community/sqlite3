@@ -27,3 +27,4 @@ CVE-2026-119374.patch
 CVE-2026-119591.patch
 CVE-2026-119376.patch
 CVE-2026-119371.patch
+56-WAL-reset.patch
